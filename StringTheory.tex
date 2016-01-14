@@ -15,6 +15,120 @@
 \tableofcontents
 
 \section{Introduction}
+\lecture{14/01/16}
+An \emph{ideal string} is one with negligible cross-sectional area and uniform mass density \(\rho\). Suppose an ideal string is placed under a tension \(T\). It is a simple exercise to deduce that the speed of propagation \(v\) of a disturbance in the displacement of the string is given by \(v = \sqrt{T/\rho}\).
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \draw[rounded corners] (0,0) -- (2,0) .. controls (2.2,0.6) and (2.8,0.6) .. (3,0) -- (8,0);
+        \draw[thick,->] (1,-0.1) -- (-0.2,-0.1) node[left] {\(T\)};
+        \draw[thick,->] (7,-0.1) -- (8.2,-0.1) node[right] {\(T\)};
+        \draw[thick,->] (3,0.4) -- (3.6,0.4) node[right] {\(v\)};
+    \end{tikzpicture}
+\end{figure}
+Special relativity tells us that \(v\) must be less than or equal to \(c\) \disapprove, so we can immediately deduce the inequality \(T \le \rho c^2\). For a non-relativistic string (e.g. a violin string), \(T \ll \rho c^2\). However the strings we are interested in are said to be \emph{ultra-relativistic}: they have \(T=\rho c^2\). In this case, the only relevant quantity is \(T\).
 
+In a quantum theory of strings, we can take advantage of Planck's constant to define a length scale for a string under tension \(T\): the \emph{string length} \(l_s \sim \sqrt{\hbar c^2/T}\). From now on, unless otherwise indicated, we will use natural units where \(\hbar=c=1\). Sometimes we will write \(T=1/2\pi\alpha'\), where \(\alpha'\) is the \emph{Regge slope parameter}, and choose \(l_s = \sqrt{\alpha'}\).
+
+Initially, it was supposed that strings operated on an atomic scale, so that \(l_s \sim 1\) fermi \(= \SI{e-15}{\meter}\), but this failed to agree with experimental results. In electron-proton interactions, this string model predicted weak scattering, but in fact strong scattering was observed, suggesting pointlike constituent particles (eventually explained as the quarks of QCD).
+
+A persistent prediction of all string theories is the existence of a massless spin 2 particle. This is what you would expect from a theory of quantum gravity because if you linearise general relativity about a Minkowski background you in fact obtain a massless spin 2 particle, known as the graviton.
+
+So in 1974, string theory was reinterpreted as a theory of quantum gravity. Since we are dealing with gravity we have access to Newton's constant \(G\), and so can define another lengthscale, the Planck length \(l_P = \sqrt{\hbar G/c^3} \approx \SI{e-35}{\meter}\). Under this reinterpretation we say that the string length is on the order of magnitude of a Planck length. In fact, for string theory in a Minkowski background to be consistent, we require \(l_s\ll l_P\).
+
+Strings can be one of two types:
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[thick]
+        \begin{scope}
+            \node[above] at (0,1) {open};
+            \draw (0,0) arc (20:140:1);
+            \draw (0,0) arc (200:320:1);
+        \end{scope}
+        \begin{scope}
+            \node[above] at (4,1) {closed};
+            \draw (4,0) circle (1);
+        \end{scope}
+    \end{tikzpicture}
+\end{figure}
+As it evolves, a string sweeps out a \emph{worldsheet} in spacetime:
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \draw[thick,->] (0,-0.3) -- (0,4.3) node[left] {t};
+
+        \draw[very thick] (1,0) -- (2,0);
+        \draw[very thick] (1.2,4) -- (3,4);
+
+        \draw (1,0) .. controls (1,1) and (0,3) .. (1.2,4);
+        \draw (2,0) .. controls (2,3) and (4,2) .. (3,4);
+
+        \draw[<-, thick, rounded corners] (1.8,2) .. controls (2.2,1.5) and (3.1,1.5) .. (3.5,2) -- (3.6,2) node[right] {worldsheet};
+    \end{tikzpicture}
+\end{figure}
+
+They interact by splitting and joining. One of the main faults of QFT is that interactions occur at distinct points, leading to large ultraviolet divergences, but in string theory we can avoid this by imposing that the worldsheets of interacting strings must be smooth manifolds embedded in spacetime. So for example, two strings scattering off one another might be represented in the following way:
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \draw[thick,->] (0,-0.3) -- (0,4.3) node[left] {t};
+
+        \draw[very thick] (1,0) -- (2,0);
+        \draw[very thick] (4,0) -- (5,0);
+        \draw[very thick] (1,4) -- (2,4);
+        \draw[very thick] (4,4) -- (5,4);
+
+        \draw (1,0) .. controls (2,1.5) and (2,2.5) .. (1,4);
+        \draw (5,0) .. controls (4,1.5) and (4,2.5) .. (5,4);
+        \draw (2,0) .. controls (2.7,1.5) and (3.3,1.5) .. (4,0);
+        \draw (2,4) .. controls (2.7,2.5) and (3.3,2.5) .. (4,4);
+
+        \node at (9,3) {Confer with Feynman diagrams:};
+
+        \draw[thick](7,1) -- (8,2);
+        \draw[thick](7,2) -- (8,1);
+
+        \draw[thick](8.5,1) -- (9,1.25) -- (9,1.75) -- (8.5,2);
+        \draw[thick](9.5,1) -- (9,1.25);
+        \draw[thick](9.5,2) -- (9,1.75);
+
+        \draw[thick](10,1) -- (10.25,1.5) -- (10.75,1.5) -- (11,1);
+        \draw[thick](10,2) -- (10.25,1.5);
+        \draw[thick](11,2) -- (10.75,1.5);
+    \end{tikzpicture}
+\end{figure}
+
+Note that it is always possible to produce a closed string from an open one:
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \draw[thick,->] (0,-0.3) -- (0,4.3) node[left] {t};
+        
+        \draw[very thick] (1,0) -- (2.5,0);
+        \draw[very thick] (1,4) -- (2,4);
+        \draw[very thick] (3.5,4) ellipse (0.5 and 0.25);
+
+        \node[below] at (1.75,0) {open};
+        \node[above] at (1.5,4) {open};
+        \node[above] at (3.5,4.25) {closed};
+
+        \draw(1,0) .. controls (0.5,1) and (0.5,3) .. (1,4);
+        \draw(2.5,0) .. controls (2.5,2) and (4,2) .. (4,4);
+        \draw(2,4) .. controls (1.5,3) and (2.5,2) .. (3,4);
+    \end{tikzpicture}
+\end{figure}
+Since the massless spin 2 particle appears in the spectrum of closed strings, this means that a theory of strings is always a theory of quantum gravity.
+
+Note that strings can only interact with themselves. String theory is often popularly described as a ``Theory of Everything''. In fact, string theory must either be a ``Theory of Everything'' or a ``Theory of Nothing''. This is because if it doesn't describe everything, then certain things will not interact with gravity, but we observe that everything must interact with gravity.
+
+There are several different types of string theory. The simplest is bosonic string theory, but it has several problems:
+\begin{itemize}
+    \item It allows tachyons to exist. These are particles with \(m^2 < 0\) and which lead to instabilities.
+    \item As the name indicates, it does not predict fermions.
+    \item Self consistency requires that \(D=26\), where \(D\) is the number of spacetime dimensions.
+\end{itemize}
+
+The only fully consistent string theories are the \emph{superstring} theories, which make use of supersymmetry. These do not allow tachyons, and have \(D=10\). In the 1980s, 5 types of superstring theory were found: Type I, Type IIA, Type IIB, Heterotic E, and Heterotic B. We will discuss Type IIA and Type IIB. All of these theories appear to be different because the coupling is weak, but in the 1990s they were unified into one (arbitrarily coupled) theory
+known as \emph{M-theory}, with \(D=11\).
 
 \end{document}
