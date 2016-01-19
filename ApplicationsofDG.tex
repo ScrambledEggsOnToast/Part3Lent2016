@@ -173,4 +173,50 @@ In fact:
     \end{equation}
 \end{eg}
 
+\section{Vector Fields}
+\lecture{19/01/16}
+
+Suppose we have two manifolds \(\mathcal{M},\tilde{\mathcal{M}}\) with dimensions \(n,\tilde{n}\), open sets \(U_\alpha,\tilde{U}_\beta\) and charts \(\phi_\alpha,\phi_\beta\) respectively, and let \(f\) be a map from \(\mathcal{M}\) to \(\tilde{\mathcal{M}}\).
+
+\begin{defn}
+    \(f\) is \emph{smooth} if \(\tilde{\phi}_\beta\circ f\circ\phi_\alpha^{-1}:\RR^n\rightarrow\RR^{\tilde{n}}\) is smooth for all \(\alpha, \beta\).
+\end{defn}
+
+\begin{defn}
+    If \(\tilde{\mathcal{M}}=\RR\), then \(f:\mathcal{M}\rightarrow\RR\) is a \emph{function}.
+\end{defn}
+
+\begin{defn}
+    If \(\mathcal{M} = \RR\), then \(f:\RR\rightarrow\tilde{\mathcal{M}}\) is a \emph{curve}.
+\end{defn}
+
+Suppose we have a curve \(\gamma:\RR\rightarrow\mathcal{M}\) such that \(\gamma(0) = p \in \mathcal{M}\). Let \(U\) be an open neighbourhood of \(p\), \(U\simeq\RR^n\) and choose coordinates \(x^a\), \(a = 1,\dots,n\) on \(U\).
+
+\begin{defn}
+    The \emph{tangent vector} to \(\gamma\) at \(p\) is defined as:
+    \begin{equation}
+        V|_p = \left.\dv{\gamma(\epsilon)}{\epsilon}\right|_{\epsilon=0}\in T_p\mathcal{M}
+    \end{equation}
+    where \(T_p\mathcal{M}\) is the \emph{tangent space} at \(p\), defined as the set of all tangent vectors to all curves at \(p\).
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+            \draw[rounded corners] (0,0) rectangle (6,2);
+            \node[left] at (0,1) {\(\mathcal{M}\)};
+            \draw (1,0.4) .. controls (2.1,1.6) and (1.8,0.3) .. (3,1)
+                          .. controls (4.2,1.7) and (4.8,1.8) .. (5,1.7)
+                          node[right] {\(\gamma\)};
+            \fill (3,1) circle (0.05) node[below] {\(p\)};
+            \draw[->, thick] (3,1) -- (4.2,1.7) node[midway,above] {\(V|_p\)};
+        \end{tikzpicture}
+    \end{figure}
+\end{defn}
+
+\begin{defn}
+    The \emph{tangent bundle} is given by:
+    \begin{equation}
+        T\mathcal{M} = \bigcup_{\mathclap{p\in\mathcal{M}}} T_p\mathcal{M}
+    \end{equation}
+\end{defn}
+
 \end{document}

@@ -140,4 +140,78 @@ We see that the kinetic term is invariant under a chiral left and right transfor
     U(1)_L\times U(1)_R \rightarrow U(1)_V
 \end{equation}
 
+\subsubsection{Aside on the Dirac field}
+\lecture{18/01/16}
+Consider the usual plane-wave decomposition of the Dirac field:
+\begin{equation}
+    \psi(x) = \sum_{p,s}\left[ b^s(p)u^s(p)e^{-ip\vdot x} + \herm{d^s}(p)v^s(p)e^{ip\vdot x}\right]
+\end{equation}
+where \(\sum_p = \lint{p}\), \(u^s\) and \(v^s\) are 4-component spinors such that \((\slashed{p}-m)u = 0\), \((\slashed{p}+m)v = 0\), \(\herm{b}\) and \(\herm{d}\) are operators that create positive and negative frequency particles respectively, and \(s = \pm\frac{1}{2}\). In the chiral representation:
+\begin{equation}
+    u^s(p) = 
+    \begin{pmatrix}
+        \sqrt{p\vdot\sigma} \xi^s \\ \sqrt{p\vdot\bar{\sigma}} \xi^s
+    \end{pmatrix}
+    ,\quad
+    v^s(p) = 
+    \begin{pmatrix}
+        \sqrt{p\vdot\sigma} \zeta^s \\ -\sqrt{p\vdot\bar{\sigma}} \zeta^s
+    \end{pmatrix}
+\end{equation}
+where \(\xi\) and \(\zeta\) are two component spinors, \(\xi^{\frac{1}{2}} = {1 \choose 0}\), \(\xi^{-\frac{1}{2}} = {0 \choose 1}\) and we will discuss \(\zeta^s\) later, \(\sigma = (1,\sigma^i\), \(\bar{\sigma} = (1,-\sigma_i)\).
+
+Helicity \(h\) is defined as the projection of the angular momentum onto the linear momentum direction:
+\begin{equation}
+    h = \vb{J}\vdot\vu{p} = \vb{S}\vdot\vu{p} \qq{where}
+    \begin{matrix}
+        \vb{J} = -i\vb{r}\times\grad+\vb{S} \\
+        S_i = \frac{i}{4}\epsilon_{ijk}\gamma^j\gamma^k = - \frac{1}{2}
+        \begin{pmatrix}
+            \sigma^i & 0 \\
+            0 & \sigma^i
+        \end{pmatrix}
+    \end{matrix}
+\end{equation}
+Note that \(\gamma^5S^i = \frac{1}{2}\gamma^0\gamma^i = S^i\gamma^5\), so for the massless Dirac field we have:
+\begin{align}
+    &\slashed{p} u = 0 \\
+    \implies& \frac{\gamma^5\gamma^0}{p}(\gamma^0p^0-\vb*{\gamma}\vdot\vb{p})u^s(p) = 0 \\
+    \implies& (\gamma^5 - 2\vb{S}\vdot\vu{p})u^s(p) = 0 \\
+    \implies& hu^s(p) = \frac{1}{2}\gamma^5u^s(p)
+\end{align}
+If we define \(u^s_{\text{L,R}} = \frac{1}{2}(1\mp\gamma^5)u^s\) then we have \(hu^s_{\text{L,R}} = \mp\frac{1}{2}u^s_{\text{L,R}}\), i.e. eigenvectors with \(
+\begin{matrix}
+    \text{positive} \\ \text{negative}
+\end{matrix}
+\) helicity are \(
+\begin{matrix}
+    \text{right} \\ \text{left}
+\end{matrix}
+\) handed.
+
+Helicity is \emph{not} a Lorentz invariant for massive particles, but for massless particles, helicity and chirality coincide.
+
+\subsection{Gauge symmetry}
+We consider a \(U(1)_v\) transformation and promote \(\alpha\) to a function of spacetime position \(\alpha(x)\) (we say that we \emph{gauge} the \(U(1)_v\) symmetry). The kinetic term is no longer invariant under an arbitrary transformation:
+\begin{equation}
+    \overline{\psi}i\slashed{\partial}\psi \rightarrow \overline{\psi}i\slashed{\partial}\psi \overline{\psi}\gamma^\mu\psi\partial_\mu\alpha(x)
+\end{equation}
+To counter this, we introduce a covariant derivative \(D_\mu\) such that \(D_\mu\psi\rightarrow e^{i\alpha(x)}D_\mu\psi\), and a \emph{gauge field} \(A_\mu(x)\) such that \(A_\mu \rightarrow A_\mu - \frac{1}{g}\partial_\mu\alpha\), and set:
+\begin{equation}
+    D_\mu\psi = (\partial_\mu + igA_\mu)\psi
+\end{equation}
+We then see that \(\overline{\psi}i\slashed{D}\psi \rightarrow \overline{\psi}i\slashed{D}\psi\). If we replace partial derivatives with covariant derivatives we obtain in the Lagrangian a kinetic term for the gauge fields \(\mathcal{L}_{\text{gauge}} = - \frac{1}{4}F_{\mu\nu}F^{\mu\nu}\) where \(F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu\).
+
+\subsubsection{Non-abelian gauge symmetry}
+
+We generalise the transformations to:
+
+\begin{equation}
+    \psi_i(x) \rightarrow U_{ij}(x)\psi_j(x) = \exp(it^a\theta_a(x))_{ij}\psi_j(x)
+\end{equation}
+\begin{equation}
+    \overline{\psi}_i(x) \rightarrow \overline{\psi}_j(x) \herm{U}_{ij}(x) = \overline{\psi}_j(x)\exp(-it^a\theta_a(x))_{ji}
+\end{equation}
+where \(\psi_i\) is a field transforming in an \(n\)-dimensional representation of a unitary group, \(t^a\) are the Hermitian generators in that representation, and \(i,j\in\{1,\dots,n\}\).
+
 \end{document}
