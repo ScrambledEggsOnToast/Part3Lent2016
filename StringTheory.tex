@@ -12,6 +12,8 @@
 
 \maketitle
 \suggestionsspiel
+In these notes, variables with arrows above them \(\vec{x}\) are ordinary spatial vectors in the temporal gauge, whereas boldface variables \(\vb{x}\) are transverse vectors in the lightcone gauge.
+
 \tableofcontents
 
 \section{Introduction}
@@ -130,5 +132,89 @@ There are several different types of string theory. The simplest is bosonic stri
 
 The only fully consistent string theories are the \emph{superstring} theories, which make use of supersymmetry. These do not allow tachyons, and have \(D=10\). In the 1980s, 5 types of superstring theory were found: Type I, Type IIA, Type IIB, Heterotic E, and Heterotic B. We will discuss Type IIA and Type IIB. All of these theories appear to be different because the coupling is weak, but in the 1990s they were unified into one (arbitrarily coupled) theory
 known as \emph{M-theory}, with \(D=11\).
+
+\section{Relativistic point particle}
+\lecture{16/01/16}
+
+What is an \emph{elementary} particle? A very mathematical definition due to Wigner is: ``a unitary irrep of the Poincar\'e group classified by mass and spin''. We however will focus on a more physical definition: ``a particle without structure''. This definition requires that the classical action of a particle depends only on the geometry of its worldline. The simplest possibility is that the action is proportional to the length of the worldline:
+\begin{align}
+    I &= -mc^2 \int_A^B \dd{\tau} & \text{where } & c^2\dd{\tau}^2 = -\dd{s}^2 = c^2\dd{x^0}^2 - \sum_{i=1}^{D-1}\dd{x^i}^2 \\
+    \implies I &= -mc^2 \int_{t_A}^{t_B} \dd{t}\sqrt{-\dot{x}^2} && \dot{x}^m = \pdv{x^m(t)}{t},\,t = \text{arbitrary monotonic worldline time}
+\end{align}
+Suppose we tried to include terms involving the extrinsic curvature \(K\):
+\begin{equation}
+    I = -mc^2 \int_{t_A}^{t_B}\dd{t}\sqrt{-\dot{x}^2}\left( 1 + (lK)^2 + \dots \right)
+\end{equation}
+where \(l\) is some characteristic length scale. If \(K^{-1}\gg l\), then such extra terms are irrelevant, but this would suggest some kind of structure. So for elementary particles, we must have \(l=0\).
+
+We have a gauge invariance in the above description: \(t\) is arbitrary. Thus we can reparametrise without consequence:
+\begin{equation}
+    t \rightarrow t^*(t)\quad x(t)\rightarrow x^*(t^*) = x(t)
+\end{equation}
+Lets check this for infinitesimal reparametrisations \(t^*(t) = t - \xi(t)\). We have:
+\begin{equation}
+    x^*(t-\xi(t)) = x(t) \implies \delta_\xi x(t) = x^*(t)-x(t) = \xi \dot{x}
+\end{equation}
+Also:
+\begin{align}
+    \delta_\xi \sqrt{-\dot{x}^2} &= - \frac{\dot{x}}{\sqrt{-\dot{x}^2}}\vdot\delta_\xi \dot{x} \\
+    &= - \frac{\dot{x}}{\sqrt{-\dot{x}^2}}\vdot \dv{\delta_\xi x}{t} \\
+    &= - \frac{\dot{x}}{\sqrt{-\dot{x}^2}}\vdot \left( \dot{\xi}\dot{x} + \xi\ddot{x} \right) \\
+    &= - \dot{\xi} \sqrt{-\dot{x}^2} - \frac{\xi\dot{x}\vdot\ddot{x}}{\sqrt{-\dot{x}^2}} \\
+    &= \dv{t}\left( \xi\sqrt{-\dot{x}^2} \right)
+\end{align}
+Therefore we have:
+\begin{align}
+    I(x) = -mc\int_{t_A}^{t_B} \dd{t} \sqrt{-\dot{x}^2} &\rightarrow -mc\int_{t_A^*}^{t_B^*} \dd{t^*} \sqrt{- \left( \dv{x^*}{t^*} \right)^2} \\
+    &= -mc \int_{t_A-\xi(t_A)}^{t_B-\xi(t_B)} \dd{t^*} \sqrt{- \left( \dv{x^*}{t^*} \right)^2}\\
+    \intertext{Relabel \(t^*\) to \(t\):}
+    &= -mc \int_{t_A-\xi(t_A)}^{t_B-\xi(t_B)} \dd{t} \sqrt{-(\dot{x}^*)^2} \\
+    &= -mc \int_{t_A-\xi(t_A)}^{t_B-\xi(t_B)} \dd{t} \left[ \sqrt{-\dot{x}^2} + \dv{t}\left( \xi\sqrt{-\dot{x}^2} \right) \right]
+\end{align}
+\begin{align}
+    \implies \delta I(x) &= -mc\left( \int_{t_A-\xi(t_A)}^{t_B-\xi(t_B)} - \int_{t_A}^{t_B} \right) \dd{t} \sqrt{-\dot{x}^2} - mc \int_{t_A-\xi(t_A)}^{t_B-\xi(t_B)} \dd{t} \dv{t}\left( \xi\sqrt{-\dot{x}^2} \right) \\
+    &= mc \left(\int^{t_B}_{t_B-\xi(t_B)} - \int^{t_A}_{t_A-\xi(t_A)}\right) \dd{t} \sqrt{-\dot{x}^2} -mc \left[ \xi\sqrt{-\dot{x}^2} \right]^{t_B-\xi(t_B)}_{t_A-\xi(t_A)} \\
+    &= mc\left(\xi(t_B - \xi(t_B))\sqrt{-\dot{x}^2}|_{t_B-\xi(t_B)} - \xi(t_A - \xi(t_A))\sqrt{-\dot{x}^2}|_{t_A-\xi(t_A)} \right)
+-mc \left[ \xi\sqrt{-\dot{x}^2} \right]^{t_B-\xi(t_B)}_{t_A-\xi(t_A)} \\
+&= 0
+\end{align}
+as expected.
+
+Note that gauge invariance is \emph{not} a symmetry, but instead implies redundancy. We can eliminate this by imposing a \emph{gauge condition}. For example, the \emph{temporal gauge} is \(x^0(t) = t\). In this gauge we have \(I = -mc^2\int\dd{t}\sqrt{1 - \frac{v^2}{c^2}}\) where \(v = \abs{\dv{\vec{x}}{t}}\). If we subtract the negative rest energy \(-mc^2\) and take \(c\rightarrow\infty\), we recover the normal non-relativistic action:
+\begin{equation}
+    I \rightarrow I_{\text{NR}} = \int\dd{t} \frac{1}{2}mv^2
+\end{equation}
+
+From now on we will take \(c = 1\).
+
+\subsection{Hamiltonian formulation}
+We have a Lagrangian \(\mathcal{L} = -m \sqrt{-\dot{x}^2}\), from which we can obtain a conjugate momentum:
+\begin{equation}
+    p_m = \pdv{\mathcal{L}}{\dot{x}^m} = \frac{m\dot{x}_m}{\sqrt{-\dot{x}^2}}
+\end{equation}
+In particular, we have \(p^2+m^2 = 0\). Not all of the components of \(p\) are independent, and we can't solve for \(\dot{x}\) in terms of \(p\). Also, the Hamiltonian is identically zero: \(H = p\vdot\dot{x}-\mathcal{L} = \frac{m\dot{x}^2}{\sqrt{-\dot{x}^2}} + m\sqrt{-\dot{x}^2} = 0\). 
+
+Dirac's formalism (developed to deal with these cases) tells us that we should instead promote \(p\) to a free variable, and instead use a Lagrange multiplier to impose the \(p^2+m^2 = 0\) constraint. We obtain the following action:
+
+\begin{equation}
+    I[x,p;e] = \int\dd{t}\left( \dot{x}^mp_m - \frac{1}{2}e(p^2+m^2) \right)
+    \tag{\(*\)}
+    \label{witheinbein}
+\end{equation}
+
+\lecture{19/01/16}
+We can check this is valid by eliminating \(p\) and \(e\). We have \(\fdv{I}{p}=0 \implies p = e^{-1}\dot{x}\), and we can use this to eliminate \(p\):
+\begin{equation}
+    I[x,p;e] \rightarrow I[x;e] = \frac{1}{2}\int\dd{t}\left( e^{-1}\dot{x}^2 - em^2 \right)
+\end{equation}
+We could interpret this as a sort of 1D gravity with metric \(g = -e^2\) and cosmological constant \(m^2\), coupled to \(D\) 1D scalar fields.
+
+Now, \(\fdv{I[x;e]}{e} = 0 \implies e = \frac{\sqrt{-\dot{x}^2}}{m}\) and we can use this to eliminate \(e\):
+\begin{equation}
+    I[x;e] \rightarrow I[x] = -m\int\dd{t}\sqrt{-\dot{x}^2}
+\end{equation}
+So we regain the original action.
+
+Note that \eqref{witheinbein} is still invariant under time reparametrisations (which we will refer to as \(\text{Diff}_1\)).
 
 \end{document}
