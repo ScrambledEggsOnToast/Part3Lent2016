@@ -298,4 +298,39 @@ where we take the normal definition of the expectation of a function \(f(\phi)\)
 \end{equation}
 This is essentially Ehrenfest's theorem: the expectation value of the classical equation of motion holds. For example, if \(S=\frac{m^2\phi^2}{2} + \frac{\lambda\phi^4}{4!}\), then we have \(\expval{\pdv{S}{\phi}} = \expval{m^2\phi+\frac{\lambda\phi^3}{3!}} = 0\).
 
+\lecture{20/01/16}
+However, to probe how the fluctuations take us away from the classical equations of motion, we should compute more general correlation functions. We let \(f:\mathcal{C}\rightarrow\RR\) and compute \(\expval{f}\):
+\begin{align}
+    \expval{f} &= \frac{1}{Z}\int_\RR\dd{\phi}e^{-S(\phi)}f(\phi) \\
+    &= \frac{1}{Z} \int_\RR\dd{(\phi+\epsilon)} e^{-S(\phi+\epsilon)}f(\phi+\epsilon) \\
+    &= \frac{1}{Z} \int_\RR \dd{\phi} e^{-S(\phi)} \left( f-\epsilon\pdv{S}{\phi}f + \epsilon\pdv{f}{\phi} \right) + O(\epsilon^2)
+\end{align}
+The \(0^\text{th}\) order term is just \(\expval{f}\), so comparing to the left hand side we have:
+\begin{equation}
+    \expval{\pdv{S}{\phi}f(\phi)} = \expval{\pdv{f}{\phi}}
+\end{equation}
+So the classical equation of motion \(\pdv{S}{\phi}=0\) does not hold in the presence of so-called \emph{operator insertions}.
+
+\subsection{Effective Theories}
+Let's consider a \(d=0\) QFT involving two fields \((\phi,\chi)\in\RR^2\) with the following action (chosen for its simplicity):
+\begin{equation}
+    S(\phi,\chi) = \frac{m^2}{2}\phi^2 + \frac{M^2}{2}\chi^2 + \frac{\lambda}{4}\phi^2\chi^2
+\end{equation}
+With this action we have a different set of Feynman rules, contributing the following factors to each diagram:
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \draw (0,0) node[left] {\(\phi\)} -- (2,0) node[right] {\(\phi\)};
+        \node[below] at (1,0) {\(\frac{1}{m^2}\)};
+        \draw[dashed] (4,0) node[left] {\(\chi\)} -- (6,0) node[right] {\(\chi\)};
+        \node[below] at (5,0) {\(\frac{1}{M^2}\)};
+        \draw (9,0) arc (-90:-45:1.5) node[above] {\(\phi\)};
+        \draw (9,0) arc (-90:-135:1.5) node[above] {\(\phi\)};
+        \draw[dashed] (9,0) arc (90:135:1.5) node[below] {\(\chi\)};
+        \draw[dashed] (9,0) arc (90:45:1.5) node[below] {\(\chi\)};
+        \draw[fill] (9,0) circle (0.03) node[below] {\(-\lambda\)};
+    \end{tikzpicture}
+\end{figure}
+We can use these to compute the partition function.
+
 \end{document}

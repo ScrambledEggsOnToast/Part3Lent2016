@@ -260,7 +260,7 @@ Lets plot these two constraints:
         \begin{scope}
             \clip (0,0) -- (4,0) -- (4,3.6) -- cycle;
             \fill[gray!10,domain=0:3.6,smooth,variable=\x] plot({\x},{\x^3/12});
-        \end{scope}<++>
+        \end{scope}
         \draw[domain=0:3.6,smooth,variable=\x] plot({\x},{\x^3/12}) node[above] {\(\frac{4}{3}\pi r_0^3\rho_0\)};
         \draw[domain=0:4,smooth,variable=\x] plot({\x},{\x*0.9}) node[right] {\(\frac{4}{9}r_0\)};
         \draw[thick,->] (0,0) -- (4,0) node[right] {\(r_0\)};
@@ -281,5 +281,165 @@ Now we can extend our solution to the envelope. \(m_0\) and \(r_0\) together uni
 Numerically, we can find that \(M\) is maximised when \(m_0\) is maximised, and that the maximum mass is \(M\approx m_0\approx5M_{\astrosun}\).
 
 In fact, it is possible to improve this limit by imposing that the speed of sound is physical, i.e. less than the speed of light: \(\sqrt{\dv{P}{\rho}}\le1\). Using this gives \(M \lesssim 3M_{\astrosun}\).
+
+\section{The Schwarzschild solution}
+\lecture{20/01/16}
+We showed earlier that the only static, spherically symmetric solution of the vacuum EFEs is the Schwarzschild solution:
+\begin{equation}
+    \dd{s}^2 = - \left( 1-\frac{2M}{r} \right)\dd{t}^2 + \left( 1-\frac{2M}{r} \right)^{-1}\dd{r}^2 + r^2\dd{\Omega}^2
+\end{equation}
+\(t,r,\theta,\phi\) are known as \emph{Schwarzschild coordinates}. We will assume \(M>0\).
+
+In fact:
+\begin{theorem}[Birkhoff]
+    Any spherically symmetric solution of the vacuum Einstein equations is isometric to the Schwarzschild solution.
+\end{theorem}
+So in particular, spherical symmetry and a vacuum implies a static spacetime (for \(r>2M\)).
+
+\subsection{Gravitational redshift}
+Consider two fixed observers \(A,B\) in a Schwarzschild spacetime. \(A\) sends two photons to \(B\), seperated by a time \(\Delta t\).
+
+\begin{wrapfigure}{l}{0.4\linewidth}
+    \centering
+    \begin{tikzpicture}
+        \draw[thick,->] (-1.5,-1.5) -- (-0.8,-1.5) node[right] {\(r\)};
+        \draw[thick,->] (-1.5,-1.5) -- (-1.5,-0.8) node[above] {\(t\)};
+        \draw[thick] (0,0) -- (0,-4) node[below] {\(A\)};
+        \draw[thick] (3,0) -- (3,-4) node[below] {\(B\)};
+        \fill (0,-3) circle (0.07);
+        \fill (3,-1.5) circle (0.07);
+        \fill (0,-2.5) circle (0.07);
+        \fill (3,-1) circle (0.07);
+        \draw[photon] (0,-3) -- (3,-1.5);
+        \draw[photon] (0,-2.5) -- (3,-1);
+        \draw[thick,<->] (-0.2,-3) -- (-0.2,-2.5) node[midway,left] {\(\Delta t\)};
+        \draw[thick,<->] (3.2,-1.5) -- (3.2,-1) node[midway,right] {\(\Delta t\)};
+    \end{tikzpicture}
+\end{wrapfigure}
+Because \(\pdv{t}\) is an isometry of the spacetime, the second photon's path is the same as that of the first, but translated by \(\Delta t\). Consider the 4-velocity of a fixed observer. We have:
+\begin{equation}
+    -1 = u^\mu u_\mu = g_{tt}\left(\dv{t}{\tau}\right)^2 = - \left( 1-\frac{2M}{r} \right)\left(\dv{t}{\tau}\right)^2
+\end{equation}
+Hence we have \(\dd{\tau} = \sqrt{1 - \frac{2M}{r}}\dd{t}\). Therefore the proper time intervals between the photons at \(A\) and \(B\) are:
+\begin{equation}
+    \Delta\tau_A = \sqrt{1-\frac{2M}{r_A}}\Delta t
+    ,\quad
+    \Delta\tau_B = \sqrt{1-\frac{2M}{r_B}}\Delta t
+\end{equation}
+So we have:
+\begin{equation}
+    \frac{\Delta \tau_B}{\Delta \tau_A} = \frac{\sqrt{1 - \frac{2M}{r_B}}}{\sqrt{1-\frac{2M}{r_A}}}
+\end{equation}
+If we suppose that the photons were sent at two subsequent wavecrests, then \(\Delta \tau\) is the period of the waves, equal to \(\lambda\), the wavelength (since \(c=1\)). We define the redshift \(z\) by:
+\begin{equation}
+    1 + z = \frac{\lambda_B}{\lambda_A} = \frac{\sqrt{1 - \frac{2M}{r_B}}}{\sqrt{1-\frac{2M}{r_A}}}
+\end{equation}
+For \(r_B > r_A\), we have \(z>0\), so light is redshifted as it climbs out of the gravitational field. For \(r_B\gg 2M\):
+\begin{equation}
+    1 + z = \sqrt{\frac{1}{1 - \frac{2M}{r_A}}}
+\end{equation}
+Note that this \(\rightarrow \infty\) as \(r_A\rightarrow2M\).
+
+For a star, we have the Buchdahl inequality, \(R>\frac{9}{4}M\), so plugging this into the above, we find that the maximum redshift from the surface of a spherical star is \(z=2\).
+
+\subsection{Geodesics}
+Suppose \(x^\mu(\tau)\) is an affinely parametrised geodesic, and let its 4-velocity be \(u^\mu = \dv{x^\mu}{\tau}\). We have Killing fields \(k=\pdv{t}\) and \(m=\pdv{\phi}\), so along geodesics we have two conserved quantities:
+\begin{equation}
+    E=-k\vdot u = \left( 1-\frac{2M}{r} \right)\dv{t}{\tau}
+    \qq{and}
+    h = m\vdot u = r^2\sin^2\theta\dv{\phi}{\tau}
+\end{equation}
+If our geodesic is timelike and we choose \(\tau\) to be proper time, we can identify \(E\) as the energy and \(h\) as the angular momentum associated with the geodesic.
+
+In the null case, we can define the \emph{impact parameter} \(b = \left|\frac{h}{E}\right|\), and identify this as the limit of the distance between the geodesic and the star perpendicular to the geodesic as \(r\rightarrow 0\).
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \draw[dashed] (-4,1) -- (0,0) -- (4,1) node[right] {\(\phi = \) constant};
+        \fill[gray] (0,0) circle (0.1);
+        \node[above] at (0,0.1) {\(r=0\)};
+        \draw[thick,->] (4.25,0.0625) -- (2,-0.5); 
+        \draw[thick,->] (2,-0.5) .. controls (1,-0.75) and (-1,-0.75) .. (-2,-0.5) node[below, midway] {null geodesic};
+        \draw[thick] (-2,-0.5) -- (-4.25,0.0625);
+        \draw[thick,<->] (3.75,0.9375) -- (4,0) node[midway,right] {\(b\)};
+        \draw[thick,<->] (-3.75,0.9375) -- (-4,0) node[midway,left] {\(b\)};
+    \end{tikzpicture}
+\end{figure}
+
+Exercises:
+\begin{enumerate}
+    \item Derive the Euler-Lagrange equation for \(\theta(\tau)\). Show that one can choose coordinates such that \(\theta(\tau) = \frac{\pi}{2}\), so that motion is contained in the equatorial plane.
+    \item Rearrange the definition of proper time:
+        \begin{equation}
+            g_{\mu\nu}u^\mu u^\nu = \sigma = 
+            \begin{cases}
+                1 & \text{timelike}\\
+                0 & \text{null}\\
+                -1 & \text{spacelike}
+            \end{cases}
+        \end{equation}
+        to obtain \(\frac{1}{2}\left( \dv{r}{\tau} \right)^2 + V(r) = \frac{1}{2}E^2\), where \(V(r) = \frac{1}{2}\left( 1-\frac{2M}{r} \right)\left( \sigma+\frac{h^2}{r^2} \right)\).
+\end{enumerate}
+
+\subsection{Eddington-Finkelstein coordinates}
+Consider radial null geodesics (\(\sigma=0\)) in \(r>2M\). Since \(\phi\) is constant, we have \(h=0\) and so \(V=0\). Since we are dealing with a null geodesic, we are free to scale \(\tau\) such that \(E=1\). Hence we have:
+\begin{equation}
+    \dv{t}{\tau} = \left( 1-\frac{2M}{r} \right)^{-1}
+    ,\quad
+    \dv{r}{\tau} = \pm 1
+\end{equation}
+where the sign in the second equation depends on whether the geodesic is outgoing or ingoing. One thing of note is that an ingoing geodesic reaches \(r=2M\) in finite \(\tau\). The same is not true of \(t\):
+\begin{equation}
+    \dv{t}{r} = \pm\left( 1-\frac{2M}{r} \right)^{-1}
+\end{equation}
+so \(t\rightarrow\mp\infty\) as \(r\rightarrow2M\).
+
+Define \(r_*=r+2M\log\abs{\frac{r}{2M}-1}\), \(\dd{r_*} = \frac{\dd{r}}{1 - \frac{2M}{r}}\) (\(*\)).
+
+\begin{wrapfigure}{l}{0.3\linewidth}
+    \centering
+    \begin{tikzpicture}
+        \draw[thick,->] (0,-.7) -- (0,3) node[above] {\(r_*\)};
+        \draw[thick,->] (-.2,0) -- (4,0) node[right] {\(r\)};
+        \draw[domain=1.07:4,smooth,variable=\x] plot({\x},{(\x+ln(\x-1))/2});
+        \draw[dashed] (0,0) -- (4,2.7);
+        \draw[dashed] (1,-.7) -- (1,3);
+        \fill (1,0) circle (0.05);
+        \node[below] at (0.63,0) {\(2M\)};
+    \end{tikzpicture}
+\end{wrapfigure}
+We have \(\dv{t}{r_*} = \pm1\), so \(t\mp r_*\) is a constant. Define \mbox{\(v = t + r_*\) (\(\dagger\))}, a constant along ingoing radial geodesics. The ingoing \emph{Eddington-Finklestein} coordinates are \(v,r,\theta,\phi\). In these coordinates, the line element is given by:
+\begin{equation}
+    \dd{s}^2 = - \left( 1-\frac{2M}{r} \right)\dd{v}^2 + 2\dd{v}\dd{r} + r^2\dd{\Omega}^2
+\end{equation}
+This is smooth for all \(r > 0\). In matrix form, the metric is:
+\begin{equation}
+    g_{\mu\nu} = 
+    \begin{pmatrix}
+        - \left( 1 - \frac{2M}{r} \right) & 1 & 0 & 0 \\
+        1 & 0 & 0 & 0 \\
+        0 & 0 & r^2 & 0 \\
+        0 & 0 & 0 & r^2\sin^2\theta
+    \end{pmatrix}
+\end{equation}
+We have \(g = \det g_{\mu\nu} = -r^4\sin^2\theta\), so \(g_{\mu\nu}\) is non-degenerate for all \(r > 0\) and furthermore it is Lorentzian for all \(r>0\).
+
+In summary, spacetime can be extended through \(r=2M\) to a new region \(r<2M\).
+
+Exercise: for \(0<r<2M\), define \(r_*\) by (\(*\)) and \(t\) by (\(\dagger\)). Show that the metrix in coordinates \(t,r,\theta,\phi\) is the Schwarzschild metric with \(0<r<2M\).
+
+So for a ingoing radial null geodesic inside \(r=2M\) we have \(\dv{r}{\tau}=-1\), so it reaches \(r=0\) in finite \(\tau\).
+
+Consider \(R_{abcd}R^{abcd}\). Some work will lead to:
+\begin{equation}
+    R_{abcd}R^{abcd} \propto \frac{M^2}{r^6} \rightarrow \infty \text{ as } r\rightarrow0
+\end{equation}
+This quantity is a scalar, so it diverges in any coordinate system. We call \(r=0\) a \emph{curvature singularity}. There are infinite tidal forces at \(r=0\). Note that \(r=0\) is not a part of the our spacetime, because \(g_{ab}\) is not defined there.
+
+For \(r>2M\) we have the ``static'' KVF \(\pdv{t}\). In Eddington-Finklestein coordinates \(x^\mu\), we have:
+\begin{equation}
+    k = \pdv{x^\mu}{t}\pdv{x^\mu} = \pdv{v}
+\end{equation}
+Also, \(k^2 = g_{vv} = -\left( 1-\frac{2M}{r} \right)\), so \(k\) is null at \(r=2M\), and spacelike at \(r < 2M\). Only \(r > 2M\) is static.
 
 \end{document}

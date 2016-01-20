@@ -158,7 +158,10 @@ where \(\sum_p = \lint{p}\), \(u^s\) and \(v^s\) are 4-component spinors such th
         \sqrt{p\vdot\sigma} \zeta^s \\ -\sqrt{p\vdot\bar{\sigma}} \zeta^s
     \end{pmatrix}
 \end{equation}
-where \(\xi\) and \(\zeta\) are two component spinors, \(\xi^{\frac{1}{2}} = {1 \choose 0}\), \(\xi^{-\frac{1}{2}} = {0 \choose 1}\) and we will discuss \(\zeta^s\) later, \(\sigma = (1,\sigma^i\), \(\bar{\sigma} = (1,-\sigma_i)\).
+where \(\xi\) and \(\zeta\) are two component spinors, \(\xi^{\frac{1}{2}} = {1 \choose 0}\), \(\xi^{-\frac{1}{2}} = {0 \choose 1}\) and we will discuss \(\zeta^s\) later, \(\sigma = (1,\sigma^i\), \(\bar{\sigma} = (1,-\sigma_i)\). Note that \(\sqrt{p\vdot\sigma}\) should be dealt with in its eigenvector basis. For example if we rotate spatial co-ordinates so that \(\vb{p}\) is pointed along \(\vb{e}_3\), then we have:
+\begin{equation}
+    \sqrt{p\vdot\sigma} = \sqrt{p^0-p^3}\frac{1+\sigma^3}{2} + \sqrt{p^0+p^3}\frac{1-\sigma^3}{2}
+\end{equation}
 
 Helicity \(h\) is defined as the projection of the angular momentum onto the linear momentum direction:
 \begin{equation}
@@ -212,6 +215,94 @@ We generalise the transformations to:
 \begin{equation}
     \overline{\psi}_i(x) \rightarrow \overline{\psi}_j(x) \herm{U}_{ij}(x) = \overline{\psi}_j(x)\exp(-it^a\theta_a(x))_{ji}
 \end{equation}
-where \(\psi_i\) is a field transforming in an \(n\)-dimensional representation of a unitary group, \(t^a\) are the Hermitian generators in that representation, and \(i,j\in\{1,\dots,n\}\).
+where \(\psi_i\) is a field transforming in an \(n\)-dimensional representation \(R\) of a unitary group, \(t^a\) are the Hermitian generators in that representation, and \(i,j\in\{1,\dots,n\}\).
+
+\lecture{20/01/16}
+The \(t^a\) form a Lie algebra. We define the structure constants \(f^{abc}\) by \([t^a,t^b] = i f^{abc}t^c\), and the Dynkin index \(T(R)\) of \(R\) by \(\Tr(t^at^b)=T(R)\delta^{ab}\).
+
+In the standard model, the fermions belong to trivial (\(n=1\)) or fundamental representations.
+
+In analogy to the abelian case, we define a covariant derivative as follows:
+\begin{equation}
+    (D_\mu)_{ij} = \partial_\mu\delta_{ij} + ig(t^aA^a_\mu)_{ij}
+\end{equation}
+Under a gauge transformation, we have \((D_\mu\psi)_i\rightarrow (U(x)D_\mu\psi)_i\). We also define the field-strength tensor \(F^a_{\mu\nu}\) by:
+\begin{equation}
+    [D_\mu,D_\nu] = igt^aF^a_{\mu\nu}
+\end{equation}
+where we have dropped the \(i,j\) indices. We can write this as:
+\begin{equation}
+    F^a_{\mu\nu} = \partial_\mu A^a_\nu - \partial_\nu A^a_\mu - gf^{abc}A^b_\mu A^c_\nu
+\end{equation}
+The contribution of the field-strength tensor to the lagrangian is:
+\begin{equation}
+    \mathcal{L}_g = -\frac{1}{4}F^a_{\mu\nu}F^{a\,\mu\nu} = -\frac{1}{2}\Tr F_{\mu\nu}F^{\mu\nu}
+\end{equation}
+
+\subsection{Types of symmetry}
+Symmetries can manifest themselves in a number of different ways:
+\begin{itemize}
+    \item Symmetries can exist in both classical physics and quantum physics. Such symmetries are said to be \emph{intact}. Examples in the Standard Model include \(U(1)_{\text{EM}}\) and \(SU(3)_{\text{C}}\).
+    \item A symmetry can exist in classical physics, but be broken by quantum effects. It is said to be broken by an \emph{anomaly}. In the Standard Model, the global axial symmetry \(U(1)_{\text{A}}\) is anomalous.
+    \item If a symmetry holds for some terms in the Lagrangian but not others, it is said to be \emph{broken explicitly}. It may still be an appropriate symmetry to consider if the symmetry breaking terms are small. In the standard model, the global isospin symmetry relating up and down quarks (a global \(SU(2)\)) is only approximate, as it is broken by differences in mass and charge.
+    \item If a symmetry is respected by the Lagrangian but not by the vacuum, then it is said to be \emph{spontaneously broken} or to be a \emph{hidden symmetry}. These symmetries have important physical consequences. In the standard model, \(SU(2)_{\text{L}} \times U(1)_{\text{Y}}\) is spontaneously broken to \(U(1)_{\text{EM}}\) by the Higgs mechanism.
+\end{itemize}
+
+\section{Discrete symmetries}
+There are three important discrete symmetries that we must consider:
+\begin{description}
+    \item[Parity] (\(P\)): \((t,\vb{x})\rightarrow(t,-\vb{x})\)
+    \item[Time reversal] (\(T\)): \((t,\vb{x})\rightarrow(-t,\vb{x})\)
+    \item[Charge conjugation] (\(C\)): particles \(\rightleftharpoons\) antiparticles
+\end{description}
+Parity and time reversal are spacetime symmetries.
+
+Gauge theories with vector-like couplings to fermions (e.g. QED, QCD) are invariant under \(P\) and \(C\). However, theories that couple only to left-handed fermions (e.g. weak interactions) are not. In fact the combination \(CP\) is violated in the weak interaction. The \(CPT\) theorem states that the combination \(CPT\) must be conserved, so we have that the weak interaction violates \(T\) as well. 
+
+To fully understand these statements, we first investigate the consequences of theories that do respect \(C\), \(P\) and \(T\).
+
+\subsection{Spacetime symmetry operators}
+A general Poincar\'e transformation is a change of coordinate frame:
+\begin{equation}
+    x^\mu \rightarrow x'^\mu = \Lambda^\mu_\nu x^\nu + a^\mu
+\end{equation}
+Proper Lorentz transformations have \(\det\Lambda = +1\). Parity and time reversal are improper Lorentz transformations:
+\begin{align}
+    \text{Parity has } \Lambda_\nu^\mu &= \mathbb{P}^\mu_\nu = 
+    \begin{pmatrix}
+        1 \\
+        &-1\\
+        &&-1\\
+        &&&-1
+    \end{pmatrix} \\
+    \text{Time reversal has } \Lambda_\nu^\mu &= \mathbb{T}^\mu_\nu = 
+    \begin{pmatrix}
+        -1 \\
+        &1 \\
+        &&1\\
+        &&&1
+    \end{pmatrix}
+\end{align}
+
+\begin{theorem}[Wigner]
+    If physics is invariant under \(\psi\rightarrow\psi'\) where \(\psi,\psi'\) are vectors in some Hilbert space \(\mathcal{H}\), then there is an operator \(W\) such that \(\psi'=W\psi\) such that:
+    \begin{itemize}
+        \item either \(W\) is unitary and linear:
+            \begin{equation}
+                (W\phi,W\psi) = (\phi,\psi)
+                \quad
+                W(\alpha\phi + \beta\psi) = \alpha W\phi + \beta W\psi
+            \end{equation}
+        \item or \(W\) is anti-unitary and anti-linear:
+            \begin{equation}
+                (W\phi,W\psi) = (\phi,\psi)^*
+                \quad
+                W(\alpha\phi + \beta\psi) = \alpha^* W\phi + \beta^* W\psi
+            \end{equation}
+    \end{itemize}
+    where \(\alpha,\beta\in\CC\) and \(\phi,\psi\in\mathcal{H}\).
+\end{theorem}
+
+Consider an infinitesimal (proper) Poincar\'e transformation \(\Lambda^\mu_\nu = \delta^\mu_\nu + w^\mu_\nu\), \(a^\mu = \epsilon^\mu\), where \(w^\mu_\nu\) and \(\epsilon^\mu\) are small parameters.
 
 \end{document}
