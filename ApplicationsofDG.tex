@@ -219,4 +219,106 @@ Suppose we have a curve \(\gamma:\RR\rightarrow\mathcal{M}\) such that \(\gamma(
     \end{equation}
 \end{defn}
 
+A vector field assigns a tangent vector to each point \(p\in\mathcal{M}\). Let \(f:\mathcal{M}\rightarrow\RR\). The rate of change of \(f\) along \(\gamma\) is given by:
+\begin{align}
+    \dv{\epsilon}f(x^a(\epsilon))|_{\epsilon=0} &= \sum_{a=1}^n \dot{x}^a(\epsilon)\left.\pdv{f}{x^a}\right|_{\epsilon=0}\\
+    &= \underbrace{\sum_{a=1}^nV^a(x)\left.\pdv{x^a}\right|_p}_{=V} f
+\end{align}
+\(V\) is a vector field. \(V^a(x)\) are the components of \(V\) in the basis \(\left\{\pdv{x^1},\dots,\pdv{x^n}\right\}\) at \(p\). 
+
+We have gone from a curve to a vector field. We can also go the other way:
+\begin{defn}
+    An \emph{integral curve} or \emph{flow} \(\gamma(\epsilon)\) of a vector field \(V\) is defined by:
+    \begin{equation}
+        \dot{\gamma}(\epsilon) = V|_{\gamma(\epsilon)}
+        \qq{or, equivalently}
+        \dv{\epsilon}x^a(\epsilon) = V^a(x(\epsilon))
+    \end{equation}
+\end{defn}
+We have:
+\begin{equation}
+    x^a(\epsilon,x^a(0)) = x^a(0) + \epsilon V^a(x(0)) + O(\epsilon^2)
+\end{equation}
+We say that the vector field \(V\) \emph{generates} the flow.
+\begin{defn}
+    An \emph{invariant} of a vector field \(V\) is a function that is constant along the flow of \(V\):
+    \begin{equation}
+        f(x^a(0)) = f(x^a(\epsilon)) \Forall \epsilon
+        \qq{or, equivalently}
+        V(f) = 0
+    \end{equation}
+\end{defn}
+\begin{eg}
+    Let \(\mathcal{M}=\RR^2\), \(x^a = (x,y)\), and \(V = x\pdv{x}+\pdv{y}\). The integral curves of \(V\) are given by \(\dot{x}=x\), \(\dot{y}=1\), and we can solve this to obtain \((x(\epsilon),y(\epsilon)) = (x(0)e^\epsilon,y(0)+\epsilon)\).
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+            \draw[thick,->] (-2,0) -- (3,0) node[right] {\(y\)};
+            \draw[thick,->] (0,-2) -- (0,2) node[above] {\(x\)};
+            \clip (-2,-2) rectangle (3,2);
+            \draw[domain=-2:3,smooth,variable=\x] plot ({\x},{3*exp(\x)});
+            \draw[domain=-2:3,smooth,variable=\x] plot ({\x},{1.5*exp(\x)});
+            \draw[domain=-2:3,smooth,variable=\x] plot ({\x},{exp(\x)});
+            \draw[domain=-2:3,smooth,variable=\x] plot ({\x},{0.5*exp(\x)});
+            \draw[domain=-2:3,smooth,variable=\x] plot ({\x},{0.1*exp(\x)});
+            \draw[domain=-2:3,smooth,variable=\x] plot ({\x},{-0.1*exp(\x)});
+            \draw[domain=-2:3,smooth,variable=\x] plot ({\x},{-0.5*exp(\x)});
+            \draw[domain=-2:3,smooth,variable=\x] plot ({\x},{-exp(\x)});
+            \draw[domain=-2:3,smooth,variable=\x] plot ({\x},{-1.5*exp(\x)});
+            \draw[domain=-2:3,smooth,variable=\x] plot ({\x},{-3*exp(\x)});
+        \end{tikzpicture}
+    \end{figure}
+    Note that on these curves \(xe^{-y}\) is constant, so this is an invariant of \(V\).
+\end{eg}
+\begin{eg}
+    Consider the 1-parameter group of rotations on \(\RR^2\). Under these rotations, \((x_0,y_0)\) transforms to the point \((x(\epsilon),y(\epsilon)) = (x_0\cos\epsilon-y_0\sin\epsilon,x_0\sin\epsilon+y_0\cos\epsilon)\). The vector field that generates these curves is given by:
+    \begin{align}
+        V &= \left( \dv{y(\epsilon)}{\epsilon}\pdv{y} + \dv{x(\epsilon)}{\epsilon}\pdv{\epsilon} \right)\\
+        &= x\pdv{y} - y\pdv{x}
+    \end{align}
+    The distance to the origin is an invariant of \(V\):
+    \begin{equation}
+        V(x^2+y^2) = -2xy + 2xy = 0
+    \end{equation}
+\end{eg}
+\begin{defn}
+    A \emph{Lie bracket} of two vector fields \(V\) and \(W\) is a vector field \([V,W]\) defined by its action on functions as:
+    \begin{equation}
+        [V,W](f) = V(W(f))-W(V(f))
+    \end{equation}
+\end{defn}
+The Lie bracket has some important properties:
+\begin{description}
+    \item[Antisymmetry]: \([V,W] = -[W,V]\)
+    \item[Jacobi identity]: \([U,[V,W]] + [V,[W,U]] + [W,[U,V]] = 0\)
+\end{description}
+\begin{eg}
+    If \(V = x\pdv{x}+\pdv{y}\) and \(W = \pdv{x}\), then \([V,W] = -\pdv{x} = -W\).
+\end{eg}
+\begin{defn}
+    A \emph{Lie algebra} is a vector space \(\mathfrak{g}\) equipped with an antisymmetric bilinear operation \([\;,\;]:\mathfrak{g}\times\mathfrak{g}\rightarrow\mathfrak{g}\) that satisfies the Jacobi identity.
+\end{defn}
+If \(\mathfrak{g}\) is finite-dimensional and \(V_\alpha\), \(\alpha = 1,\dots,\dim\mathfrak{g}\) span \(\mathfrak{g}\), then \(\mathfrak{g}\) is determined by its structure constants \(f_{\alpha\beta}^\gamma\), defined as follows:
+\begin{equation}
+    [V_\alpha,V_\beta] = \sum_\gamma f_{\alpha\beta}^\gamma V_\gamma
+\end{equation}
+\begin{eg}
+    There are only two 2D Lie algebras (up to isomorphism), each determined by the bracket of two basis elements:
+    \begin{equation}
+        [V,W] = 0 \qq{or} [V,W] = -W
+    \end{equation}
+\end{eg}
+\begin{eg}
+    \(gl(n,\RR)\) (the set of all \(n\times n\) real matrices) is a Lie algebra when equipped with the matrix commutator as a bracket. Its dimension is \(n^2\).
+\end{eg}
+\begin{eg}
+    Vector fields on a manifold \(\mathcal{M}\) form an infinite dimensional Lie algebra. Consider for example \(\mathfrak{g} = \operatorname{diff}(S^1)\) or \(\operatorname{diff}(\RR)\), by which we mean the set of all vector fields on the manifold. We have the following basis of \(\mathfrak{g}\):
+    \begin{equation}
+        V_a = - x^{\alpha+1}\pdv{x} \qq{where} \alpha\in\ZZ
+    \end{equation}
+    With this basis, the Lie bracket gives:
+    \begin{equation}
+        [V_\alpha,V_\beta] = (\alpha-\beta)V_{\alpha+\beta}
+    \end{equation}
+\end{eg}
 \end{document}

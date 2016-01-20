@@ -215,6 +215,59 @@ Now, \(\fdv{I[x;e]}{e} = 0 \implies e = \frac{\sqrt{-\dot{x}^2}}{m}\) and we can
 \end{equation}
 So we regain the original action.
 
-Note that \eqref{witheinbein} is still invariant under time reparametrisations (which we will refer to as \(\text{Diff}_1\)).
+Note that \eqref{witheinbein} is still invariant under time reparametrisations (which we will refer to as \(\text{Diff}_1\)). Under such transformations we have:
+\begin{equation}
+    \delta_\xi x = \xi \dot{x},\quad \delta_\xi p = \xi \dot{p},\quad \delta_\xi e = \pdv{t}\left( e\xi \right)
+\end{equation}
+In other words, \(x\) and \(p\) are scalars, while \(e\) is a scalar density. Combining these gives that \(\delta I = \) a boundary term, which we choose to ignore. \eqref{witheinbein} is also invariant under the \emph{canonical} gauge transformation:
+\begin{equation}
+    \delta_\alpha x = p,\quad \delta_\alpha p = 0, \quad \delta e = \dot{\alpha}
+\end{equation}
+
+\begin{defn}
+    Given an action \(I[\phi,\psi]\), a \emph{trivial gauge transformation} is one that can be written as follows:
+    \begin{equation}
+        \delta_f\phi = f \fdv{I}{\psi},\quad \delta_f\psi = -f \fdv{I}{\phi}
+    \end{equation}
+    for some function \(f\).
+\end{defn}
+Note that under a trivial gauge transformation we have \(\delta I = \delta_f\phi \fdv{I}{\phi} + \delta_f\psi\fdv{I}{\psi} = 0\), so it is indeed a gauge transformation.
+
+The \(\text{Diff}_1\) and canonical gauge invariances differ by a trivial gauge transformation; we say they are equivalent.
+
+\subsection{Lightcone gauge}
+
+If we choose the temporal gauge \(x^0(t)=t\), we have \(\dot{x}_mp^m=\dot{x}^0p_0 + \dot{\vec{x}}\vdot\vec{p} = \dot{\vec{x}}\vdot\vec{p}-p^0\). If we use \eqref{witheinbein} and compare this to \(L = \dot{x}^mp_m - H\), we have \(H = p^0 = \pm\sqrt{|\vec{p}|^2+m^2}\), where we used the constraint \(p^2+m^2=0\) to find the second inequality.
+
+The Hamiltonian depends on the choice of gauge. Another important possible choice is the \emph{lightcone gauge}, which we will now describe. We define lightcone coordinates as follows:
+\begin{equation}
+    x^\pm = \frac{1}{\sqrt{2}}(x^0\pm x^{D-1}),\quad \vb{x} = (x^1,\dots,x^{D-2})
+\end{equation}
+\(x^I\), \(I=1,\dots,D-2\), are said to be coordinates in \emph{transverse space}. Similarly, we have:
+\begin{equation}
+    p_\pm = \frac{1}{\sqrt{2}} (p_0\pm p_{D-1}),\quad \vb{p} = (p_1,\dots,p_{D-2})
+\end{equation}
+Using these coordinates we have:
+\begin{equation}
+    \dot{x}^mp_m = \dot{x}^-p_- + \dot{x}^+p_+ + \dot{\vb{x}}\vdot \vb{p}
+    \qq{and}
+    p^2 = 2p_+p_- + |\vb{p}|^2
+\end{equation}
+Lightcone gauge is the choice \(x^+(t)=t\). This choice is ok provided that \(p_-\ne0\), but note that \(p_-=0\) implies via \(p^2+m^2=0\) that both \(\vb{p}\) and \(m\) are equal to \(0\). In the lightcone gauge, we have \(\dot{x}^mp_m = \dot{\vb{x}}\vdot\vb{p} + \dot{x}^-p_- + p_+\), so the Hamiltonian is now \(-p_+\). Using \(p^2+m^2=0\), we have then that:
+\begin{equation}
+    I = \int\dd{t}\left( \dot{\vb{x}}\vdot\vb{p} + \dot{x}^-p_- - H \right) \qq{where} H = \frac{|\vb{p}|^2+m^2}{2p_-}
+\end{equation}
+The action is still Lorentz invariant, despite the fact that \(x^+=t\) is not Lorentz invariant (neither for that matter is \(x^0=t\)). In fact, it is not possible to break a symmetry by choosing a gauge.
+
+\subsection{Poisson brackets}
+For a mechanical model with action
+\begin{equation}
+    I[q,p] = \int\dd{t}\dot{q}^Ip_I - H(q,p)
+\end{equation}
+\(q\) and \(p\) are here coordinates on phase space. A \emph{Possion bracket} is a way of taking two functions \(f\) and \(g\) on phase space and producing a third function on phase space:
+\begin{equation}
+    \{f,g\}_{\text{PB}} = f \left[ \overset{\leftarrow}{\pdv{q^I}}\pdv{p_I} - \overset{\leftarrow}{\pdv{p^I}}\pdv{q_I} \right] g = -\{g,f\}_{\text{PB}}
+\end{equation}
+For example, we have \(\{q^I,p_J\}_{\text{PB}} = \delta^I_J\).
 
 \end{document}
