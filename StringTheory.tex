@@ -221,7 +221,7 @@ Note that \eqref{witheinbein} is still invariant under time reparametrisations (
 \end{equation}
 In other words, \(x\) and \(p\) are scalars, while \(e\) is a scalar density. Combining these gives that \(\delta I = \) a boundary term, which we choose to ignore. \eqref{witheinbein} is also invariant under the \emph{canonical} gauge transformation:
 \begin{equation}
-    \delta_\alpha x = p,\quad \delta_\alpha p = 0, \quad \delta e = \dot{\alpha}
+    \delta_\alpha x = \alpha p,\quad \delta_\alpha p = 0, \quad \delta e = \dot{\alpha}
 \end{equation}
 
 \begin{defn}
@@ -270,4 +270,108 @@ For a mechanical model with action
 \end{equation}
 For example, we have \(\{q^I,p_J\}_{\text{PB}} = \delta^I_J\).
 
+\lecture{21/06/16}
+More generally, we could use any coordinates \(z^A\), \(A=1,\dots,2N\) on phase space. Phase space is a symplectic manifold\footnote{That is, it permits a closed invertible 2-form \(\Omega\), called a \emph{symplectic} 2-form.}. Now we define the Poisson bracket in a slightly different way:
+\begin{equation}
+    \{f,g\}_{\text{PB}} = f \left[ \overset{\leftarrow}{\pdv{z^A}}(\Omega^{-1})^{AB} \pdv{z^B} \right]g
+\end{equation}
+This definition is also antisymmetric and obeys the Jacobi identity, so it is a valid Lie bracket.
+\begin{theorem}[Darboux]
+    There exist local coordinates \(p_I,q^I\) such that \(\Omega=\dd{p_I}\wedge\dd{q^I}\), where \(I=1,\dots,N\).
+\end{theorem}
+\(p_I\) and \(q^I\) are known as \emph{Darboux} coordinates. When \(\Omega\) is written in terms of Darboux coordinates, the two definitions for the Poisson bracket above coincide.
+
+\begin{defn}
+    A \emph{canonical transformation} (or \emph{symplectic diffeomorphism}) is a diffeomorphism that preserves the symplectic 2-form.
+\end{defn}
+
+Any function \(Q\) on phase space is the generator of a 1-parameter group of diffeomorphisms. Infinitesimally, functions transform in the following way:
+\begin{equation}
+    f(z) \rightarrow f(z) + \{f,\epsilon Q\}_{\text{PB}} + O(\epsilon^2)
+\end{equation}
+where we take \(\epsilon \ll 1\). For example, Darboux coordinates have:
+\begin{align}
+    \delta_\epsilon q^I &= \epsilon \{q^I,Q\}_{\text{PB}} = \epsilon\pdv{Q}{p_I} \\
+    \delta_\epsilon p_I &= \epsilon \{p_I,Q\}_{\text{PB}} = - \epsilon\pdv{Q}{q^I}
+\end{align}
+Notice that:
+\begin{align}
+    \delta_\epsilon \Omega &= \delta_\epsilon\left( \dd{p_I}\wedge\dd{q^I} \right)\\
+    &= \epsilon \left( \dd{p_I}\wedge\dd{\pdv{Q}{p_I}} - \dd{\pdv{Q}{q^J}}\wedge\dd{q^J} \right)\\
+    &= \epsilon \pdv{Q}{p_I}{q^J}\underbrace{\left( \dd{p_I}\wedge\dd{q^J} - \dd{p_I}\wedge\dd{q^J} \right)}_{=0}
+    + \epsilon \underbrace{\pdv{Q}{p_I}{p_J}}_{\text{symmetric}} \underbrace{\dd{p_I}\wedge\dd{p_J}}_{\text{antisymmetric}}
+    - \epsilon \underbrace{\pdv{Q}{q^I}{q^J}}_{\text{symmetric}} \underbrace{\dd{q^I}\wedge\dd{q^J}}_{\text{antisymmetric}} \\
+    &= 0
+\end{align}
+So this is a canonical transformation.
+
+\subsection{Gauge invariance and first-class constraints}
+Consider the following action:
+\begin{equation}
+    I = \int\dd{t}\left( \dot{q}^Ip_I - \lambda^i\varphi_i(q,p) \right) 
+    \tag{\(\dagger\)}
+    \label{xmenfirstclass}
+\end{equation}
+where \(I=1,\dots,N\) and \(i=1,\dots,n<N\). Note that we could instead consider: 
+\begin{equation}
+    I = \int\dd{t}\left( \dot{q}^Ip_I-H(q,p)-\lambda^i\varphi_i \right)
+    \label{<++>}
+\end{equation}
+but this is no more general as it is always possible to rewrite this in the form \eqref{xmenfirstclass} by enlarging the phase space \((q^I,p_I)\rightarrow(q^I,q^0,p_I,p_0)\).
+
+We have \(n\) phase-space contraints \(\varphi_i=0\) with Lagrange multipliers \(\lambda^i\).
+\begin{defn}
+    If \(\{\varphi_i,\varphi_j\}_{\text{PB}} = f_{ij}^k(z)\varphi_k\) for some functions of phase space \(f_{ij}^k\), then we say that the set of constraints is \emph{first-class}.
+\end{defn}
+If the \(f_{ij}^k\) are constants, then the Jacobi identity holds, so the \(f_{ij}^k\) are structure constants of a Lie algebra (we require in general \(f_{ij}^k\) to be constant because the Poisson bracket contains derivatives).
+
+Let's calculate \(\delta_\epsilon \dot{q}^Ip_I\):
+\begin{align}
+    \delta_\epsilon \dot{q}^Ip_I
+    &= p_I \pdv{\delta_\epsilon q^I}{t} + \dot{q}^I \delta_\epsilon p_I \\
+    &= p_I \dv{t}\left(\epsilon\pdv{Q}{p_I}\right) - \dot{q}^I \epsilon \pdv{Q}{q_I} \\
+    &= \dv{t}\left( \epsilon p_I\pdv{Q}{p_I} \right) - \epsilon \left( \dot{p}_I\pdv{Q}{p_I} + \dot{q}^I\pdv{Q}{q^I} \right) \\
+    &= \dv{t}\left( \epsilon p_I\pdv{Q}{p_I} \right) - \epsilon \dot{Q} \\
+    &= \dv{t}\left[ \epsilon \left( p_I \pdv{Q}{p_I} - Q \right) \right] + \underbrace{\dot{\epsilon}Q}_{\mathclap{\substack{\text{if we allow}\\\epsilon=\epsilon(t)}}}
+\end{align}
+If we let \(\epsilon Q = \epsilon^i\varphi_i\), we get \(\delta_\epsilon\dot{q}^Ip_I = \dot{\epsilon}^i\varphi_i + \dv{t}(\dots)\). We also have:
+\begin{equation}
+    \delta_\epsilon\lambda^i\varphi_i = \varphi_i\delta_\epsilon\lambda^i + \lambda^i\epsilon^j\{\varphi_i,\varphi_j\}_{\text{PB}}
+    = \left( \delta_\epsilon \lambda^k + \lambda^i\epsilon^jf_{ij}^k \right)\varphi_k
+\end{equation}
+where we can make the last equality if the constraints \(\{\varphi_i\}\) are first class. Therefore we have:
+\begin{equation}
+    \delta_\epsilon L = (\dot{\epsilon}^k - \delta_\epsilon\lambda^k - \lambda^i\epsilon^kf_{ij}^k)\varphi_k + \dv{t}(\dots)
+\end{equation}
+So we see that \(\delta I\) is just a boundary term if we choose the folowing:
+\begin{equation}
+    \delta\lambda^k = \dot{\epsilon}^k + \epsilon^i\lambda^j f_{ij}^k
+    \tag{\(*\)}
+    \label{yangmillsupinhere}
+\end{equation}
+For constant \(f_{ij}^k\) this is in fact a Yang-Mills gauge transformation for a group whose Lie algebra has structure constants \(f_{ij}^k\). To see this, compare to the expression for the infinitesimal difference in a Yang-Mills field after a gauge transformation:
+\begin{equation}
+    \delta A_\mu^C = \partial_\mu\epsilon^C + \epsilon^AA^B_\mu f_{AB}^C
+\end{equation}
+In our case, the Lagrange multipliers are 1D gauge potentials for a gauge group.
+
+\begin{eg}
+    For the point particle, we have a single constraint \(\phi=\frac{1}{2}(p^2+m^2)\). Since there is only one constraint, it must be first-class, and the single structure constant is a constant (zero). We have:
+    \begin{equation}
+        \delta_\alpha x = \alpha \left\{ x,\frac{1}{2}(p^2+m^2) \right\}_{\text{PB}} = \alpha p 
+        \quad
+        \delta_\alpha p = \alpha \left\{ p,\frac{1}{2}(p^2+m^2) \right\} = 0
+    \end{equation}
+    and using \eqref{yangmillsupinhere} we see that \(\delta_\alpha\epsilon = \dot{\alpha}\). This is the canonical gauge transformation mentioned above.
+\end{eg}
+This was an abelian example. When we get to strings, we will see that the gauge group is non-abelian.
+
+\subsection{Gauge fixing}
+We can fix gauge invariance (generated by the constraints \(\varphi_i\)) by choosing \(n\) \emph{gauge fixing functions} \(\chi^i(q,p)\). A general gauge transformation acts on \(\chi^i\) as follows:
+\begin{equation}
+    \delta_\epsilon \chi^i = \{\chi^i,\epsilon^j\varphi_j\}_{\text{PB}} = \{\chi_i,\varphi_j\}_{\text{PB}}\epsilon^j
+\end{equation}
+In order for \(\chi^i\) to actually fix the gauge, we want for \(\delta_\epsilon\chi^i=0\) only if \(\epsilon^i=0\) for all \(i\). This is true if and only if \(\det\{\chi^i,\varphi_j\}_{\text{PB}}\ne0\).
+
+If \(\chi^i\ll1\) and is initially non-zero, we want to be able to make a gauge transformation to bring it to zero, and again we can do this if and only if \(\det\{\chi^i,\varphi_j\}_{\text{PB}}\ne0\).
 \end{document}
