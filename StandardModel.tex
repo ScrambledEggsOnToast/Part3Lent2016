@@ -168,7 +168,7 @@ Helicity \(h\) is defined as the projection of the angular momentum onto the lin
     h = \vb{J}\vdot\vu{p} = \vb{S}\vdot\vu{p} \qq{where}
     \begin{matrix}
         \vb{J} = -i\vb{r}\times\grad+\vb{S} \\
-        S_i = \frac{i}{4}\epsilon_{ijk}\gamma^j\gamma^k = - \frac{1}{2}
+        S_i = -\frac{i}{4}\epsilon_{ijk}\gamma^j\gamma^k = - \frac{1}{2}
         \begin{pmatrix}
             \sigma^i & 0 \\
             0 & \sigma^i
@@ -303,6 +303,95 @@ Proper Lorentz transformations have \(\det\Lambda = +1\). Parity and time revers
     where \(\alpha,\beta\in\CC\) and \(\phi,\psi\in\mathcal{H}\).
 \end{theorem}
 
-Consider an infinitesimal (proper) Poincar\'e transformation \(\Lambda^\mu_\nu = \delta^\mu_\nu + w^\mu_\nu\), \(a^\mu = \epsilon^\mu\), where \(w^\mu_\nu\) and \(\epsilon^\mu\) are small parameters.
+Consider an infinitesimal (proper) Poincar\'e transformation \(\Lambda^\mu_\nu = \delta^\mu_\nu + w^\mu_\nu\), \(a^\mu = \varepsilon^\mu\), where \(w^\mu_\nu\) and \(\varepsilon^\mu\) are small parameters.
+
+\lecture{22/01/16}
+We can expand the operator \(W\) corresponding to this transformation as:
+\begin{equation}
+    W(\Lambda,a) = W(1+\omega,\varepsilon) = 1 + \frac{i}{2}\omega_{\mu\nu}J^{\mu\nu}-i\varepsilon_\mu p^\mu
+    \tag{\(*\)}
+    \label{infipoincare}
+\end{equation}
+where \(p^0\) is the Hamiltonian, \(p^i\) is the linear momentum operator (generating translations), \(\vb{J}=(J^{23},J^{31},J^{12})\) is the angular momentum operator (generating rotations), and \(\vb{k}=(J^{01},J^{02},J^{03})\) (generating boosts).
+
+We have \(\hat{P} = W(\mathbb{P},0)\) and \(\hat{T} = W(\mathbb{T},0)\). It is easy to verify that:
+\begin{equation}
+    \hat{P}W\hat{P}^{-1} = W(\mathbb{P}\omega\mathbb{P}^{-1},\mathbb{P}\varepsilon)
+    ,\quad
+    \hat{T}W\hat{T}^{-1} = W(\mathbb{T}\omega\mathbb{T}^{-1},\mathbb{T}\varepsilon)
+\end{equation}
+If we insert \eqref{infipoincare} into these equations, and equate coefficients of \(\varepsilon_\mu\) on both sides, we obtain:
+\begin{equation}
+    \hat{P}ip^\mu\hat{P}^{-1} = i\mathbb{P}\indices{_\nu^\mu}p^\nu
+    ,\quad
+    \hat{T}ip^\mu\hat{T}^{-1} = i\mathbb{T}\indices{_\nu^\mu}p^\nu
+\end{equation}
+In particular, if we look at \(\mu=0\), we have:
+\begin{equation}
+    \hat{P}iH\hat{P}^{-1} = iH
+    ,\quad
+    \hat{T}iH\hat{T}^{-1} = -iH
+\end{equation}
+Now let \(\psi\) be an energy eigenstate with energy \(E\), \(\braket{\psi}{iH\psi}=iE\), and suppose that \(P\) and \(T\) are symmetries of our theory. Then we should have \(\hat{P}\psi\) and \(\hat{T}\psi\) are also eigenstates with the same energy \(E\). It turns out this is consistent with \(\hat{P}\) being linear and unitary:
+\begin{equation}
+    \braket{\hat{P}\psi}{iH\hat{P}\psi} = \braket{\hat{P}\psi}{\hat{P}iH\psi} = \braket{\psi}{iH\psi} = iE
+\end{equation}
+and \(\hat{T}\) being antilinear and antiunitary:
+\begin{equation}
+    \braket{\hat{T}\psi}{iH\hat{T}\psi} = -\braket{\hat{T}\psi}{\hat{T}iH\psi} = -\braket{\psi}{iH\psi}^* = -(iE)^* = iE
+\end{equation}
+
+\subsection{Parity}
+\subsubsection{Scalar fields}
+Recall that a quantum scalar field \(\phi(x)\) can be written as:
+\begin{equation}
+    \phi(x) = \sum_p\left[ a(p)e^{-ip\vdot x} + \herm{c}(p)e^{ip\vdot x} \right]
+\end{equation}
+where \(a(p)\) annihilates a particle with momentum \(p\), and \(\herm{c}(p)\) creates an antiparticle with momentum \(p\). In general parity maps momentum states in the following way:
+\begin{equation}
+    \ket{p}\rightarrow{\eta^a}^*\ket{p_P}
+\end{equation}
+where \(p = (p^0,\vb{p})\), \(p_P = (p^0,-\vb{p})\), and \({\eta^a}^*\) is some complex phase. If we assume that the vacuum is conserved under parity transformations \(\hat{P}\ket{0} = \ket{0}\), then, since \(\ket{p}=\herm{a}(p)\ket{0}\), we have:
+\begin{equation}
+    \hat{P}\herm{a}(p)\hat{P}^{-1} = \herm{a}(p_P){\eta^a}^*
+\end{equation}
+To conserve normalisations, we have:
+\begin{equation}
+    \hat{P}a(p)\hat{P}^{-1} = \eta^a a(p_P)
+\end{equation}
+Similarly:
+\begin{equation}
+    \hat{P}\herm{c}(p)\hat{P}^{-1} = {\eta^c}^* \herm{c}(p_P)
+    \qq{and}
+    \hat{P}c(p)\hat{P}^{-1} = \eta^c c(p_P)
+\end{equation}
+Using these expressions, we can deduce how \(\phi(x)\) transforms under a parity transformation:
+\begin{align}
+    \hat{P}\phi(x)\hat{P}^{-1} 
+    &= \sum_p \left[ \hat{P}a(p)\hat{P}^{-1}e^{-ip\vdot x} + \hat{P}\herm{c}(p)\hat{P}^{-1}e^{+ip\vdot x} \right] \\
+    &= \sum_p \left[ \eta^aa(p_P)e^{-ip\vdot x} + {\eta^c}^*\herm{c}(p_P)e^{+ip\vdot x} \right] \\
+    &= \sum_{p_P} \left[ \eta^aa(p)e^{-ip_P\vdot x} + {\eta^c}^*\herm{c}(p)e^{+ip_P\vdot x} \right] \\
+    &= \sum_p \left[ \eta^aa(p)e^{-ip\vdot x_P} + {\eta^c}^*\herm{c}(p)e^{+ip\vdot x_P} \right] \\
+\end{align}
+If \(\eta^a \ne {\eta^c}^*\), then it is possible to deduce that \([\phi(x),\phi^P(y)]\) does not vanish for for spacelike \(x-y\), which we must require. Thus we set \(\eta_P = \eta^a = {\eta^c}^*\), and we have:
+\begin{equation}
+    \hat{P}\phi(x)\hat{P}^{-1} = \eta_P\phi(x_P)
+\end{equation}
+\(\eta_P\) is often called the \emph{intrinsic parity} of \(\phi\).
+
+For real fields, we have \(c(p) = a(p)\), so \(\eta^c = \eta^a = {\eta^c}^* \in \RR\). Further, to preserve normalisation we require \(|\eta_P| = 1\), so we have two possible cases:
+\begin{itemize}
+    \item \(\eta_P = 1\). Such fields are said to be \emph{scalar}.
+    \item \(\eta_P = -1\). Such fields are said to be \emph{pseudoscalar}.
+\end{itemize}
+
+For complex fields, \(\eta_P\) may not be real, but if there is a conserved charge \(Q\), then we can express \(\eta_P\) in terms of \(Q\).
+
+\subsubsection{Vector fields}
+Consider a vector field \(V^\mu(x)\). We have:
+\begin{equation}
+    \hat{P}V^\mu\hat{P}^{-1} = -\eta_P \mathbb{P}\indices{^\mu_\nu}V^\nu(x_P)
+\end{equation}
+\emph{Vectors} have \(\eta_P = -1\), and \emph{axial vectors} have \(\eta_P = +1\).
 
 \end{document}
