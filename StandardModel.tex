@@ -140,7 +140,7 @@ We see that the kinetic term is invariant under a chiral left and right transfor
     U(1)_L\times U(1)_R \rightarrow U(1)_V
 \end{equation}
 
-\subsubsection{Aside on the Dirac field}
+\subsubsection*{Aside on the Dirac field}
 \lecture{18/01/16}
 Consider the usual plane-wave decomposition of the Dirac field:
 \begin{equation}
@@ -342,7 +342,7 @@ and \(\hat{T}\) being antilinear and antiunitary:
 \end{equation}
 
 \subsection{Parity}
-\subsubsection{Scalar fields}
+\subsubsection*{Scalar fields}
 Recall that a quantum scalar field \(\phi(x)\) can be written as:
 \begin{equation}
     \phi(x) = \sum_p\left[ a(p)e^{-ip\vdot x} + \herm{c}(p)e^{ip\vdot x} \right]
@@ -387,11 +387,112 @@ For real fields, we have \(c(p) = a(p)\), so \(\eta^c = \eta^a = {\eta^c}^* \in 
 
 For complex fields, \(\eta_P\) may not be real, but if there is a conserved charge \(Q\), then we can express \(\eta_P\) in terms of \(Q\).
 
-\subsubsection{Vector fields}
+\subsubsection*{Vector fields}
+\lecture{25/01/16}
 Consider a vector field \(V^\mu(x)\). We have:
+\begin{equation}
+    V^\mu(x) = \sum_{p,\lambda}\left[ \varepsilon^{\lambda,\mu}(p) a^\lambda(p)e^{-ip\vdot x} + {\varepsilon^{\lambda,\mu}}^*(p) \herm{c^\lambda}(p)e^{ip\vdot x} \right]
+\end{equation}
+We can show that \(\varepsilon^{\lambda,\mu}(p_P) = -\mathbb{P}\indices{^\mu_\nu}\varepsilon^{\lambda,\nu}(p)\) (either by using an explicit representation \(\varepsilon\) or by using Lorentz boosts \(\varepsilon(p) = L(p)\varepsilon(0)\). Thus, proceeding as with the scalar field, we obtain:
 \begin{equation}
     \hat{P}V^\mu\hat{P}^{-1} = -\eta_P \mathbb{P}\indices{^\mu_\nu}V^\nu(x_P)
 \end{equation}
 \emph{Vectors} have \(\eta_P = -1\), and \emph{axial vectors} have \(\eta_P = +1\).
+
+\subsubsection*{Dirac fields}
+We have:
+\begin{equation}
+    \psi(x) = \sum_{p,s} \left[ b^s(p) u^s(p) e^{-ip\vdot x} + \herm{d^s}(p)v^s(p)e^{ip\vdot x} \right]
+\end{equation}
+The creation and annihilation operators should behave in the same way that they do for bosons. The 3-momentum changes sign and the spin component \(s\) is unchanged:
+\begin{equation}
+    \hat{P}b^s(p)\hat{P}^{-1} = \eta^b b^s(p_P)
+    ,\quad
+    \hat{P}\herm{d^s}(p)\hat{P}^{-1} = {\eta^d}^* \herm{d^s}(p_P)
+\end{equation}
+\begin{align}
+    \psi_P(x) = \hat{P}\psi(x)\hat{P}^{-1} &= 
+    \sum_{p,s}\left[ \eta^b b^s(p_P) u^s(p) e^{-ip\vdot x} + {\eta^d}^* \herm{d^s}(p_P) v^s(p) e^{ip\vdot x} \right] \\
+    \intertext{Using the same steps as for the scalar field, we have:}
+    &= \sum_{p,s} \left[ \eta^bb^s(p)u^s(p_P) e^{-ip\vdot x_P} + {\eta^d}^*\herm{d^s}(p) v^s(p_P) e^{ip\vdot x_P} \right]\\
+    \intertext{We can show \(u^s(p_P) = \gamma^0u^s(p)\) and \(v^s(p_P) = - \gamma^0 v^s(p)\), so we have:}
+    &= \sum_{p,s} \left[ \eta^bb^s(p)\gamma^0u^s(p)e^{-ip\vdot x_P} - {\eta^d}^* \herm{d^s}(p)\gamma^0v^s(p)e^{ip\vdot x_P} \right]
+\end{align}
+If we require that \(\eta^b = - {\eta^d}^* = \eta_P\), then we have:
+\begin{equation}
+    \psi_P(x) = \eta_P\gamma^0\psi(x_P)
+    ,\quad
+    \overline{\psi}_P(x) = \eta_P^*\overline{\psi}(x_P)\gamma^0
+\end{equation}
+
+It is beneficial to note how parity acts on left and right handed spinors:
+\begin{equation}
+    \hat{P}\psi_L(x)\hat{P}^{-1} = \eta_P\gamma^0\psi_R(x_P)
+\end{equation}
+It is simple to check that \(\psi_P\) satisfies the Dirac equation.
+
+\subsubsection*{Fermion bilinears}
+From the above, we can determine how fermion bilinears transform under \(P\):
+\begin{equation}\begin{array}{rclc}
+        \overline{\psi}(x)\psi(x) & \longrightarrow & \overline{\psi}(x_P)\psi(x_P) & \text{scalar}\\
+        \overline{\psi}(x)\gamma^5\psi(x) & \longrightarrow & -\overline{\psi}(x_P)\gamma^5\psi(x_P) & \text{pseudoscalar}\\
+        \overline{\psi}(x)\gamma^\mu\psi(x) & \longrightarrow & \mathbb{P}\indices{^\mu_\nu} \overline{\psi}(x_P)\gamma^\nu\psi(x_P) & \text{vector}\\
+        \overline{\psi}(x)\gamma^\mu\gamma^5\psi(x) & \longrightarrow & \mathbb{P}\indices{^\mu_\nu}\overline{\psi}(x_P)\gamma^\nu\gamma^5\psi(x_P) & \text{axial vector}
+\end{array}\end{equation}
+
+\subsection{Charge conjugation}
+We define \(\hat{C}\) to be a unitary operator that swaps particles and antiparticles.
+
+\subsubsection*{Scalar fields}
+We must have:
+\begin{equation}
+    \hat{C}a(p)\hat{C}^{-1} = \eta_C c(p)
+    ,\quad
+    \hat{C}c(p)\hat{C}^{-1} = {\eta_C}^* a(p)
+\end{equation}
+Where we have chosen the coefficients in this way so that \(\hat{C}(\hat{C}a(p)\hat{C}^{-1})\hat{C}^{-1} = a(p)\). From the decomposition of a scalar field \(\phi\) we can thus deduce:
+\begin{equation}
+    \hat{C}\phi(x)\hat{C}^{-1} = \eta_C\herm{\phi}(x)
+    ,\quad
+    \hat{C}\herm{\phi}(x)\hat{C}^{-1} = {\eta_C}^* \phi(x)
+\end{equation}
+For a real field, we have \(\herm{\phi} = \phi\), so \(\eta_C = \eta_C^* = \pm 1\). For a complex \(\phi\), \(\eta_C\) is arbitrary, but we can always do a global \(U(1)\) transformation such that \(\eta_C = 1\).
+
+\(\eta_C\) is known as the \emph{intrinsic charge conjugation parity}.
+
+\subsubsection*{Dirac fields}
+Let \(C\) be a matrix with the following property:
+\begin{equation}
+    \trans{(C\gamma^\mu)} = C\gamma^\mu
+\end{equation}
+It is possible to find such matrices; a suitable choice is:
+\begin{equation}
+    C = -i\gamma^0\gamma^2 = 
+    \begin{pmatrix}
+        i\sigma_2 & 0\\
+        0 & -i\sigma_2
+    \end{pmatrix}
+    \text{ in the Chiral representation}
+\end{equation}
+This satisfies \(C = -\trans{C} = -\herm{C} = -C^{-1}\), and we also have:
+\begin{equation}
+    \trans{(\gamma^\mu)} = -C\gamma^\mu C^{-1}
+    ,\quad
+    \{\trans{\gamma^\mu},\trans{\gamma^\nu}\} = 2\eta^{\mu\nu}
+    ,\quad
+    \trans{\gamma^5} = C\gamma^5C^{-1}
+\end{equation}
+
+The creation and annihilation operators of a Dirac field transform in a similar way to those of a scalar field:
+\begin{equation}
+    \hat{C}b^s(p)\hat{C}^{-1} = \eta_C d^s(p)
+    ,\quad
+    \hat{C}\herm{d^s}(p)\hat{C}^{-1} = \eta_C \herm{b^s}(p)
+\end{equation}
+Now consider the following:
+\begin{equation}
+    \psi_C(x) = \hat{C}\psi(x)\hat{C}^{-1} = 
+    \eta_C \sum_{p,s}\left[ d^s(p)u^s(p)e^{-ip\vdot x} + \herm{b^s}(p)v^s(p)e^{ip\vdot x} \right]
+\end{equation}
 
 \end{document}

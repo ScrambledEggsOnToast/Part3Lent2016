@@ -349,7 +349,7 @@ Suppose \(x^\mu(\tau)\) is an affinely parametrised geodesic, and let its 4-velo
     \qq{and}
     h = m\vdot u = r^2\sin^2\theta\dv{\phi}{\tau}
 \end{equation}
-If our geodesic is timelike and we choose \(\tau\) to be proper time, we can identify \(E\) as the energy and \(h\) as the angular momentum associated with the geodesic.
+If our geodesic is timelike and we choose \(\tau\) to be proper time, we can identify \(E\) as the energy per unit mass and \(h\) as the angular momentum per unit mass associated with the geodesic.
 
 In the null case, we can define the \emph{impact parameter} \(b = \left|\frac{h}{E}\right|\), and identify this as the limit of the distance between the geodesic and the star perpendicular to the geodesic as \(r\rightarrow 0\).
 \begin{figure}[H]
@@ -441,5 +441,240 @@ For \(r>2M\) we have the ``static'' KVF \(\pdv{t}\). In Eddington-Finklestein co
     k = \pdv{x^\mu}{t}\pdv{x^\mu} = \pdv{v}
 \end{equation}
 Also, \(k^2 = g_{vv} = -\left( 1-\frac{2M}{r} \right)\), so \(k\) is null at \(r=2M\), and spacelike at \(r < 2M\). Only \(r > 2M\) is static.
+
+\subsection{Finklestein diagram}
+\lecture{22/01/16}
+Consider outgoing radial null geodesics in \(r>2M\). We have \(t-r_*= \text{constant}\), so:
+\begin{equation}
+    v = 2r_* + \text{constant}
+    = 2r + 4M\log\left|\frac{r}{2M}-1\right| + \text{constant}
+    \tag{\(*\)}
+    \label{sociable}
+\end{equation}
+Exercise: Consider null geodesics in ingoing Eddington-Finklestein coordinates and show that these fall into 2 families: ingoing with \(v = \text{constant}\), and outgoing either of the form \eqref{sociable} or \(r=2M\). 
+
+Let \(t^*=v-r\). We can draw the radial null geodesics in a \emph{Finklestein diagram}:
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{scope}[thick, decoration={
+            markings,
+            mark=at position 0.5 with {\arrow{latex}}}
+            ] 
+            \clip (0,-3) rectangle (6,4);
+            \begin{scope}[red]
+                \draw[domain=3.07:6,smooth,variable=\x,postaction=decorate] plot({\x},{3*(ln(\x/3 - 1)+2)});
+                \draw[domain=3.3:6,smooth,variable=\x,postaction=decorate] plot({\x},{3*(ln(\x/3 - 1)+1)});
+                \draw[domain=3.6:6,smooth,variable=\x,postaction=decorate] plot({\x},{3*(ln(\x/3 - 1)+0.2)});
+
+                \draw[domain=3.07:6,smooth,variable=\x,postaction=decorate] plot({6 - \x},{3*(ln(\x/3 - 1)+2)});
+                \draw[domain=3.3:6,smooth,variable=\x,postaction=decorate] plot({6-\x},{3*(ln(\x/3 - 1)+1)});
+                \draw[domain=3.6:6,smooth,variable=\x,postaction=decorate] plot({6-\x},{3*(ln(\x/3 - 1)+0.2)});
+            \end{scope}
+            \begin{scope}[blue]
+                \draw[shift={(1,1)},postaction=decorate] (5.5,-10) -- (-6.5,4);
+                \draw[shift={(2,2)},postaction=decorate] (5.5,-10) -- (-6.5,4);
+                \draw[shift={(3,3)},postaction=decorate] (5.5,-10) -- (-6.5,4);
+                \draw[shift={(4,4)},postaction=decorate] (5.5,-10) -- (-6.5,4);
+                \draw[shift={(5,5)},postaction=decorate] (5.5,-10) -- (-6.5,4);
+                \draw[shift={(6,6)},postaction=decorate] (5.5,-10) -- (-6.5,4);
+            \end{scope}
+        \end{scope}
+
+        \draw[thick,->] (0,0) -- (6,0) node[right] {\(r\)};
+        \draw[thick,->] (0,-3) -- (0,4) node[midway,above,sloped] {curvature singularity};
+        \node[above] at (0,4) {\(t^*\)};
+        \node[right,fill=white] at (3,-0.3) {\(2M\)};
+        \draw[dashed, thick] (3,-3) -- (3,4);
+
+        \node[right,rotate=-45, blue] at (6,2.5) {ingoing};
+        \node[right,rotate=45, red] at (6,3) {outgoing};
+
+        \newcommand{\lightcone}[4]{
+            \begin{scope}[shift={(#1,#2)}, scale=0.3, rotate=#4, semithick]
+                \draw ({-sin(#3)},{-cos(#3)}) -- ({sin(#3)},{cos(#3)});
+                \draw ({sin(#3)},{-cos(#3)}) -- ({-sin(#3)},{cos(#3)});
+                \draw (0,{-cos(#3)}) ellipse ({sin(#3)} and {0.3*sin(#3)});
+                \draw (0,{cos(#3)}) ellipse ({sin(#3)} and {0.3*sin(#3)});
+            \end{scope}
+        }
+
+        \lightcone{2.6}{-0.1}{20}{23.5}
+        \lightcone{1.98}{2.77}{10}{30}
+        \lightcone{3.57}{0.93}{27}{15}
+    \end{tikzpicture}
+\end{figure}
+In \(r < 2M\), \(r\) decreases along both families, and we reach \(r=0\) in finite \(\tau\). In fact we will show later that \(r\) decreases along \emph{any} timelike or null curve in \(r<2M\). Equipped with this knowledge we can make a rough definition of a \emph{black hole} as a region of space from which no signal can reach ``infinity''.
+
+\subsection{Gravitational collapse}
+The surface of a collapsing star follows a timelike geodesic, and we can plot this on a Finklestein diagram:
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{scope}[thick, shift={(-1,0)}, decoration={
+            markings,
+            mark=at position 0.5 with {\arrow{latex}}}
+            ] 
+            \clip (0,-3) rectangle (6,4);
+            \begin{scope}[red]
+                \draw[domain=3.07:9,smooth,variable=\x,postaction=decorate] plot({\x},{3*(ln(\x/3 - 1)+2)});
+                \draw[domain=3.3:9,smooth,variable=\x,postaction=decorate] plot({\x},{3*(ln(\x/3 - 1)+1)});
+                \draw[domain=3.6:9,smooth,variable=\x,postaction=decorate] plot({\x},{3*(ln(\x/3 - 1)+0.2)});
+
+            \end{scope}
+        \end{scope}
+
+        \fill[gray!20] (0,-3) -- (0,3.5)
+            .. controls (4,2.5) and (3.5,-2) .. (4,-3) -- cycle;
+
+        \draw[thick,->] (0,0) -- (5,0) node[right] {\(r\)};
+        \draw[thick,->] (0,-3) -- (0,4) node[midway,above,sloped] {curvature singularity};
+        \node[above] at (0,4) {\(t^*\)};
+        \node[right] at (2,-0.3) {\(2M\)};
+        \draw[dashed, thick] (2,-3) -- (2,4);
+        \draw (0,3.5) .. controls (4,2.5) and (3.5,-2) .. (4,-3);
+
+        \draw[thick,<-] (3.3,-1.7) -- (4.2,-1.7) node[right]{stellar interior (not Schwarzschild)};
+    \end{tikzpicture}
+\end{figure}
+
+It will be shown in the first example sheet that the total proper time along a timelike curve with \(r \le 2M\) can't exceed \(\pi M\), so a star collapses from \(r=2M\) to \(r=0\) within a proper time \(\pi M\) (this is about \SI{e-5}{\second} for \(M=M_{\astrosun}\). When this happens, a distant observer never sees the star cross \(r=2M\) -- it just redshifts away.
+
+\subsection{Black hole region}
+\begin{defn}
+    A non-zero vector is \emph{causal} if it is timelike or null. A curve is \emph{causal} if its tangent vector is everywhere causal. 
+\end{defn}
+\begin{defn}
+    A spacetime is \emph{time-orientable} if is admits a \emph{time orientation}, i.e. a causal vector field \(T^a\).
+\end{defn}
+\begin{defn}
+    A \emph{future-directed} causal vector is one that lies in the same lightcone as the time orientation \(T^a\); a \emph{past-directed} causal vector is one that does not.
+\end{defn}
+Given a time orientation \(T^a\), we always have a second inequivalent time orientation \(-T^a\).
+
+For \(r>2M\) Schwarzschild, the obvious choice of time orientation is \(k=\pdv{t}\). However, \(k=\pdv{v}\) is not causal for \(r<2M\). In ingoing Eddington-Finklestein coordinates, \(\pm\pdv{r}\) is null, since \(g_{rr} = 0\). We can choose either of these as a time orientation, but we want to pick a sign that agrees with \(k\) for \(r>2M\). We have:
+\begin{equation}
+    k\vdot\left( \pm \pdv{r} \right) = \pm g_{vr} = \pm 1
+\end{equation}
+Thus we use \(-\pdv{r}\) as the time orientation.
+
+\begin{lemma}
+    Let \(x^\mu(\lambda)\) be a future-directed causal curve. If \(r(\lambda_0) \le 2M\), then \(r(\lambda) \le 2M\) for all \(\lambda \ge \lambda_0\).
+\end{lemma}
+\begin{proof}
+    Let \(V^\mu = \dv{x^\mu}{\lambda}\). \(V^\mu\) is future-directed. Thus we have:
+    \begin{align}
+        0 \le \left( -\pdv{r} \right)\vdot V = -g_{r\mu}V^\mu = -V^v = - \dv{v}{\lambda}
+    \end{align}
+    and so:
+    \begin{align}
+        & V^2 = -\left(1-\frac{2M}{r}\right) \left( \dv{v}{\lambda} \right)^2 + 2 \dv{v}{\lambda}\dv{r}{\lambda} + r^2 \left( \dv{\Omega}{\lambda} \right)^2 \\
+        \implies & -2\dv{v}{\lambda}\dv{r}{\lambda} = \underbrace{-V^2}_{\ge0} - \left( 1-\frac{2M}{r} \right)\left( \dv{v}{\lambda} \right)^2 + \underbrace{r^2\left( \dv{\Omega}{\lambda} \right)^2}_{\ge0}
+    \end{align}
+    Thus if \(r \le 2M\), we have \(\dv{v}{\lambda}\dv{r}{\lambda}\le0\). 
+    
+    Suppose \(r \le 2M\) and \(\dv{r}{\lambda} > 0\). Then since \(\dv{v}{\lambda}\le 0\) we must have \(\dv{v}{\lambda} = 0\), and hence \(V^2 = 0 = \dv{\Omega}{\lambda}\). The only non-zero component of \(V\) is \(V^r = \dv{r}{\lambda}>0\), so \(V\) is a positive multiple of \(\pdv{r}\), but this implies that \(V\) is past-directed, which is a contradiction.
+
+    Hence we have \(\dv{r}{\lambda} \le 0\) if \(r \le 2M\), and we can show similarly \(\dv{r}{\lambda} < 0\) if \(r < 2M\). Hence if \(r(\lambda_0) < 2M\), then \(r(\lambda)\) is monotonically decreasing for \(\lambda \ge \lambda_0\). \disapprove
+\end{proof} 
+
+\subsection{Detecting black holes}
+Black holes have two recognizable qualities:
+\begin{itemize}
+    \item Unlike in the case of cold stars, there is no upper bound on the mass of a black hole.
+    \item Black holes are very small for a given mass.
+\end{itemize}
+
+One interesting case is that of the \emph{supermassive black holes}. No one knows how they form...
+
+\subsection{Orbits around black holes}
+\lecture{25/01/16}
+Comsider timelike geodesics, and recall the orbital equation of a Schwarzschild black hole:
+\begin{equation}
+    \frac{1}{2}\left( \dv{r}{\tau} \right)^2 + V(r) = \frac{1}{2}E^2
+    \qq{where}
+    V(r) = \frac{1}{2}\left( 1-\frac{2M}{r} \right)\left( 1 + \frac{h^2}{r^2} \right)
+\end{equation}
+It can easily be shown that \(V'(r)=0\) if \(r = r_\pm = \frac{h^2\pm\sqrt{h^4-12h^2M^2}}{2M}\). Lets plot \(V\):
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \draw[->, thick] (0,0) -- (6,0) node[right] {\(r\)};
+        \draw[->, thick] (0,-1) -- (0,4) node[above] {\(V\)};
+        \draw (0.5,-1) .. controls (0.7,0) and (1,3.5) .. (2,3.5)
+            .. controls (2.5,3.5) and (3,2.5) .. (3.5,2.5)
+            .. controls (4,2.5) and (4,2.9) .. (6,2.95);
+        \draw[dashed] (0,3) node[left] {\(\frac{1}{2}\)} -- (6,3);
+        \draw[dashed] (2,0) node[below] {\(r_-\)} -- (2,3.5);
+        \draw[dashed] (3.5,0) node[below] {\(r_+\)} -- (3.5,2.5);
+
+        \node[right] at (7.5,2.25) {\(r=r_+\) is a stable circular orbit};
+        \node[right] at (7.5,1.75) {\(r=r_-\) is an unstable circular orbit};
+    \end{tikzpicture}
+\end{figure}
+It is a simple exercise to show that \(3M < r_- < 6M < r_+\). We call \(r=6M\) the \emph{innermost stable circular orbit} (ISCO).
+
+Suppose \(r=r_\pm\), then we have a circular orbit \(\dv{r}{\tau} = 0\), and we can show:
+\begin{equation}
+    \frac{E^2}{2}=V(r) \implies E = \frac{r-2M}{r^{\frac{1}{2}}(r-3M)^{\frac{1}{2}}} \approx 1 - \frac{M}{2r} \text{ for } r\gg2M
+\end{equation}
+Hence we have that the energy of a distant orbit is approximately \(m-\frac{Mm}{2r}\). \(m\) is the rest mass energy of the orbiting particle, and \(\frac{Mm}{2r}\) is the gravitational binding energy of its orbit.
+
+\begin{wrapfigure}{r}{0.4\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=1.2]
+        \fill[gray!10] (0,0) circle (2.3);
+        \fill[white] (0,0) circle (1.5);
+        \fill[gray] (0,0) circle (0.5);
+        \draw (0,0) circle (0.5);
+        \draw[dashed] (0,0) circle (1.5);
+
+        \draw[thick,->] ({1.9*cos(30)},{1.9*sin(30)}) arc (30:100:1.9);
+        \draw[thick,->] ({1.9*cos(-150)},{1.9*sin(-150)}) arc (-150:-80:1.9);
+
+        \node[below,rotate=45] at ({1.5*cos(45)},{-1.5*sin(45)}) {\footnotesize\(r=6M\)};
+        \node[below] at (0,-0.5) {\footnotesize\(r=2M\)};
+    \end{tikzpicture}
+\end{wrapfigure}
+When a star orbits around a black hole, the black hole robs the star of matter, forming an \emph{accretion disc} around the black hole. As a first approximation we will assume that particles in this accretion disc follow stable circular orbits of the form above. Friction between the particles causes their \(E\) to decrease, and hence their \(r\) to also decrease, and so these particles will fall towards the ISCO, where they will then fall into the black hole.
+
+At \(r\to\infty\) we have \(E = 1\), and at the ISCO we have \(E=\sqrt{\frac{8}{9}}\). Thus the proportion of lost to friction (and then radiated away as x-rays) is \(1-\sqrt{\frac{8}{9}}\approx6\%\).
+
+\subsection{White holes}
+Consider again the region \(r>2M\), and let \(u = t-r_*\). We define the \emph{outgoing} Eddington-Finklestein coordinates as \(u,r,\theta,\phi\). In these coordinates, the line element is given by:
+\begin{equation}
+    \dd{s}^2=-\left( 1 - \frac{2M}{r} \right)\dd{u}^2-2\dd{u}\dd{r} + r^2\dd{\Omega}^2
+\end{equation}
+Since \(g_{\mu\nu}\) is smooth and \(\det g \ne 0\) for all \(r>0\), we can extend this to \(0 < r \le 2M\), and again we have a curvature singularity at \(r=0\). However it is important to note that this is not the same \(r < 2M\) region as before! To see this, consider outgoing radial null geodesics which have \(u\) constant and \(\dv{r}{\tau} = +1\). These have \(r\) increasing through \(r=2M\), in direct contradiction with the previous case. \(r < 2M\) is \emph{not} a black hole.
+
+Exercise: show (i) \(k=\pdv{u}\), (ii) the time orientation equivalent to \(k\) for \(r\gg2M\) is \(+\pdv{r}\).
+
+\(r<2M\) is known as a \emph{white hole region}; it is a region into which no signal from infinity can enter. In a certain sense a white hole is the time reversal of a black hole: \(u\mapsto -v\) is an isometry mapping outgoing Eddington-Finklestein coordinates to ingoing Eddington-Finklestein coordinates, but it does not preserve the time-orientation.
+
+\subsection{Kruskal extension}
+Consider \(r>2M\) Schwarzschild spacetime. We define \emph{Kruskal-Szekeres} coordinates \((U,V,\theta,\phi)\) by
+\begin{equation}
+    U = -e^{-u/4M} < 0
+    \qq{and}
+    V = e^{v/4M} > 0.
+\end{equation}
+We have
+\begin{equation}
+    UV = -e^{r_*/2M} = - e^{r/2M}\left( \frac{r}{2M} - 1 \right),
+    \tag{\(**\)}
+    \label{uv}
+\end{equation}
+which is monotonic and thus determines \(r = r(U,V)\). Similarly, 
+\begin{equation}
+    \frac{V}{U} = -e^{t/2M}
+\end{equation}
+determines \(t = t(U,V)\).
+
+Exercise: show that the metric in Kruska-Szekeres coordinates is given by
+\begin{equation}
+    \dd{s}^2 = -\frac{32M^3e^{-r(U,V)/2M}}{r(U,V)} \dd{U}\dd{V} + r(U,V)^2 \dd{\Omega}^2.
+\end{equation}
+We use \eqref{uv} to define \(r(U,V)\) for \(U\ge0\) or \(V\le0\). We can analytically extend the spacetime with \(\det g \ne0\)
 
 \end{document}
