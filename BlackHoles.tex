@@ -1,4 +1,3 @@
-\RequirePackage{fixltx2e}
 \documentclass{jknotes}
 \usepackage{joshkirklin}
 
@@ -280,7 +279,7 @@ Now we can extend our solution to the envelope. \(m_0\) and \(r_0\) together uni
 
 Numerically, we can find that \(M\) is maximised when \(m_0\) is maximised, and that the maximum mass is \(M\approx m_0\approx5M_{\astrosun}\).
 
-In fact, it is possible to improve this limit by imposing that the speed of sound is physical, i.e. less than the speed of light: \(\sqrt{\dv{P}{\rho}}\le1\). Using this gives \(M \lesssim 3M_{\astrosun}\).
+In fact, it is possible to improve this limit by imposing that the speed of sound is physical, i.e.\ less than the speed of light: \(\sqrt{\dv{P}{\rho}}\le1\). Using this gives \(M \lesssim 3M_{\astrosun}\).
 
 \section{The Schwarzschild solution}
 \lecture{20/01/16}
@@ -365,6 +364,8 @@ In the null case, we can define the \emph{impact parameter} \(b = \left|\frac{h}
         \draw[thick,<->] (-3.75,0.9375) -- (-4,0) node[midway,left] {\(b\)};
     \end{tikzpicture}
 \end{figure}
+
+equationéeieieieieiee
 
 Exercises:
 \begin{enumerate}
@@ -490,7 +491,7 @@ Let \(t^*=v-r\). We can draw the radial null geodesics in a \emph{Finklestein di
         \node[right,rotate=-45, blue] at (6,2.5) {ingoing};
         \node[right,rotate=45, red] at (6,3) {outgoing};
 
-        \newcommand{\lightcone}[4]{
+        \newcommand{\lightcone}[4]{\
             \begin{scope}[shift={(#1,#2)}, scale=0.3, rotate=#4, semithick]
                 \draw ({-sin(#3)},{-cos(#3)}) -- ({sin(#3)},{cos(#3)});
                 \draw ({sin(#3)},{-cos(#3)}) -- ({-sin(#3)},{cos(#3)});
@@ -545,7 +546,7 @@ It will be shown in the first example sheet that the total proper time along a t
     A non-zero vector is \emph{causal} if it is timelike or null. A curve is \emph{causal} if its tangent vector is everywhere causal. 
 \end{defn}
 \begin{defn}
-    A spacetime is \emph{time-orientable} if is admits a \emph{time orientation}, i.e. a causal vector field \(T^a\).
+    A spacetime is \emph{time-orientable} if is admits a \emph{time orientation}, i.e.\ a causal vector field \(T^a\).
 \end{defn}
 \begin{defn}
     A \emph{future-directed} causal vector is one that lies in the same lightcone as the time orientation \(T^a\); a \emph{past-directed} causal vector is one that does not.
@@ -675,6 +676,754 @@ Exercise: show that the metric in Kruska-Szekeres coordinates is given by
 \begin{equation}
     \dd{s}^2 = -\frac{32M^3e^{-r(U,V)/2M}}{r(U,V)} \dd{U}\dd{V} + r(U,V)^2 \dd{\Omega}^2.
 \end{equation}
-We use \eqref{uv} to define \(r(U,V)\) for \(U\ge0\) or \(V\le0\). We can analytically extend the spacetime with \(\det g \ne0\)
+We use \eqref{uv} to define \(r(U,V)\) for \(U\ge0\) or \(V\le0\). We can analytically extend the spacetime with \(\det g \ne0\) through \(U=0\) or \(V=0\) to new regions with \(U\ge0\) or \(V\le0\). \(r=2M\) corresponds to two surfaces \(U=0\) and \(V=0\), intersecting at \(U=V=0\). \(r=0\) corresponds to a hyperbola with 2 branches. Ingoing and outgoing geodesics are described by \(V\), \(U\) constant respectively. We can plot thse features on a \emph{Kruskal diagram}:
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=1.3]
+        \begin{scope}[gray]
+            \draw[domain=-1.9:1.9,smooth,variable=\x,dashed] plot({-sqrt(1+\x*\x))},{\x});
+            \node[left] at (-1,0) {\(r\) constant \(\rightarrow\)};
+
+            \draw[dotted, semithick] (-2.2,-1) -- (2.2,1) node[left, at start] {\(t\) constant \(\rightarrow\)};
+
+            \draw[semithick, <-] (-1,1.8) -- (2.4,-1.6) node[below, at end, sloped] {ingoing};
+            \draw[semithick, <-] (2.6,1.8) -- (-0.8,-1.6) node[below, at start, sloped] {outgoing};
+            \draw[thick, ->] (2.6,0) arc (0:40:1.8);
+            \draw[thick, ->] (2.6,0) arc (0:-40:1.8);
+            \node[right, fill=white] at (1.1,0) {radial null geodesics};
+        \end{scope}
+
+        \draw (0.1,0) node[right] {I};
+        \draw (0,0.1) node[above] {II};
+        \draw (0,-0.1) node[below] {III};
+        \draw (-0.1,0) node[left] {IV};
+
+        \draw[domain=-1.7:1.7,smooth,variable=\x,very thick] plot({\x},{sqrt(3+\x*\x))});
+        \node[above] at (0,{sqrt(3)+0.1}) {\(r=0\)};
+        \draw[domain=-1.7:1.7,smooth,variable=\x,very thick] plot({\x},{-sqrt(3+\x*\x))});
+        \node[below] at (0,{-sqrt(3)-0.1}) {\(r=0\)};
+
+        \draw[very thick,->] (-2,-2) -- (2,2) node[above right] {\(V\)};
+        \draw[very thick,->] (2,-2) -- (-2,2) node[above left] {\(U\)};
+    \end{tikzpicture}
+\end{figure}
+
+Note that points in this diagram correspond to \(U=V=\) constant two dimensional surfaces in space.
+
+There are four regions on the Kruskal diagram:
+\begin{enumerate}[label=\Roman*:]
+    \item This is just the \(r > 2M\) Schwarzschild spacetime that we are used to.
+    \item This is the black hole region of ingoing Eddington-Finklestein coordinates.
+    \item This is the white hole region of outgoing Eddington-Finklestein coordinates.
+    \item This is new; it is an asymptotically flat region isometric to region I.
+\end{enumerate}
+
+Exercise: show
+\begin{equation}
+    k= \frac{1}{4M}\left(V\pdv{V} - U\pdv{U}\right) \qq{and} k^2 = - \left(1-\frac{2M}{r}\right).
+\end{equation}
+Thus \(k\) is timelike in regions I and IV, spacelike in II and III, and null at \(V=0\) or \(U=0\). We can plot its integral curves:
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=1.3]
+        \draw (0.1,0) node[right] {I};
+        \draw (0,0.1) node[above] {II};
+        \draw (0,-0.1) node[below] {III};
+        \draw (-0.1,0) node[left] {IV};
+
+        \draw[domain=-1.7:0.8,smooth,variable=\x,thick,->] plot({\x},{sqrt(1+\x*\x))});
+        \draw[domain=0.8:1.7,smooth,variable=\x,thick] plot({\x},{sqrt(1+\x*\x))});
+
+        \draw[domain=-1.7:0.8,smooth,variable=\x,thick,->] plot({-\x},{-sqrt(1+\x*\x))});
+        \draw[domain=0.8:1.7,smooth,variable=\x,thick] plot({-\x},{-sqrt(1+\x*\x))});
+
+        \draw[domain=-1.7:0.8,smooth,variable=\x,thick,->] plot({sqrt(1+\x*\x))},{\x});
+        \draw[domain=-0.8:1.7,smooth,variable=\x,thick] plot({sqrt(1+\x*\x))},{\x});
+
+        \draw[domain=-1.7:0.8,smooth,variable=\x,thick,->] plot({-sqrt(1+\x*\x))},{-\x});
+        \draw[domain=-0.8:1.7,smooth,variable=\x,thick] plot({-sqrt(1+\x*\x))},{-\x});
+
+        \draw[very thick,->] (-2,-2) -- (2,2) node[above right] {\(V\)};
+        \draw[very thick,->] (2,-2) -- (-2,2) node[above left] {\(U\)};
+    \end{tikzpicture}
+\end{figure}
+
+\(U=0\) and \(V=0\) are both independently fixed by \(k\). \(k=0\) on \(U=V=0\), a region known as the \emph{bifurcation 2-sphere}.
+
+\lecture{27/01/16}
+\subsection{Einstein-Rosen bridge}
+Consider a constant \(t\) slice of \emph{Kruskal} spacetime. We define the coordinate \(\rho\) on this slice by
+\begin{equation}
+    r=\rho+M+\frac{M^2}{4\rho} \qq{such that} \rho>\frac{M}{2} \;\text{in I},\; \rho<\frac{M}{2} \; \text{in IV.}
+\end{equation}
+In \emph{isotropic coordinates} \((t,\rho,\theta,\phi)\), the line element is
+\begin{equation}
+    \dd{s}^2 = - \frac{\left(1-\frac{M}{2\rho}\right)^2}{\left(1+\frac{M}{2\rho}\right)^2} \dd{t}^2 + \left(1+\frac{M}{2\rho}\right)^4 (\dd{\rho}^2+\rho^2\dd{\Omega}^2).
+\end{equation}
+Note that \(\rho\to\frac{M^2}{4\rho}\) interchanges I and IV.
+
+\begin{wrapfigure}{r}{0.4\linewidth}
+    \centering
+    \begin{tikzpicture}
+        \draw[rounded corners, shift={(0,0.08)}] (0,3) -- (5,3) -- (4,4) -- (1,4) -- cycle;
+        \draw[rounded corners, shift={(0,-0.11)}] (0,0) -- (5,0) -- (4,1.3) -- (1,1.3) -- cycle;
+
+        \draw (2.5,3.5) ellipse (0.8 and 0.2);
+        \begin{scope}[shift={(0,2.125)},yscale=0.26]
+            \draw (3,0) arc (0:-180:0.5);
+            \draw[dashed] (3,0) arc (0:180:0.5);
+        \end{scope}
+        \begin{scope}[shift={(0,0.65)},yscale=0.325]
+            \draw (3.3,0) arc (0:-180:0.8);
+            \draw[dashed] (3.3,0) arc (0:180:0.8);
+        \end{scope}
+        
+        \begin{scope}
+            \clip[shift={(0,0.08)}] (0,3) rectangle (5,0);
+            \draw (3.3,3.5) .. controls (3.28,3.44) and (3,3) .. (3,2.125)
+                            .. controls (3,1.25) and (3.28,0.71) .. (3.3,0.65);
+            \draw (1.7,3.5) .. controls (1.72,3.44) and (2,3) .. (2,2.125)
+                            .. controls (2,1.25) and (1.72,0.71) .. (1.7,0.65);
+        \end{scope}
+        \begin{scope}[dashed]
+            \clip[shift={(0,0.08)}] (0,3) rectangle (5,4);
+            \draw (3.3,3.5) .. controls (3.28,3.44) and (3,3) .. (3,2.125)
+                            .. controls (3,1.25) and (3.28,0.71) .. (3.3,0.65);
+            \draw (1.7,3.5) .. controls (1.72,3.44) and (2,3) .. (2,2.125)
+                            .. controls (2,1.25) and (1.72,0.71) .. (1.7,0.65);
+        \end{scope}
+
+        \draw (3.3,3.5) .. controls (3.32,3.56) and (3.4,3.6) .. (3.55,3.61);
+        \draw (1.7,3.5) .. controls (1.68,3.56) and (1.6,3.6) .. (1.45,3.61);
+        \draw (3.3,0.65) .. controls (3.32,0.59) and (3.4,0.55) .. (3.55,0.54);
+        \draw (1.7,0.65) .. controls (1.68,0.59) and (1.6,0.55) .. (1.45,0.54);
+
+        \node at (1,3.4) {I};
+        \node at (1,0.3) {IV};
+
+        \draw[->, thick] (0.7,2) node[left] {\(S^2\)} .. controls (1,2) and (1.4,3.3) .. (1.7,3.4);
+        \draw[->, thick] (0.7,2) .. controls (1,2) .. (1.92,2.125);
+
+        \node[above] at (3,4.1) {\(\rho\to\infty\)};
+        \node[below] at (3,-0.1) {\(\rho\to0\)};
+    \end{tikzpicture}
+\end{wrapfigure}
+On a constant \(t\) surface, the induced metric is
+\begin{equation}
+    \dd{s}^2 = \left(1+\frac{M}{2\rho}\right)^4 (\dd{\rho}^2+\rho^2\dd{\Omega}^2).
+\end{equation}
+If we take \(\rho>0\), we see that the surface is a Riemannian manifold with topology \(\RR\times S^2\). We can visualise this surface by embedding into four dimensional Euclidean space.
+We have two asymptotically flat regions at \(\rho\to\infty\), \(\rho\to0\) connected by a ``throat'' with minimum radius \(r=2M\) at \(\rho = \frac{M}{2}\).
+
+\subsection{Extendability and singularities}
+\begin{defn}
+    A spacetime \((\mathcal{M},g)\) is said to be \emph{extendable} if it is isometric to a proper subset of another spacetime \((\mathcal{M}',g)\), called an \emph{extension} of \((\mathcal{M},g)\).
+\end{defn}
+\begin{eg}
+    \(r>2M\) Schwarzschild spacetime is extendable, with for example Kruskal spacetime as an extension. The isometry in question is the identity map.
+    Kruskal spacetime on the other hand is inextendible, and is in fact a \emph{maximal analytic extension} of \((\mathcal{M},g)\).
+\end{eg}
+
+There are many types of singularities.
+\begin{itemize}
+    \item A \emph{scalar curvature singularity} is a region in which a scalar constructed from the Riemann tensor \(R_{abcd}\) blows up.
+    \item More generally, a \emph{curvature singularity} is a region in which there does not exist a chart such that the components of the Riemann tensor \(R_{\mu\nu\rho\sigma}\) are finite.
+    \item It is possible to have singularities which have nothing to do with the curvature tensor. For example consider \(\mathcal{M}=\RR^2\) with polar coordinates \((r,\phi)\), where we identify \(\phi \sim \phi+2\pi\), with line element given by
+        \begin{equation}
+            \dd{s}^2=\dd{r}^2+\lambda^2r^2\dd{\phi}^2
+        \end{equation}
+        for some constant \(\lambda>0\). There are two cases:
+        \begin{itemize}
+            \item In the case \(\lambda=1\), this is just Euclidean space, and \(r=0\) is just a coordinate singularity.
+            \item If \(\lambda\ne1\), then set \(\phi'=\lambda\phi\) to obtain
+                \begin{equation}
+                    \dd{s}^2 = \dd{r}^2+r^2\dd{\phi'}^2.
+                \end{equation}
+                Locally, this is isometric to Euclidean space. It is flat, so \(R_{abcd}=0\) and there is no curvature singularity. However the range of the angular coordinate has changed; our identification has changed to \(\phi'\sim\phi+2\pi\lambda\). Consider a circle with \(r=\epsilon\). The ratio of the circumference to the radius of this circle is \(2\pi\lambda\epsilon/\epsilon=2\pi\lambda\). As we take \(\epsilon\), we would expect this ratio to approach \(2\pi\) if the geometry were locally flat at \(r=0\), but this is not the case. \(g\) is not smooth at \(r=0\). This type of singularity is called a \emph{conical singularity}.
+        \end{itemize}
+\end{itemize}
+
+\begin{defn}
+    \(p\in\mathcal{M}\) is a \emph{future endpoint} of a future-directed causal curve \(\gamma:(a,b)\to\mathcal{M}\) if for any neighbourhood \(\mathcal{O}\) of \(p\) there exists a \(t_0\) such that \(\gamma(t)\in\mathcal{O}\) for all \(t>t_0\). We say \(\gamma\) is \emph{future-inextendable} if it has no future endpoint.
+\end{defn}
+
+\begin{eg}
+    Let \((\mathcal{M},g)\) be Minkowski space, and \(\gamma:(-\infty,0)\to\mathcal{M}\), \(\gamma(t)=(t,0,0,0)\). Then \((0,0,0,0)\) is a future end point of \(\gamma\). If however \((\mathcal{M},g)\) is Minkowski\(\setminus(0,0,0,0)\), then \(\gamma\) is future-inextendable.
+\end{eg}
+
+\begin{defn}
+    A geodesic is \emph{complete} if an affine parameter extends to \(\pm\infty\). A spacetime is \emph{geodesically complete} if all inextendable geodesics are complete. If a spacetime is both inextendable and geodesically incomplete, then we say it is \emph{singular}.
+\end{defn}
+
+\section{The Initial Value Problem}
+\subsection{Predictability}
+\begin{defn}
+    A \emph{partial Cauchy surface} \(\Sigma\) is a hypersurface for which no two points are connected by a causal curve in \(\mathcal{M}\).
+\end{defn}
+\begin{defn}
+    The \emph{future domain of dependence} of \(\Sigma\) is the set 
+    \begin{equation}
+        D^+(\Sigma) = \{p\in\mathcal{M}\;\st\;\text{every past-inextendible causal curve through \(p\) intersects \(\Sigma\)}\}.
+    \end{equation}
+    We define the \emph{past domain of dependence} \(D^-(\Sigma)\) in a similar way. The \emph{domain of dependence} is \(D(\Sigma) = D(\Sigma^+)\cup D(\Sigma^-)\).
+\end{defn}
+
+A causal geodesic in \(D(\Sigma)\) is uniquely determined by its velocity at \(q\in\Sigma\) (this is because the geodesic equation is a hyperbolic PDE).
+
+\begin{eg}
+    Consider 2d Minkowski space, and the surface \(\Sigma = \{(0,x)\st x>0\}\). Then \(D^+(\Sigma)= \{(t,x)\st 0 \le t < x\}\), \(D^-(\Sigma)= \{(t,x)\st -x < t \le 0\}\).
+\end{eg}
+
+\begin{defn}
+    \((\mathcal{M},g)\) is called \emph{globally hyperbolic} if it contains a \emph{Cauchy surface} i.e.\ a partial Cauchy surface whose domain of dependence is all of \(\mathcal{M}\).
+\end{defn}
+
+\begin{eg}
+    Minkowsi spacetime is globally hyperbolic (for instance \(t\) constant is a Cauchy surface). Kruskal spacetime is globally hyperbolic (for instance \(U+V\) constant is a Cauchy surface).
+
+    2d Minkowski spacetime with \((0,0)\) removed is \emph{not} globally hyperbolic.
+\end{eg}
+
+\begin{theorem}
+    Suppose \((\mathcal{M},g)\) is a globally hyperbolic spacetime. Then:
+    \begin{enumerate}
+        \item There exists a \emph{global time function} i.e.\ a map \(t:\mathcal{M}\to\RR\) such that \((\dd{t})^a\) is future-directed and timelike.
+        \item \(t\) constant surfaces are Cauchy and all have the same topology \(\Sigma\).
+        \item \(\mathcal{M} = \RR\times\Sigma\).
+    \end{enumerate}
+\end{theorem}
+
+Exercise: show \(U+V\) is a global time function for Kruskal spacetime. \(U+V = 0\) is an Einstein-Rosen bridge, so \(\Sigma = \RR \times S^2\) and \(\mathcal{M} = \RR^2\times S^2\).
+
+
+\begin{wrapfigure}{r}{0.4\linewidth}
+    \centering
+    \begin{tikzpicture}
+        \draw[rounded corners] (0,0) .. controls (1.5,0.1) and (2.5,-0.2) .. (4,-0.5)
+                                     -- (5, 1)
+                                     .. controls (3.5, 1.3) and (2.5,1.26) .. (1.5,1.2)
+                                     -- cycle;
+        \draw (3,0.6) arc (170:120:2.4);
+        \fill (3,0.6) circle (0.05) node[right] {\(x^i(p)\)};
+        \fill (3.517,1.7) circle (0.05) node [above left] {p};
+        \node[right] at (1,0.5) {\(t=0\)};
+    \end{tikzpicture}
+\end{wrapfigure}
+If we have a time function \(t\), we will often carry out a \emph{3+1 split} to obtain a set of local coordinates. Suppose we have coordinates \(x^i\) on the surface \(t=0\), and a timelike vector field \(T^a\).
+For a point \(p\) near \(t=0\), we let \(x_i(p)\) be the coordinate of the point where the integral curve of \(T^a\) through \(p\) intersects \(t=0\). Thus we have a coordinate chart \(t,x^i\). In these coordinates, the metric is given by
+\begin{equation}
+    \dd{s}^2 = -N(t,x)^2\dd{t}^2 + h_{ij}(t,x)(\dd{x^i} + N^i(t,x)\dd{t})(\dd{x^j} + N^j(t,x)\dd{t}),
+\end{equation}
+where \(N\) and \(N^i\) are known as the \emph{lapse function} and \emph{shift vector} respectively, and \(h_{ij}\) is the metric on a constant \(t\) surface.
+
+\subsection{Initial value problem in GR}
+\lecture{29/01/16}
+We can view the Einstein equations as an initial value problem. We are given \(\Sigma\), a 3d Riemannian manifold with metric \(h_{ab}\) and extrinsic curvature \(K_{ab}\). In addition we have the \emph{Hamiltonian constraint}
+\begin{equation}
+    R' - K^{ab}K_{ab} + K^2 = 16\pi\rho,
+\end{equation}
+where \(R'\) is the Ricci scalar of \(h\), \(K=K\indices{_a^a}\) and \(\rho = T_{ab}n^an^b\) (with \(n\) a unit normal to \(\Sigma\)), and the \emph{momentum constraint}
+\begin{equation}
+    D_bK\indices{^b_a} - D_aK = 8\pi h\indices{_a^b}T_{bc}n^c,
+\end{equation}
+where \(D_b\) is the Levi-Civita connection with regard to \(h\).
+
+\begin{theorem}[Choquet-Bruhat and Geroch 1969]
+    Given initial data satisfying vacuum constraints (i.e.\ the right hand sides of the above equal to 0), there exists a unique (up to diffeomorphism) spacetime \(\mathcal{M},g\), known as the \emph{maximal Cauchy development} of \(\Sigma, h_{ab}, K_{ab}\), such that the following are satisfied:
+    \begin{enumerate}
+        \item \((\mathcal{M},g)\) obeys the vacuum Einstein equations.
+        \item \((\mathcal{M},g)\) is globally hyperbolic with Cauchy surface \(\Sigma\).
+        \item The induced metric and extrinsic curvature of \(\Sigma\) are \(h_{ab}\) and \(K_{ab}\) respectively.
+        \item Any other spacetime obeying 1-3 is isometric to a subset of \((\mathcal{M},g)\).
+    \end{enumerate}
+\end{theorem}
+Note that \((\mathcal{M},g)\) may be extendable, but the solution will be non-unique outside of \(D(\Sigma)\).
+\begin{eg}
+    Consider \(\Sigma = \{(x,y,z)\st x>0\}\), \(h_{\mu\nu} = \delta_{\mu\nu}\), \(K_{\mu\nu} = 0\). Then \((\mathcal{M},g)\) is the region of Minkowski spacetime with \(|t|<x\), and this is clearly extendable.
+\end{eg}
+In the preceding example, \((\mathcal{M},g)\) was extendable because \((\Sigma, h_{ab})\) was extendable, but this need not be the case.
+\begin{eg}
+    Consider \(M<0\) Schwarzschild. The metric is
+    \begin{equation}
+        \dd{s}^2 = - \left(1+\frac{2|M|}{r}\right)\dd{t}^2 + \left(1+\frac{2|M|}{r}\right)^{-1}\dd{r}^2 + r^2\dd{\Omega}^2.
+    \end{equation}
+    There is a curvature singularity at \(r=0\) but, unlike the positive mass case, there is no event horizon. We choose the initial data \((\Sigma,h_{ab},K_{ab})\) to be that given by the surface \(t=0\); this is inextendable (but not geodesically complete since it is singular at \(r=0\)). For outgoing radial null geodesics at small \(r\), we have 
+    \begin{equation}
+        \pdv{t}{r} = \left(1+\frac{2|M|}{r}\right)^{-1} \approx \frac{r}{2|M|},
+    \end{equation}
+    so we can write \(t \approx t_0 + \frac{r^2}{4|M|}\). If \(t_0>0\) then the geodesic never intersects \(\Sigma\), so \(\Sigma\) is not a Cauchy surface for \(\mathcal{M}\). The boundary of \(D(\Sigma)\) is given by those geodesics with \(t_0=0\).
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+            \fill[gray!30, domain=-3:3,smooth,variable=\x] plot({\x},{1.5*abs(\x)*(1-exp(-0.2*abs(\x)))}) -- (3,0) -- (-3,0) -- cycle;
+
+            \begin{scope}
+                \clip (-3,0) rectangle (3,3.4);
+                \foreach \tz in {0,0.7,1.4,2.1,2.8}
+                {
+                    \draw[domain=-3:3,smooth,variable=\x] plot({\x},{\tz+1.5*abs(\x)*(1-exp(-0.2*abs(\x)))});
+                    \draw[thick, ->] (1.8-\tz/4,{\tz+1.5*(1.8-\tz/4)*(1-exp(-0.2*(1.8-\tz/4)))}) 
+                        -- (1.81-\tz/4,{\tz+1.5*(1.81-\tz/4)*(1-exp(-0.2*(1.81-\tz/4)))});
+                    \draw[thick, ->] (-1.8+\tz/4,{\tz+1.5*(1.8-\tz/4)*(1-exp(-0.2*(1.8-\tz/4)))}) 
+                        -- (-1.81+\tz/4,{\tz+1.5*(1.81-\tz/4)*(1-exp(-0.2*(1.81-\tz/4)))});
+                }
+            \end{scope}
+
+            \draw[thick,->] (0,0) -- (0,3.5) node[above] {\(r\)};
+            \draw[very thick] (-3,0) -- (3,0) node[right] {\(\Sigma\)};
+
+            \draw[thick,<-] (2.5,0.5) -- (3.7,0.5) node [right] {\(D(\Sigma)\)};
+        \end{tikzpicture}
+    \end{figure}
+    The solution outside of \(D(\Sigma)\) is \emph{not} determined by the data on \(\Sigma\); in particular, it need not be the negative mass Schwarzschild that we started with.
+\end{eg}
+This time, the maximal development was extendable because the initial data was singular, but again this is not necessary.
+\begin{eg}
+    Consider 4d Minkowski spacetime, and start with data on the surface \(\Sigma = \{-t^2+x^2+y^2+z^2 = -1, t < 0\}\). This is one sheet of a hyperboloid. The maximal development of \(\Sigma\) is the interior of the past lightcone of the origin, and this is extendable.
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+            \fill[gray!30,yscale=0.3] (0,0) -- (1.5,-10) arc (0:-180:1.5) -- cycle;
+
+            \draw[thick,->] (0,0) -- (0,0.6) node[above] {\(t\)};
+            \draw[thick,->] (0,0) -- (1.8,0) node[right] {\(y\)};
+            \draw[thick,->] (0,0) -- (-1.5,-0.8) node[left] {\(x\)};
+
+            \draw[dotted] (0,0) -- (0,-3);
+
+            \draw (0,0) -- (1.5,-3);
+            \draw (0,0) -- (-1.5,-3);
+            \draw[shift={(0.5,-1)},yscale=0.3] (0,0) arc (0:-180:0.5);
+            \draw[shift={(0.5,-1)},yscale=0.3, dashed] (0,0) arc (0:180:0.5);
+
+            \draw[very thick] (1.3,-2.9) -- (0.9,-2.1)
+                .. controls (0.5,-1.3) and (-0.5,-1.3)
+                .. (-0.9,-2.1) -- (-1.3,-2.9);
+
+            \draw[very thick, shift={(1.1,-2.5)},yscale=0.3] (0,0) arc (0:-180:1.1);
+            \draw[very thick, shift={(1.1,-2.5)},yscale=0.3, dashed] (0,0) arc (0:180:1.1);
+
+            \draw[thick, <-] (0.74,-1.8) -- (1.3,-1.3) node[above right] {\(\Sigma\)};
+            \draw[thick, <-] (-0.5, -1.35) -- (-1.5,-1.55) node [left] {\(D(\Sigma)\)};
+        \end{tikzpicture}
+    \end{figure}
+\end{eg}
+Now, the maximal development is extendible because the initial data is ``asymptotically null''. To avoid this problem, we will use asymptotically flat initial data.
+
+\begin{defn}
+    \((\Sigma,h_{ab},K_{ab})\) is an \emph{asymptotically flat end} if:
+    \begin{itemize}
+        \item \(\Sigma\) is diffeomorphic to \(\RR^3\setminus B\) where \(B\) is a closed ball centred on the origin in \(\RR^3\).
+        \item If we pull back \(\RR^3\) coordinates to give coordinates \(x^i\) on \(\Sigma\), then the metric is \(h_{ij} = \delta_{ij} + O(1/r)\) and the extrinsic curvature is \(K_{ij} = O(1/r^2)\).
+        \item \(h_{ij,k} = O(1/r^2)\) etc.
+    \end{itemize}
+\end{defn}
+
+\begin{defn}
+    A set of initial data is said to be \emph{asymptotically flat with \(N\) ends} if it is a union of a compact set with \(N\) asymptotically flat ends.
+\end{defn}
+
+\begin{eg}
+    Consider \(M>0\) Schwarzschild spacetime. \(\Sigma = \{t = \text{constant}, r>2M\}\) is an asymptotically flat end. \(\Sigma\) is part of an Einstein-Rosen bridge, which is asymptotically flat with 2 ends (in fact it is the union of two copies of \(\Sigma\) and the bifurcation two-sphere at \(r=2M\)).
+\end{eg}
+
+\subsection{Strong cosmic censorship}
+The strong cosmic censorship conjecture (by Penrose) is the following:
+\begin{quote}
+    Given vacuum initial data \((\Sigma,h_{ab},K_{ab})\) that is geodesically complete and asymptotically flat, then  generically the maximal Cauchy development is inextendable.
+\end{quote}
+The conjecture has been shown to be true for nearly flat data, but there are non-generic counterexamples.
+
+\section{The Singularity Theorem}
+\subsection{Null hypersurfaces}
+\lecture{01/02/16}
+\begin{defn}
+    A \emph{null hypersurface} is a hupersurface \(\mathcal{N}\) whose normal \(n\) is everywhere null.
+\end{defn}
+\begin{eg}
+    Consider a constant \(r\) surface in Schwarzschild spacetime in ingoing Eddington-Finklestein coordinates. The metric is
+    \begin{equation}
+        g^{\mu\nu} = 
+        \begin{pmatrix}
+            0 & 1 & 0 & 0 \\
+            1 & 1 - \frac{2M}{r} & 0 & 0 \\
+            0 & 0 & \frac{1}{r^2} & 0 \\
+            0 & 0 & 0 & \frac{1}{r^2\sin^2\theta}
+        \end{pmatrix}.
+    \end{equation}
+    The normal 1-form is \(n=\dd{r}\), and we have \(n^2 = g^{\mu\nu}n_\mu n_\nu = g^{rr} = 1 - \frac{2M}{r}\), so \(r=2M\) is a null hypersurface.
+\end{eg}
+
+Note that iff \(X^a\) is tangent to \(\mathcal{N}\), then either \(X^a\) is spacelike or it is parallel to \(n^a\). Thus \(n^a\) is tangent to \(\mathcal{N}\) and in particular the integral curves of \(n^a\) lie within \(\mathcal{N}\).
+
+\begin{lemma}
+    The integral curves of \(n^a\) are null geodesics (they are referred to as the \emph{generators} of \(\mathcal{N}\)).
+\end{lemma}
+\begin{proof}
+    Define \(\mathcal{N}\) by \(f = \text{constant}\) for some function \(f\). We have \(\dd{f}\ne 0\) on \(\mathcal{N}\) and \(n=h\dd{f}\) for some \(h\). Let \(N=\dd{f}\). The integral curves of \(n\) and \(N\) are the same up to reparametrisation, so we focus on \(N\). Since \(N\) is null, we have \(N_aN^a=0\) on \(\mathcal{N}\), and so \(\dd{(N_aN^a)}\) is normal to \(\mathcal{N}\). Thus, \(\nabla_a(N^bN_a) = 2\alpha N_a\) for some \(\alpha\) on \(\mathcal{N}\). The left hand side is
+    \begin{equation}
+        2N^b\nabla_a N_b = 2N^b \nabla_a\nabla_b f = 2N^b\nabla_b\nabla_a f = 2N^b\nabla_bN_a.
+    \end{equation}
+    Hence on \(\mathcal{N}\), \(N_a\) satisfies the geodesic equation \(N^b\nabla_b N_a = \alpha N_a\).
+\end{proof}
+
+\begin{eg}
+    Consider Kruskal spacetime with coordinates \((U,V,\theta,\phi)\). \(N=\dd{U}\) is null everywhere, so we have a family of null hypersurfaces \(U = \text{constant}\). In this case, we have \(N^b\nabla_b N_a = \frac{1}{2}\nabla_a(N^2) = 0\), so \(N^a\) is tangent to affinely parametrised geodesics. It is easy to show that \(N^a = - \frac{r}{16M^3}e^{r/2M} \left(\pdv{V}\right)^a\), so if we let \(\mathcal{N}=\{U=0\}\) then \(V\) is an affine parameter for generators of \(\mathcal{N}\), and similarly \(U\) is an affine parameter for generators of \(\{V=0\}\).
+\end{eg}
+
+\subsection{Geodesic deviation}
+\begin{defn}
+    A \emph{1-parameter family} of geodesics is a function \(\gamma:I\times I'\to\mathcal{M}\) where \(I,I'\) are open intervals in \(\RR\), such that \(\lambda\mapsto\gamma(s,\lambda)\) is a geodesic with affine parameter \(\lambda\) and \((s,\lambda)\mapsto\gamma(s,\lambda)\) is smooth and 1-to-1 with a smooth inverse.
+\end{defn}
+
+\begin{wrapfigure}{l}{0.3\linewidth}
+    \centering
+    \begin{tikzpicture}
+        \draw[thick, ->] (0,0) .. controls (0.5, 0.5) and (0.2,1.5) .. (0.4,2.5) node[right] {\(U\)};
+        \draw[thick] (0.4,2.5) -- (0.5,3);
+        \draw[thick, ->] (1,-0.3) .. controls (1.7, 1) and (1.1,1.5) .. (1.4,2.5) node[right] {\(U\)};
+        \draw[thick] (1.4,2.5) -- (1.6,3);
+        \draw[thick, ->] (2,-0.5) .. controls (2.9, 1.5) and (2,1.5) .. (2.4,2.5) node[right] {\(U\)};
+        \draw[thick] (2.4,2.5) -- (2.7,3);
+
+        \draw[thick, ->] (-0.5,2) .. controls (0.5, 2) and (1.5,1.7) .. (1.8,1.8) node[below] {\(S\)};
+        \draw[thick] (1.8,1.8) .. controls (2.1,1.9) and (2.2,2.3) .. (2.9,2.2);
+        \draw[thick, ->] (-0.5,0.5) .. controls (0.2, 0.9) and (1.2,0.7) .. (1.7,0.4) node[below] {\(S\)};
+        \draw[thick] (1.7,0.4) .. controls (2.2,0.1) and (2.7,0.4) .. (3,0.5);
+    \end{tikzpicture}
+\end{wrapfigure}
+Let \(\gamma(s,\lambda)\) take coordinates \(x^\mu(s,\lambda)\); we define the vector fields
+\begin{equation}
+    S^\mu = \pdv{x^\mu}{s} \qq{and} U^\mu = \pdv{x^\mu}{\lambda}.
+\end{equation}
+We also define the \emph{deviation vectors} (?) from the coordinates \(s,\lambda\) on the image of \(\gamma\),
+\begin{equation}
+    S = \pdv{s} \qq{and} U = \pdv{\lambda}.
+\end{equation}
+
+We have \([S,U] = 0\), so we can write \(U^b\nabla_bS^a = S^b\nabla_bU^a\), and thus obtain the \emph{geodesic deviation equation}
+\begin{equation}
+    U^c\nabla_c(U^b\nabla_bS^a)=R\indices{^a_b_c_d}U^bU^cS^d.
+\end{equation}
+A solution \(S^a\) to this equation along \(\gamma\) is called a \emph{Jacobi field}.
+
+\subsection{Geodesic congruences}
+\begin{defn}
+    Let \(\mathcal{U}\in\mathcal{M}\) be open. A \emph{geodesic congruence} is a family of geodesics such that exactly one geodesic passes through each \(p\in\mathcal{U}\).
+\end{defn}
+Let \(U^a\) be the tangent vector of a geodesic congruence, normalised such that \(U^2 = -1\) if timelike, \(0\) if null, and \(1\) if spacelike. We define the \emph{velocity gradient} \(B\indices{^a_b} = \nabla_bU^a\). By the above we have \(U^b\nabla_bS^a = B\indices{^a_b}S^b\). It is easy to see that \(U_aB\indices{^a_b} = 0 = B\indices{^a_b}U^b\). We also have
+\begin{equation}
+    U\vdot\nabla(U\vdot S) = \underbrace{(U\vdot\nabla U^a)}_{=0}S_a + U^a U\vdot\nabla S_a = \underbrace{U^aB_{ab}}_{=0}S^b = 0,
+\end{equation}
+so \(U\vdot S\) is constant along any geodesic in the congruence.
+
+Suppose we redefine our affine parameter \(\lambda \to \lambda' = \lambda - a(s)\). We have \(S'^a = S^a + \dv{a}{s}U^a\). \(S^a\) and \(S'^a\) point to the same geodesics, so we have a kind of gauge freedom here. Note that \(U\vdot S' = U\vdot S + \dv{a}{s}U^2\), so in the spacelike and timelike cases, we can choose \(a(s)\) such that \(U\vdot S=0\) at \(\lambda = 0\), and hence everywhere.
+
+\subsection{Null geodesic congruences}
+Things are less easy if \(U\) is null. Pick some spacelike hypersurface \(\Sigma\) that is tranverse to \(U\) (i.e.\ not tangent). Pick a vector field \(N^a\) such that \(N^2=0\) and \(N\vdot U = -1\) on \(\Sigma\), and additionally \(U\vdot\nabla N^a = 0\). It can be shown that this implies that \(N^2 = 0\) and \(N\vdot U=-1\) everywhere. Now write
+\begin{equation}
+    S^a = \alpha U^a + \beta N^a + \hat{S}^a
+\end{equation}
+where \(U\vdot \hat{S} = N\vdot\hat{S} = 0\) (this means that \(\hat{S}^a\) is either spacelike or zero). We have \(U\vdot S = -\beta\), so \(\beta\) is constant along each geodesic. Note that \(\alpha U^a + \hat{S}^a\) is orthogonal to \(U^a\) and \(\beta N^a\) is parallely transported along \(U^a\).
+
+\begin{eg}
+    Consider a null hypersurface \(\mathcal{N}\) and pick a congruence containing the generators of \(\mathcal{N}\). For a 1-parameter family of generators, we have \(S^a\) tangent to \(\mathcal{N}\), and so \(\beta = -U\vdot S = 0\).
+\end{eg}
+
+We can write \(\hat{S}^a = P\indices{^a_b}S^b\) where \(P\indices{^a_b} = \delta^a_b = N^aU_b + U^aN_b\). \(P\indices{^a_b}\) is a projection (\(P\indices{^a_b}P\indices{^b_c} = P\indices{^a_c}\)) onto \(T_\perp = \{\text{vectors \(\perp\) to \(U^a,N^a\)}\} \subset T_p(\mathcal{M})\), a 2d space.  We have \(U\vdot\nabla P\indices{^a_b} = 0\).
+
+\begin{lemma}
+    If \(U\vdot S = 0\), then \(U\vdot\nabla\hat{S}^a = \hat{B}\indices{^a_b}\hat{S}^b\), where \(\hat{B}\indices{^a_b} = P\indices{^a_c}B\indices{^c_d}P\indices{^d_b}\).
+\end{lemma}
+\begin{proof}
+    We have:
+    \begin{align}
+        U\vdot\nabla\hat{S}^a &= U\vdot\nabla(P\indices{^a_c}S^c) \\
+                              &= P\indices{^a_c}U\vdot\nabla S^c \\
+                              &= P\indices{^a_c}B\indices{^c_d}S^d \\
+                              &= P\indices{^a_c}B\indices{^c_d}P\indices{^d_e}S^e \quad \text{(using \(B\vdot U=U\vdot S=0\))} \\
+                              &= \underbrace{P\indices{^a_c}B\indices{^c_d}P\indices{^d_b}}_{=\hat{B}\indices{^a_b}}\underbrace{P\indices{^b_e}S^e}_{=\hat{S}^b} \quad \text{(since \(P = P^2\))} \qedhere
+    \end{align}
+\end{proof}
+
+\subsection{Expansion, rotation and shear}
+\lecture{03/02/16}
+\begin{defn}
+    \emph{Expansion} \(\theta\), \emph{rotation} \(\hat{\omega}_{ab}\) and \emph{shear} \(\hat{\sigma}_{ab}\) are defined in the following way:
+    \begin{equation}
+        \theta = \hat{B}\indices{^a_a} \quad \hat{\omega} = \hat{B}_{[ab]} \quad \hat{\sigma}_{ab} = \hat{B}_{(ab)} - \frac{1}{2}P_{ab}\theta
+    \end{equation}
+\end{defn}
+We have \(\hat{B}\indices{^a_b} = \frac{1}{2}\theta P\indices{^a_b} + \hat{\sigma}\indices{^a_b} + \hat{\omega}\indices{^a_b}\), and it can be shown that \(\theta = g^{ab}B_{ab} = \nabla_a U^a\).
+
+\begin{lemma}
+    If a congruence contains the generators of a null hypersurface \(\mathcal{N}\), then \(\hat{\omega}=0\) on \(\mathcal{N}\). Conversely, if \(\hat{\omega}=0\) then \(U^a\) is everywhere hypersurface orthogonal.
+\end{lemma}
+\begin{proof}
+    Since \(B\vdot U = U\vdot B = 0\), we can write 
+    \begin{equation}
+        \hat{B}\indices{^b_c} = B\indices{^b_c} + U^bN_dB\indices{^d_c} + U_cB\indices{^b_d}N^d + U^bU_c N_dB\indices{^d_e}N^e.
+    \end{equation}
+    We have
+    \begin{equation}
+        U_{[a}\hat{\omega}_{bc]} = U_{[a}\hat{B}_{bc]} 
+                                 = U_{[a}B_{bc]} 
+                                 = U_{[a}\nabla_cU_{b]} 
+                                 = - \frac{1}{6} (U\wedge\dd{U})_{abc},
+    \end{equation}
+    so since \(U^a\) is orthogonal to \(\mathcal{N}\) and hence \(U\wedge\dd{U} = 0\) on \(\mathcal{M}\), we can conclude
+    \begin{equation}
+        0 = \left. U_{[a}\hat{\omega}_{bc]} \right|_{\mathcal{N}} = \left.\frac{1}{3}(U_a\hat{\omega}_{bc} + U_b\hat{\omega}_{ca} + U_c\hat{\omega}_{ab}) \right|_{\mathcal{N}}.
+    \end{equation}
+    Contracting with \(N^a\), we see that \(\hat{\omega}_{bc} = 0\) on \(\mathcal{N}\) as required.
+
+    For the converse, we have \(\hat{\omega} = 0 \implies U\wedge\dd{U}=0\), which by Frobenius' theorem implies \(U\) is hypersurface orthogonal.
+\end{proof}
+
+Consider geodesics in \(\mathcal{N}\) with tangent vector \(S^a\). By foliating \(\mathcal{N}\) into a family of constant \(\lambda\) surfaces, we can visualise how expansion and shear act on these geodesics.
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[xscale=1.6,yscale=1.3]
+        \begin{scope}[xscale=-1]
+            \draw[rounded corners] (0.65,4) -- (4.7,4) -- (3.7,5) -- (0.55,5) -- cycle;
+            \draw[rounded corners] (0.65,0) -- (4.7,0) -- (3.7,1.3) -- (0.55,1.3) -- cycle;
+
+            \begin{scope}[shift={(4.7,0)},xscale=-1]
+                \draw[->] (2.55,0.65) .. controls (2.58,1.2) and (2.58,1.5) .. (2.75,2.75);
+                \draw (2.75,2.75) .. controls (2.82,3.35) and (2.975,3.75) .. (3.15,4);
+                \draw[dashed] (3.5,4.5) -- (3.15,4);
+                \fill (2.55,0.65) circle (0.03);
+                \fill (3.5,4.5) circle (0.03);
+            \end{scope}
+
+            \draw[->] (2.55,0.65) .. controls (2.58,1.2) and (2.58,1.5) .. (2.75,2.75);
+            \draw (2.75,2.75) .. controls (2.82,3.35) and (2.975,3.75) .. (3.15,4);
+            \draw[dashed] (3.5,4.5) -- (3.15,4);
+            \fill (2.55,0.65) circle (0.03);
+            \fill (3.5,4.5) circle (0.03);
+
+            \draw[->] (2.4,0.56) .. controls (2.45,1.6) and (2.45,1.7) .. (2.55,2.7);
+            \draw (2.55,2.7) .. controls (2.6,3.3) .. (2.65, 4);
+            \draw[dashed] (2.65,4) -- (2.665,4.21);
+            \fill (2.4,0.56) circle (0.03);
+            \fill (2.665,4.21) circle (0.03);
+
+            \draw[->] (2.3,0.74) .. controls (2.27,1.65) and (2.27,1.8) .. (2.19,2.9);
+            \draw (2.19,2.9) .. controls (2.15,3.3) .. (2.1, 4);
+            \draw[dashed] (2.1,4) -- (2.035,4.79);
+            \fill (2.3,0.74) circle (0.03);
+            \fill (2.035,4.79) circle (0.03);
+
+            \draw[thick,->] (2.35,0.65) -- (2.35,2.8);
+            \draw[thick] (2.35,2.8) -- (2.35,4);
+            \draw[thick,dashed] (2.35,4.5) -- (2.35,4);
+            \begin{scope}[shift={(2.35,4.5)},yscale=0.5]
+                \draw (-0.1,-0.1) -- (0.1,0.1);
+                \draw (0.1,-0.1) -- (-0.1,0.1);
+            \end{scope}
+            \begin{scope}[shift={(2.35,0.65)},yscale=0.5]
+                \draw (-0.1,-0.1) -- (0.1,0.1);
+                \draw (0.1,-0.1) -- (-0.1,0.1);
+            \end{scope}
+
+            \node at (2.5,-0.3) {\bfseries expansion};
+        \end{scope}
+        \draw[rounded corners] (0.65,4) -- (4.7,4) -- (3.7,5) -- (0.55,5) -- cycle;
+        \draw[rounded corners] (0.65,0) -- (4.7,0) -- (3.7,1.3) -- (0.55,1.3) -- cycle;
+
+        \begin{scope}[shift={(4.7,0)},xscale=-1]
+            \draw[->] (2.55,0.65) .. controls (2.58,1.2) and (2.58,1.5) .. (2.75,2.75);
+            \draw (2.75,2.75) .. controls (2.82,3.35) and (2.975,3.75) .. (3.15,4);
+            \draw[dashed] (3.5,4.5) -- (3.15,4);
+            \fill (2.55,0.65) circle (0.03);
+            \fill (3.5,4.5) circle (0.03);
+        \end{scope}
+
+        \draw[->] (2.55,0.65) .. controls (2.58,1.2) and (2.58,1.5) .. (2.75,2.75);
+        \draw (2.75,2.75) .. controls (2.82,3.35) and (2.975,3.75) .. (3.15,4);
+        \draw[dashed] (3.5,4.5) -- (3.15,4);
+        \fill (2.55,0.65) circle (0.03);
+        \fill (3.5,4.5) circle (0.03);
+
+        \draw[->] (2.665,0.36) .. controls (2.6,1.6) and (2.57,1.7) .. (2.52,2.7);
+        \draw (2.52,2.7) .. controls (2.5,3.3) .. (2.45, 4);
+        \draw[dashed] (2.45,4) -- (2.4,4.41);
+        \fill (2.665,0.36) circle (0.03);
+        \fill (2.4,4.41) circle (0.03);
+
+        \draw[->] (2.035,0.94) .. controls (2.1,1.65) and (2.13,1.8) .. (2.18,2.9);
+        \draw (2.18,2.9) .. controls (2.2,3.3) .. (2.25, 4);
+        \draw[dashed] (2.25,4) -- (2.3,4.59);
+        \fill (2.035,0.94) circle (0.03);
+        \fill (2.3,4.59) circle (0.03);
+
+        \draw[thick,->] (2.35,0.65) -- (2.35,2.8);
+        \draw[thick] (2.35,2.8) -- (2.35,4);
+        \draw[thick,dashed] (2.35,4.5) -- (2.35,4);
+        \begin{scope}[shift={(2.35,4.5)},yscale=0.5]
+            \draw (-0.1,-0.1) -- (0.1,0.1);
+            \draw (0.1,-0.1) -- (-0.1,0.1);
+        \end{scope}
+        \begin{scope}[shift={(2.35,0.65)},yscale=0.5]
+            \draw (-0.1,-0.1) -- (0.1,0.1);
+            \draw (0.1,-0.1) -- (-0.1,0.1);
+        \end{scope}
+
+        \node at (2.5,-0.3) {\bfseries shear};
+
+        \node at (0,0.65) {\(\lambda=\lambda_0\)};
+        \node at (0,4.5) {\(\lambda=\lambda_1\)};
+    \end{tikzpicture}
+\end{figure}
+With expansion, geodesics move apart from one another for positive \(\theta\), and closer together for negative \(\theta\). If there is a shear, then geodesics move closer together in one direction, but further apart in the other.
+
+\subsection{Gaussian null coordinates}
+We can define a vector field \(V\) on \(\mathcal{N}\) by
+\begin{equation}
+    V^2 = 0, \quad V\vdot U = 1 \qq{and} V\vdot\pdv{y^i} = 0.
+\end{equation}
+
+\begin{wrapfigure}{r}{0.5\linewidth}
+    \centering
+    \begin{tikzpicture}[rotate=-20,scale=1.4]
+        \node[above] at (2.3,4) {\(\mathcal{N}\)};
+        \draw[rounded corners] (0,0) -- (2.5,0) -- (2.5,4) -- (0.2,3.7) -- cycle;
+        \node[left, fill=white] at (0.695,2.8) {\((\lambda,y^i)\)};
+        \draw[thick,->] (0.57,0.25) -- (0.65,2);
+        \draw[thick] (0.65,2) -- (0.73,3.55);
+        \draw[thick,->] (1.19,0.25) -- (1.25,2);
+        \draw[thick] (1.25,2) -- (1.31,3.65);
+        \draw[thick,->] (1.81,0.25) -- (1.85,2);
+        \draw[thick] (1.85,2) -- (1.89,3.75);
+        \draw[thick] (-0.5,1) .. controls (0,1.1) and (2,0.6) .. (3,1.4) node[right] {\(S\)};
+        \fill (0.605,0.95) circle (0.05);
+        \node[right] at (0.605,1.1) {\(y^i\)};
+        \fill (0.695,2.95) circle (0.05);
+        \draw[thick,->] (0.695,2.95) -- (-0.095,3.15) node[above right] {\(V\)};
+        \fill (0.695,2.95) -- (-0.79,3.39) -- (-0.8,3.31) -- cycle;
+        \fill (-0.795,3.35) circle (0.075) node[left] {\((r,\lambda,y^i)\)};
+    \end{tikzpicture}
+\end{wrapfigure}
+To construct \emph{Gaussian null coordinates} near \(\mathcal{N}\), we assign the coordinates \((r,\lambda,y^i)\) to a point affine parameter distance \(r\) along a null geodesic starting at \((\lambda,y^i)\in\mathcal{N}\) with tangent \(V^a\) there.
+
+Recall that \(U=\pdv{\lambda}\), so \(V=\pdv{r}\) is tangent to affinely parametrised null geodesics, so \(g_{rr} = 0\). Exercise: the geodesic equation reduces to \(g_{r\mu,r} = 0\). Therefore we have \(g_{r\lambda} = g_{r\lambda}|_{r=0} = U\vdot V|_{\mathcal{N}} = 1\) and \(g_{ri} = g_{ri}|_{r=0} = \left.V\vdot \pdv{y^i}\right|_{\mathcal{N}} = 0\). Also, since \(g_{\lambda\lambda}|_{r=0} = U^2|_{\mathcal{N}} = 0\) we have \(g_{\lambda\lambda} = rF\), and similarly since \(g_{\lambda i} |_{r=0} = \left. U\vdot\pdv{y^i}\right|_{\mathcal{N}} = 0\) we have \(g_{\lambda i} = r h_i\), where \(F\) and \(h_i\) are some smooth functions. Hence we have the following line element:
+\begin{equation}
+    \dd{s}^2 = 2\dd{r}\dd{\lambda} + rF\dd{\lambda}^2 + 2rh_i\dd{\lambda}\dd{y^i} + h_{ij}\dd{y^i}\dd{y^j}
+\end{equation}
+The induced line element on \(\mathcal{N}\) is therefore
+\begin{equation}
+    \dd{s}^2|_{\mathcal{N}} = 2\dd{r}\dd{\lambda} + h_{ij}\dd{y^i}\dd{y^j}.
+\end{equation}
+Using this metric, we can move the index downstairs on \(U^\mu|_{\mathcal{N}} = (0,1,0,0)\) to obtain \(U_\mu|_{\mathcal{N}} = (1,0,0,0)\), and hence from \(U\vdot B = B\vdot U = 0\), we have \(B\indices{^r_\mu} = B\indices{^\mu_\lambda} = 0\). Also
+\begin{align}
+    \theta = B\indices{^\mu_\mu} = B\indices{^i_i} &= \nabla_i U^i = \partial_i U^i + \Gamma^i_{i\mu}U^\mu \\
+       &= \Gamma^i_{i\mu} = \frac{1}{2}(g_{\mu i,\lambda} + g_{\mu\lambda,i} - g_{i\lambda,\mu}) \\
+       &= \frac{1}{2} h^{ij} (g_{ij,\lambda} + \underbrace{g_{j\lambda,i}}_{=0} - \underbrace{g_{i\lambda,j}}_{=0}) \\
+       &= \frac{1}{2}h^{ij}\partial_\lambda h_{ij} = \frac{\partial_\lambda\sqrt{h}}{\sqrt{h}},
+\end{align}
+where \(h = \det h_{ij}\). Thus we have
+\begin{equation}
+    \pdv{\lambda}\sqrt{h} = \theta\sqrt{h}.
+\end{equation}
+\(\sqrt{h}\) is the area element on a surface of constant \(\lambda\) in \(\mathcal{N}\), so we can see why \(\theta\) is called the ``expansion''.
+
+\subsection{Trapped surfaces}
+Let \(\mathcal{S}\) be a 2d spacelike (orientable) surface. Given a point \(p \in \mathcal{S}\), there exist two independent future-directed null vectors orthogonal to \(\mathcal{S}\) at \(p\), say \(U_2, U_1\) (up to scaling). Thus there are two families of null geodesics starting on \(\mathcal{S}\) and orthogonal to \(\mathcal{S}\), and two null hypersurfaces \(\mathcal{N}_1\) and \(\mathcal{N}_2\) generated by these families. The two families are \emph{outgoing} and \emph{ingoing} light rays from \(S\). Let the expansion on these two surfaces be \(\theta_1\) and \(\theta_2\) respectively.
+
+\begin{defn}
+    A compact orientable spacelike 2-surface \(\mathcal{S}\) is \emph{trapped} if \(\theta_1, \theta_2 < 0\) everywhere on \(\mathcal{S}\). It is \emph{marginally trapped} if \(\theta_1, \theta_2 \le 0\) everywhere on \(\mathcal{S}\).
+\end{defn}
+
+\begin{eg}
+    Consider \(\mathcal{S} = \{U=U_0,V=V_0\} \sim S^2\) in Kruskal spacetime. The generators of \(\mathcal{N}_i\) are the radial null geodesics with either \(U=\text{constant}\) or \(V=\text{constant}\).
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+            \draw[domain=-1.7:1.7,smooth,variable=\x,very thick] plot({\x},{sqrt(3+\x*\x))});
+            \draw[domain=-1.7:1.7,smooth,variable=\x,very thick] plot({\x},{-sqrt(3+\x*\x))});
+            \draw[very thick,->] (-2,-2) -- (2,2) node[above right] {\(V\)};
+            \draw[very thick,->] (2,-2) -- (-2,2) node[above left] {\(U\)};
+            \draw (0.1,0) node[right] {I};
+            \draw (0,0.1) node[above] {II};
+            \draw (0,-0.1) node[below] {III};
+            \draw (-0.1,0) node[left] {IV};
+            
+            \fill (1.5,0) circle (0.05) node[below right] {\(S_{(U_0,V_0)}\)};
+            \draw[thick, ->] (1.5,0) -- (2,0.5) node[right] {\(\mathcal{N}_1\)};
+            \draw[thick] (2,0.5) -- (2.5,1);
+            \draw[thick, ->] (1.5,0) -- (1,0.5);
+            \node[right] at (1.05,0.6) {\(\mathcal{N}_2\)};
+            \draw[thick] (1,0.5) -- (0.5,1);
+        \end{tikzpicture}
+    \end{figure}
+    Each null surface contains geodesic tangent vectors of the form \((\dd{U})^a\propto re^{\frac{r}{2M}}\left(\pdv{V}\right)^a = U_1^a\) and \((\dd{V})^a\propto re^{\frac{r}{2M}}\left(\pdv{U}\right)^a = U_2^a\) respectively. We have
+    \begin{align}
+        \theta_1 = \nabla_aU_1^a &= \frac{1}{\sqrt{-g}}\partial_\mu(\sqrt{-g}U_1^\mu) \\
+                                 &= r^{-1}e^{\frac{r}{2M}}\partial_V(re^{-\frac{r}{2M}}re^{\frac{r}{2M}}) \\
+                                 &= 2e^{\frac{r}{2M}} \partial_V r.
+    \end{align}
+    Using \(UV = -e^{\frac{r}{2M}}\left(\frac{r}{2M}-1\right)\) we can find \(\partial_V r\), and so can obtain \(\theta_1 = -\frac{8M^2}{r}U\). Similarly we have \(\theta_2 = -\frac{8M^2}{r}V\). We set \(U=U_0\) and \(V=V_0\) to find the expansion of the two surfaces.
+
+    If \(\mathcal{S}\) is in region I, we have \(\theta_1>0\) and \(\theta_2<0\), so this is not a trapped surface. However, if \(\mathcal{S}\) is in the black hole region II, then \(\theta_1, \theta_2 < 0\), and so \(\mathcal{S}\) is trapped.
+\end{eg}
+
+\subsection{Raychaudhuri's equation}
+\lecture{05/02/16}
+\begin{lemma}
+    \emph{Raychaudhuri's equation} holds:
+    \begin{equation}
+        \dv{\theta}{\lambda} = -\frac{1}{2}\theta^2 - \hat{\sigma}^{ab}\hat{\sigma}_{ab} + \hat{\omega}^{ab}\hat{\omega}_{ab} - R_{ab}U^aU^b
+    \end{equation}
+\end{lemma}
+\begin{proof}
+    We have 
+    \begin{align}
+        \dv{\theta}{\lambda} &= U\vdot\nabla(B\indices{^a_b}P\indices{^b_a}) = P\indices{^b_a}U\vdot\nabla B\indices{^a_b} \\
+                             &= P\indices{^b_a}U^c\nabla_c\nabla_b U^a \\
+                             &= P\indices{^b_a}U^c(\nabla_b\nabla_c U^a + R\indices{^a_{dcb}}U^d) \\
+                             &= P\indices{^b_a}(\nabla_b(\underbrace{U^c\nabla_cU^a}_{=0}) - (\nabla_bU^c)\nabla_cU^a) + P\indices{^b_a} R\indices{^a_{dcb}}U^cU^d \\
+                             &= - B\indices{^c_b}P\indices{^b_a}B\indices{^a_c} - R_{cd} U^cU^d \\
+                             &= -\hat{B}\indices{^c_a}\hat{B}\indices{^a_c} - R_{ab}U^aU^b \\
+                             &= -\frac{1}{2}\theta^2 - \hat{\sigma}^{ab}\hat{\sigma}_{ab} + \hat{\omega}^{ab}\hat{\omega}_{ab} - R_{ab}U^aU^b.
+    \end{align}
+\end{proof}
+
+\subsection{Conditions on energy}
+Often we will impose energy conditions on the energy momentum tensor.
+
+\subsubsection*{Dominant energy condition}
+This states that \(-T\indices{^a_b}V^b\) is a future-directed causal vector (or zero) for all future-directed timelike vectors \(V\). The DEC implies that if \(T_{ab} = 0\) in a closed \(\mathcal{S} \in \Sigma\), then \(T_{ab} = 0\) in \(D^+(\mathcal{S})\). Said another way: nothing can travel faster than the speed of light.
+
+\begin{eg}
+    Consider the energy-momentum tensor of a scalar field
+    \begin{equation}
+        T_{ab} = \partial_a\phi\partial_b\phi - \frac{1}{2}g_{ab}(\partial\phi)^2.
+    \end{equation}
+    We define \(j^a = -T\indices{^a_b}V^b\). We have
+    \begin{equation}
+        j^a = -(V\vdot\partial\phi)\partial^a\phi + \frac{1}{2}V^a(\partial\phi)^2 
+        \implies
+        j^2 = \frac{1}{4}\underbrace{V^2}_{<0}\underbrace{\left((\partial\phi)^2\right)^2}_{\ge 0} 
+        \le 0,
+    \end{equation}
+    so \(j\) is causal or zero. Also
+    \begin{equation}
+        V\vdot j = -(V\vdot\partial\phi)^2 + \frac{1}{2}V^2(\partial\phi)^2 = \underbrace{-\frac{1}{2}(V\vdot\partial\phi)^2}_{\le 0} + \underbrace{\frac{1}{2}V^2}_{<0} \underbrace{\left[\partial\phi - \frac{V\vdot\partial\phi}{V^2}V\right]^2}_{\perp V^a \implies \ge 0} \le 0,
+    \end{equation}
+    so \(j\) is future-directed. Therefore scalar fields obey the DEC.
+\end{eg}
+
+\subsubsection*{Weak energy condition}
+This states that \(T_{ab}V^aV^b\ge 0\) for all causal vectors \(V^a\). Note that DEC \(\implies\) WEC.
+
+\subsubsection*{Null energy condition}
+This states that \(T_{ab}V^aV^b\ge 0\) for all \emph{null} vectors \(V^a\). Note that WEC \(\implies\) NEC.
+
+\subsubsection*{Strong energy condition}
+This states that \((T_{ab}-\frac{1}{2}g_{ab}T\indices{^c_c})V^aV^b \ge 0\) for all causal vectors \(V^a\). Alternatively, using Einstein's equations, \(R_{ab}V^aV^b\ge0\), i.e.\ ``gravity is attractive''.
+
+The SEC is independent to the other three; it is neither implied by, nor does it imply, any of the DEC, WEC or NEC.
 
 \end{document}
