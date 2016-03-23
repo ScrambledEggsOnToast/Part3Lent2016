@@ -1426,4 +1426,746 @@ This states that \((T_{ab}-\frac{1}{2}g_{ab}T\indices{^c_c})V^aV^b \ge 0\) for a
 
 The SEC is independent to the other three; it is neither implied by, nor does it imply, any of the DEC, WEC or NEC.
 
+\subsection{Conjugate points}
+\begin{lemma}
+    If both the Einstein equations and the NEC are obeyed, then the generators of a null hupersurface \(\mathcal{N}\) obey \(\dv{\theta}{\lambda}\le - \frac{1}{2}\theta^2\).
+    \label{needed}
+\end{lemma}
+\begin{proof}
+    We have \(\hat{\omega} = 0\) and \(\hat{\sigma}^{ab}\hat{\sigma}_{ab}\ge 0\), since vectors in \(T_\perp\) are spacelike. We also have by the NEC that \(R_{ab}U^aU^b = 8\pi T_{ab}U^aU^b \ge 0\) (using \(U^2 =0\)). Hence by Raychaudhuri's equation, we have \(\dv{\theta}{\lambda} \le \frac{1}{2}\theta^2\) as required.
+\end{proof}
+This has a simple corollary: \emph{if \(\theta = \theta_0\) at \(p \in \gamma\), where \(\gamma\) is a generator of \(\mathcal{N}\), then \(\theta \to -\infty\) within affine parameter \(\frac{2}{|\theta_0|}\), provided \(\gamma\) extends that far.}
+\begin{proof}
+    Without loss of generality, set \(\lambda = 0\) at \(p\). We have \(\dv{\lambda} \theta^{-1} \ge \frac{1}{2}\), so \(\theta^{-1}-\theta_0^{-1} \ge \frac{1}{2}\lambda\). Thus we have \(\theta \le \frac{\theta_0}{1+\lambda\theta_0/2}\), which approaches \(-\infty\) for some \(\lambda \le \frac{2}{|\theta_0|}\).
+\end{proof}
+
+\begin{defn}
+    Two points \(p\) and \(q\) along a geodesic \(\gamma\) are said to be \emph{conjugate} if there exists a Jacobi field \(S^a\) along \(gamma\) such that \(S^a = 0\) at \(p,q\) but \(S^a \not\equiv 0\).
+\end{defn}
+Note that two points are conjugate iff the number of geodesics connecting them is more than one.
+
+\begin{theorem}
+    Consider a null conguence containing all null geodesics through \(p\). If \(\theta\to-\infty\) at \(q\) on a null geodesic \(\gamma\) through \(p\), then \(q\) is conjugate to \(p\) along \(\gamma\).
+    \label{ineedthis}
+\end{theorem}
+\begin{theorem}
+    Let \(\gamma\) be a causal curve containing points \(p,q\). Iff \(\gamma\) is a null geodesic with no point conjugate to \(p\) along \(\gamma\) between \(p\) and \(q\), then there does not exist a smooth 1-parameter family of causal curves \(\gamma_s\) connecting \(p,q\) such that \(\gamma_0=\gamma\) and \(\gamma_s\) is timelike for \(s>0\).
+\end{theorem}
+
+\begin{defn}
+    Suppose we have a 2d spacelike surface \(\mathcal{S}\), with \(\mathcal{N}\) normal to \(S\) and \(\gamma\) a generator of \(\mathcal{N}\). We say that \(p\) is conjugate to \(\mathcal{S}\) along \(\gamma\) if there exists a Jacobi field \(S^a\) such that \(S^a=0\) at \(p\) and \(S^a|_{\mathcal{S}}\) is tangent to \(\mathcal{S}\).
+\end{defn}
+
+Note that \(p\) is conjugate to \(\mathcal{S}\) along \(\gamma\) iff \(\theta\to-\infty\) along \(\gamma\) in a congruence containing generators of \(\mathcal{N}\).
+
+\subsection{Causal structure}
+\begin{defn}
+    Let \(\mathcal{U}\subset \mathcal{M}\), the \emph{chronological future} \(I^+(\mathcal{U})\) of \(\mathcal{U}\) is the set of all points \(q\) such that there exists a future-directed timelike curve from \(\mathcal{U}\) to \(q\). The \emph{causal future} \(J^+(\mathcal{U})\) is the set of all points \(q\) such that there exists a future-directed \emph{causal} curve from \(\mathcal{U}\) to \(q\). We define the chronological and causal pasts \(I^-(\mathcal{U})\) and \(J^-(\mathcal{U})\) similarly.
+\end{defn}
+\begin{eg}
+    In Minkowski space, \(I^+(p)\) is the interior of the future lightcone of \(p\), and \(J^+(p)\) is the interior and surface of the future lightcone, including \(p\).
+\end{eg}
+
+\lecture{08/02/16}
+We have that \(I^\pm(\mathcal{U})\) are open (since small deformations of timelike curves are also timelike). Recall that the \emph{closure} \(\overline{S}\) of a set \(S\) is the union of \(S\) with its limit points. In Minkowski space, we have \(\overline{I^\pm(p)} = J^\pm(p)\), but this is not true in general; for example, consider 2d Minkowski space with a point \(x\) deleted. If \(x\) is contained in the boundary of the future lightcone of \(p\), then \(\overline{I^\pm(p)} \ne J^\pm(p)\). Recall that the interior \(\operatorname{int}(S)\) of \(S\) is the set of all interior points of \(S\), i.e.\ those points \(q\) such that \(q\in V\subset S\) for some neighbourhood \(V\). The boundary \(\dot{S}\) of \(S\) is defined as \(\overline{S}\setminus\operatorname{int}(S)\).
+
+\begin{theorem}
+    Let \(p \in \mathcal{M}\). There exists a \emph{convex normal neighbourhood} of \(p\) (i.e.\ an open \(\mathcal{U}\in\mathcal{M}\) containing \(p\) such that for all \(q,r \in \mathcal{U}\) there is a unique geodesic from \(q\) to \(r\) that staus in \(\mathcal{U}\)). Furthermore, the chronological future of \(p\) in \(\mathcal{U}\) is the set of all points along future directed timelike geodesics in \(\mathcal{U}\) from \(p\), with boundary equal to the set of all points along future directed \emph{null} geodesics in \(\mathcal{U}\) from \(p\).
+\end{theorem}
+A corollary of this is: \emph{if \(q \in J^+(p)\setminus I^+(p)\), then there exists a null geodesic from \(p\) to \(q\)}.
+\begin{lemma}
+    If \(S\subset\mathcal{M}\), then (i) \(J^+(S)\subset\overline{I^+(S)}\), and (ii) \(I^+(S) = \operatorname{int}(J^+(S))\).
+\end{lemma}
+Note that \(I^+(S)\subset J^+(S)\), so (i) implies that \(\overline{I^+(S)} = \overline{J^+(S)}\), and (ii) implies that \(\dot{J}^+(S) = \dot{I}^+(S)\).
+\begin{defn}
+    \(S\subset \mathcal{M}\) is \emph{achronal} if no two points in \(S\) are connected by a timelike curve in \(\mathcal{M}\).
+\end{defn}
+\begin{theorem}
+    Suppose \(\mathcal{U}\in\mathcal{M}\), then \(\dot{J}^+(\mathcal{U})\) is an achronal 3d submanifold of \(\mathcal{M}\).
+    \label{achronalaf}
+\end{theorem}
+\begin{proof}[Proof of achronality]
+    Assume \(p,q \in\dot{J}^+(\mathcal{U})\), with \(q\in I^+(p)\). 
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+            \draw (0.8,0) -- (0,3);
+            \draw (4.2,0) -- (5,3);
+            \node at (2.5,2) {\(J^+(\mathcal{U})\)};
+
+            \fill (4.4,0.75) circle (0.05) node[right] {\(p\)};
+            \fill (4.8,2.25) circle (0.05) node[left] {\(q\)};
+
+            \fill (4.2,0.9) circle (0.05) node[left] {\(s\)};
+            \fill (5,2.1) circle (0.05) node[right] {\(r\)};
+
+            \draw (4.2,0.9) -- (5,2.1);
+            \draw[dashed] (4.2,0.9) -- (3.4,-0.2);
+
+            \fill[gray!20] (1,0.2) arc (90:270:0.2) -- (4,-0.2) arc (270:450:0.2) -- cycle;
+            \draw (1,0.2) arc (90:270:0.2) -- (4,-0.2) arc (270:450:0.2) -- cycle;
+            \node[below] at (2.5,-0.2) {\(\mathcal{U}\)};
+        \end{tikzpicture}
+    \end{figure}
+    Since \(I^+(p)\) is open, there exists a point \(r\) near \(q\) such that \(r \in I^+(p)\) and \(r \in J^+(\mathcal{U})\). Similarly, since \(I^-(r)\) is open, there exists a point \(s\) near \(p\) such that \(s \in I^-(r)\) and \(s \in J^+(\mathcal{U})\). But then we have a causal curve from \(\mathcal{U}\) to \(s\) to \(r\) that leaves \(J^+(\mathcal{U})\), which is a contradiction.
+\end{proof}
+\begin{theorem}
+    Suppose \(\mathcal{U}\in\mathcal{M}\) is closed and suppose \(r \in \dot{J}^+(\mathcal{U})\) and \(r \not\in \mathcal{U}\). Then \(r\) lies on a null geodesic \(\lambda\), where \(\lambda\) lies entirely in \(\dot{J}^+(\mathcal{U})\) and is either past-inextendable or has a past endpoint on \(\mathcal{U}\).
+\end{theorem}
+\begin{theorem}
+    Let \(\mathcal{S}\) be a 2d spacelike orientable compact submanifold of a globally hyperbolic spacetime. Then every \(p \in \dot{J}^+(\mathcal{S})\) lies on a future-directed null geodesic starting on and orthogonal to \(\mathcal{S}\), with no point conjugate to \(\mathcal{S}\) between \(\mathcal{S}\) and \(p\).
+    \label{alsoneeded}
+\end{theorem}
+\begin{defn}
+    The \emph{future Cauchy horizon} of a partial caucy surface \(H^+(\Sigma)=\overline{D^+(\Sigma)}\setminus I^-(D^+(\Sigma))\). \(H^-(\Sigma)\) is defined similarly.
+\end{defn}
+Note that \(H^\pm(\Sigma)\) are null hypersurfaces.
+
+\begin{theorem}[Penrose singularity theorem, 1965]
+    We assume the following:
+    \begin{itemize}
+        \item \((\mathcal{M},g)\) is a globally hyperbolic spacetime with non-compact Cauchy surface \(\Sigma\).
+        \item \((\mathcal{M},g)\) satisfies the Einstein equations and the NEC.
+        \item \(\mathcal{M}\) contains a trapped surface \(T\).
+    \end{itemize}
+    Let \(\theta_0 = \max_T\theta\) where we take the maximum over both sets of null geodesics orthogonal to \(T\) (note \(\theta_0 < 0\)).
+    
+    Then we have: at least one null geodesic orthogonal to \(T\) is future inextendable and has affine length less than or equal to \(\frac{2}{|\theta_0|}\).
+\end{theorem}
+\begin{proof}
+    Suppose all future-inextendable null geodesics orthogonal to \(T\) have affine length greater than \(\frac{2}{|\theta_0|}\). By the corollary to Lemma~\ref{needed}, \(\theta \to -\infty\) along all such geodesics. By Theorem~\ref{ineedthis}, on each geodesic there is a point \(q\) that is conjugate to \(T\) that is affine parameter distance \(\lambda \le \frac{2}{\theta_0}\) from \(T\).
+
+    Now let \(p \in \dot{J}^+(T)\), \(p \not\in T\). Since trapped surfaces are by definition 2d, spacelike, orientable and compact, we can apply Theorem~\ref{alsoneeded} to deduce that \(p\) lies on a future-directed null geodesic starting on and orthogonal to \(T\) with not point conjugate to \(T\) between \(T\) and \(p\). Hence, using the above, \(p\) must be affine parameter less than or equal to \(\frac{2}{|\theta_0|}\) from \(T\). So we have
+    \begin{equation}
+        \dot{J}^+(T) \subset \left\{\text{points along geodesics \(\perp\) to \(T\) with affine parameter distance \(\le \frac{2}{\theta_0}\)}\right\}.
+    \end{equation}
+    Note that the former set is closed while the latter is compact, so we can deduce that \(\dot{J}^+(T)\) is compact. Let \(\alpha:\dot{J}^+(T)\to\Sigma\) be a function that carries back a point \(p \in \dot{J}^+(T)\) along the orbits of some timelike vector field onto \(\Sigma\) (since \(\Sigma\) is a Cauchy surface, \(\alpha\) is well-defined). Since \(\dot{J}^+(T)\) is achronal (Theorem~\ref{achronalaf}), \(\alpha\) is a one to one map. Also, \(\alpha\) is continuous and is thus a homeomorphism. Since \(\dot{J}^+(T)\) is closed, so then is \(\alpha(\dot{J}^+(T))\). Also, since \(\dot{J}^+(T)\) is a manifold, \(\alpha(\dot{J}^+(T))\) must also be open. Since \(\mathcal{M}\) is connected, so too is \(\Sigma\), and hence we must have \(\alpha(\dot{J}^+(T)) = \Sigma\). But \(\Sigma\) is non-compact, while \(\dot{J}^+(T)\) is compact, so this is a contradiction.
+\end{proof}
+
+\section{Asymptotic Flatness}
+\lecture{10/02/16}
+\subsection{Conformal compactification}
+\begin{defn}
+    Given a spacetime \((\mathcal{M},g)\), a conformal transformation modifies the metric \(g \to \overline{g} = \Omega^2 g\), where \(\Omega:\mathcal{M}\to\RR\) is greater than 0.
+\end{defn}
+
+To \emph{conformally compactify} a spacetime, we will want \(\Omega \to 0\) ``at infinity''. More precisely, we choose \(\Omega\) such that \((\mathcal{M},\overline{g})\) is extendable onto \((\overline{\mathcal{M}}, \overline{g})\), a so-called \emph{unphysical} spacetime, and on the boundary of \(\mathcal{M}\) in \(\overline{\mathcal{M}}\) (``infinity'' in \(\mathcal{M}\)), we require \(\Omega=0\).
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=0.7]
+        \draw (0,0) ellipse (4 and 3);
+        \draw (0.5,-0.5) ellipse (2 and 1.5);
+        \node at (0.7,-0.7) {\(\mathcal{M}\)};
+        \node at (-2,1.5) {\(\overline{\mathcal{M}}\)};
+
+        \draw[thick,<-] (2.6,-0.5) .. controls (3.1,-0.5) and (4.5,0) .. (5,0) node[right] {\(\Omega = 0\)};
+    \end{tikzpicture}
+\end{figure}
+
+For example, consider 3+1 Minkowski space, with the metric \(\dd{s}^2 = -\dd{t}^2 + \dd{r}^2 + r^2\dd{\omega}^2\), where \(\dd{\omega}^2\) is the round metric on the unit 2-sphere. Reparametrise into retarded time \(u = t-r\) and advanced time \(v = t+r\), to obtain \(\dd{s}^2 = -\dd{u}\dd{v} + \frac{1}{4}(u-v)^2\dd{\omega}^2\). Note that since \(r\ge0\), we have \(-\infty < u \le v < \infty\). If we define new coordinates \(p\) and \(q\) by \(u=\tan p\) and \(v=\tan q\), we see that we obtain a finite range \(-\frac{\pi}{2} < p \le q < \frac{\pi}{2}\) and \(\dd{s}^2 = (2\cos p\cos q)^{-2}\left[-4\dd{p}\dd{q}+\sin^2(q-p)\dd{\omega}^2\right]\). We see that we can carry out a conformal transformation with \(\Omega = 2\cos p\cos q\) to obtain an unphysical metric \(\overline{\dd{s}}^2 = -4\dd{p}\dd{q}+\sin^2(q-p)\dd{\omega}^2\). Finally, we reparametrise with \(T=q+p\) and \(\chi=q-p\) and get 
+\begin{equation}
+    \overline{\dd{s}}^2 = -\dd{T}^2 + \dd{\chi}^2 + \sin^2\chi\dd{\omega}^2.
+\end{equation}
+\(\dd{\chi}^2 + \sin^2\chi\dd{\omega}^2\) is the round metric of the unit 3-sphere, and we see that we obtain just the Einstein static universe, except for one crucial difference. In the ESU, \(T\in(-\infty,\infty)\) and \(\chi\in[0,\pi)\), but here we have \(T\in(-\pi,\pi)\) and \(\chi\in[0,\pi)\). Thus we choose \((\overline{\mathcal{M}},\overline{g}) = \text{ESU}\) as an extension of \((\mathcal{M},\overline{g})\), and identify ``infinity'' of \((\mathcal{M},g)\) as the points \(i^\pm\), \(i^0\) and the null hypersurfaces \(\scri^\pm\) given by \(T=\pm(\pi-\chi)\):
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[yscale=1.3]
+        \begin{scope}
+            \fill[domain=-1.495:1.495,smooth,variable=\x,dashed,very thick,gray!20] plot({\x+1.5},{3.02+0.6*(sqrt(3-\x*\x)-\x)}) -- (0.005,0.875);
+            \fill[domain=-1.495:1.495,smooth,variable=\x,dashed,very thick,white] plot({\x+1.5},{1.24+0.6*(sqrt(3-\x*\x)+\x)});
+        \end{scope}
+        \begin{scope}
+            \fill[domain=-1.495:1.495,smooth,variable=\x,very thick,gray!40] plot({\x+1.5},{2.3+0.6*(-sqrt(3-\x*\x)+\x)});
+            \fill[domain=-1.495:1.495,smooth,variable=\x,very thick,gray!40] (0.005,0.875) -- plot({\x+1.5},{4.08+0.6*(-sqrt(3-\x*\x)-\x)});
+        \end{scope}
+        \draw[thick,->] (0,0) node[below] {\(\chi=0\)} -- (0,5.65) node[left] {\(T\)};
+        \draw (1.5,5.15) ellipse (1.5 and 0.5);
+        \draw[thick] (3,5.15) -- (3,0) node[below] {\(\chi=\pi\)};
+        \draw[shift={(0,0.5)},yscale={1/3},dashed] (0,0) arc (180:0:1.5);
+        \draw[shift={(0,0.5)},yscale={1/3}] (0,0) arc (180:360:1.5);
+        \draw[domain=-1.495:1.495,smooth,variable=\x,very thick] plot({\x+1.5},{2.3+0.6*(-sqrt(3-\x*\x)+\x)});
+        \draw[domain=-1.495:1.495,smooth,variable=\x,dashed,very thick] plot({\x+1.5},{1.24+0.6*(sqrt(3-\x*\x)+\x)});
+        \draw[domain=-1.495:1.495,smooth,variable=\x,very thick] plot({\x+1.5},{4.08+0.6*(-sqrt(3-\x*\x)-\x)});
+        \draw[domain=-1.495:1.495,smooth,variable=\x,dashed,very thick] plot({\x+1.5},{3.02+0.6*(sqrt(3-\x*\x)-\x)});
+
+        \fill (0,0.875) circle (0.05) node[left] {\(T=-\pi\): \(i^-\)};
+        \fill (0,4.44) circle (0.05) node[left] {\(T=\pi\): \(i^+\)};
+        \fill (3,2.6575) circle (0.05) node[right] {\(i^0\)};
+        \draw[thick,<-] (1.7,2.95) .. controls (2,3.3) and (3,3.5) .. (3.4,3.6) node[right] {\(\scri^+\)};
+        \draw[thick,<-] (1.8,3.8) .. controls (1.9,3.3) and (3,3.5) .. (3.4,3.6);
+
+        \draw[thick,<-] (1.7,1.35) .. controls (2,1.2) and (3,1.525) .. (3.4,1.625) node[right] {\(\scri^-\)};
+        \draw[thick,<-] (1.8,2.4) .. controls (1.9,2.1) and (3,1.525) .. (3.4,1.625);
+        \node at (1.5,5.15) {ESU};
+        \draw[thick,<-] (0.5,2.7) -- (-0.5,2.7) node[left] {\(\mathcal{M}\)};
+    \end{tikzpicture}
+\end{figure}
+If we denote each \(S^2\) at a given \(T\) and \(\chi\) by a single point, we obtain the so-called \emph{Penrose diagram} for Minkowski space:
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \draw[thick,->] (0,-4) -- (0,4) node[left] {\(T\)};
+        \draw[thick,->] (0,0) -- (4,0) node[right] {\(\chi\)};
+
+        \draw (0,-3.5) -- (3.5,0) -- (0,3.5);
+        
+        \draw[thick,->] (1.5,-2) -- (0.75,-1.25);
+        \draw[thick,->] (0.75,-1.25) -- (0,-0.5) -- (1,0.5);
+        \draw[thick] (1,0.5) -- (2,1.5);
+
+        \draw (0,-3.5) .. controls (1.5,-0.7) and (1.5,0.7) .. (0,3.5);
+        \draw (0,1.1) .. controls (1.5,1.1) and (2.3,0.7) .. (3.5,0);
+
+        \node[left] at (0,-3.5) {\(i^-\)};
+        \node[left] at (0,3.5) {\(i^+\)};
+        \node[above right] at (3.5,0) {\(i^0\)};
+
+        \node[below right] at (1.75,-1.75) {\(\scri^-\)};
+        \node[above right] at (1.75,1.75) {\(\scri^+\)};
+
+        \draw[thick,<-] (0.5,-2.6) .. controls (0.8,-2.8) and (1,-3.4) .. (1.4,-3.5) node[right] {\(r = \text{constant}\)};
+        \draw[thick,<-] (2.6,0.6) .. controls (2.9,0.9) and (3.4,1.2) .. (3.6,1.2) node[right] {\(t = \text{constant}\)};
+        \draw[thick,<-] (1.27,-1.73) .. controls (1.47,-1.53) and (3.1,-1) .. (3.4,-1) node[right] {radial null geodesic};
+
+        \draw[thick,<-] (-0.05,-1.6) -- (-0.5,-1.6) node[left] {\(r=0\)};
+    \end{tikzpicture}
+\end{figure}
+This is a bounded subset of \(\RR^2\) with the flat metric. The boundary is the union of infinity with the axis (\(r=0\)). The different components of infinity have different names: \(\scri^-\) and \(\scri^+\) are \emph{past} and \emph{future null infinity} respectively, \(i^-\) and \(i^+\) are \emph{past} and \emph{future timelike infinity} respectively, and \(i^0\) is spatial infinity.
+
+Suppose we have a massless scalar field obeying \(\nabla_a\nabla^a\psi=0\). Exercise: show that the general spherically symmetric solution is
+\begin{equation}
+    \psi(t,r) = \frac{1}{r}\left(f(u)+g(v)\right) = \frac{1}{r}\left(f(t-r)+g(t+r)\right).
+\end{equation}
+We need this to be smooth at \(r=0\) so we set \(g(x) = -f(x)\). Thus \(\psi(t,r) = \frac{1}{r}\left(f(u)-f(v)\right) = \frac{1}{r}\left(F(p)-F(q)\right)\), where \(F(x) = f(\tan x)\). Now let \(F_0(q) = (r\psi)_{\scri^-}\). Since \(p=-\frac{\pi}{2}\) on \(\scri^-\), we have \(F_0(q) = F(-\pi/2) - F(q)\). Therefore,
+\begin{equation}
+    \psi(t,r) = \frac{1}{r}\left(F_0(q)-F_0(p)\right),
+\end{equation}
+so the solution is uniquely determined everywhere by its behaviour on \(\scri^-\).
+
+Suppose we had instead considered 2D Minkowski space, \(\dd{s}^2 = -\dd{t}^2 + \dd{r}^2\). Now the range of \(r\) is \((-\infty,\infty)\). Proceeding as before, we have \(-\infty < u,v < \infty\) and so \(-\frac{\pi}{2}<p,q<\frac{\pi}{2}\). Thus \(T,\chi\in(-\pi,\pi)\), and the Penrose diagram is now a square.
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \draw (3,0) -- (0,3) -- (-3,0) -- (0,-3) -- cycle;
+
+        \node[right] at (3,0) {\(i^0_R\)};
+        \node[above] at (0,3) {\(i^+\)};
+        \node[left] at (-3,0) {\(i^0_L\)};
+        \node[below] at (0,-3) {\(i^-\)};
+
+        \node[above right] at (1.5,1.5) {\(\scri^+_R\)};
+        \node[above left] at (-1.5,1.5) {\(\scri^+_L\)};
+        \node[below left] at (-1.5,-1.5) {\(\scri^-_L\)};
+        \node[below right] at (1.5,-1.5) {\(\scri^-_R\)};
+
+        \draw[thick,->] (2,-1) -- (0,1);
+        \draw[thick] (0,1) -- (-1,2);
+        \draw[thick,->] (-1,-2) -- (0.5,-0.5);
+        \draw[thick] (0.5,-0.5) -- (2,1);
+    \end{tikzpicture}
+\end{figure}
+
+We can carry out a similar procedure in the Kruskal spacetime. We define \(P=P(U)\) and \(Q=Q(V)\) such that \(P,Q\in\left(-\frac{\pi}{2},\frac{\pi}{2}\right)\), and we find a conformal factor \(\Omega\) such that \(\overline{g}\) extends onto \(\overline{\mathcal{M}}\), and \(\mathcal{M}\in\overline{\mathcal{M}}\) has boundary at \(P = \pm\frac{\pi}{2}\) or \(Q=\pm\frac{\pi}{2}\). We find that null infinity has four components: \(\scri^\pm\) in region I, and \({\scri^\pm}'\) in region IV.
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=1.25]
+        \draw (3,3) -- (6,0) -- (3,-3) -- (-3,3) -- (-6,0) -- (-3,-3) -- cycle;
+        \draw[decorate,decoration=snake] (3,3) -- (-3,3);
+        \draw[decorate,decoration=snake] (3,-3) -- (-3,-3);
+
+        \draw (0.1,0) node[right] {I};
+        \draw (0,0.1) node[above] {II};
+        \draw (0,-0.1) node[below] {III};
+        \draw (-0.1,0) node[left] {IV};
+
+        \node[right] at (6,0) {\(i^0\)};
+        \node[above] at (3,3) {\(i^+\)};
+        \node[above] at (-3,3) {\({i^+}'\)};
+        \node[left] at (-6,0) {\({i^0}'\)};
+        \node[below] at (3,-3) {\(i^-\)};
+        \node[below] at (-3,-3) {\({i^-}'\)};
+
+        \node[above right] at (4.5,1.5) {\(\scri^+\)};
+        \node[above left] at (-4.5,1.5) {\({\scri^+}'\)};
+        \node[below left] at (-4.5,-1.5) {\({\scri^-}'\)};
+        \node[below right] at (4.5,-1.5) {\(\scri^-\)};
+
+        \draw (6,0) .. controls (3.5,1) and (2.5,1) .. (0,0);
+        \draw (-6,0) .. controls (-3.5,-1) and (-2.5,-1) .. (0,0) 
+            node[midway,below] {\(t=\text{constant}\)};
+
+        \draw (3,3) .. controls (4,0.5) and (4,-0.5) .. (3,-3)
+            node [near end, left] {\(r=\text{constant}\)};
+        \draw (-3,3) .. controls (-0.5,2) and (0.5,2) .. (3,3)
+            node [midway,below] {\(r=\text{constant}\)};
+        
+        \draw[thick,->] (4.5,-1.5) -- (3,0);
+        \draw[thick] (3,0) -- (0,3);
+
+        \node at (0,3.4) {\(r=0\)};
+        \node at (0,-3.4) {\(r=0\)};
+    \end{tikzpicture}
+\end{figure}
+
+We can also draw a Penrose diagram for gravitational collapse:
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[]
+        \fill[gray!20] (0,6) -- (0,0) .. controls (1,2) and (1,4) .. (1,6) -- cycle;
+        \draw (0,6) -- (0,0) -- (4,4) -- (2,6) -- (0,4);
+        \draw[decorate,decoration=snake] (2,6) -- (0,6);
+        
+        \node at (1,6.4) {\(r=0\)};
+        \node[rotate=90] at (-0.4,3) {\(r=0\)};
+        
+        \node[right] at (4,4) {\(i^0\)};
+        \node[above] at (2,6) {\(i^+\)};
+
+        \node[above right] at (3,5) {\(\scri^+\)};
+        \node[below right] at (2,2) {\(\scri^-\)};
+    \end{tikzpicture}
+\end{figure}
+
+\lecture{12/02/16}
+\subsection{Asymptotic flatness}
+
+\begin{defn}
+    A time orientable spacetime \((\mathcal{M},g)\) is \emph{asymptotically flat} at null infinity if there exists a \((\overline{\mathcal{M}},\overline{g})\) such that:
+    \begin{enumerate}
+        \item There exists a positive \(\Omega:\mathcal{M}\to\RR\) such that \((\overline{\mathcal{M}},\overline{g})\) is an extension of \((\mathcal{M},\Omega^2g)\) (where we regard \(\mathcal{M}\) as a subset of \(\overline{\mathcal{M}}\) on which \(\overline{g}=\Omega^2g\)).
+        \item We can extend \(\mathcal{M}\) within \(\overline{\mathcal{M}}\) to obtain a manifold with boundary \(\mathcal{M}\cup\partial\mathcal{M}\) (a \emph{manifold with boundary} is just like a manifold, but charts are \(\mathcal{M}\to\RR/2=\{(x^1,\dots,x^n):x^n\le0\}\)).
+        \item \(\Omega\) smoothly extends to \(\overline{\mathcal{M}}\) such that \(\left.\Omega\right|_{\partial\mathcal{M}}=0\) and \(\left.\dd{\Omega}\right|_{\partial\mathcal{M}}\ne0\).
+        \item We can choose \(\scri^\pm\) such that \(\partial\mathcal{M} = \scri^+\cup\scri^-\), \(\scri^+\cap\scri^- = \varnothing\), and \(\scri^\pm \simeq \RR\times S^2\).
+        \item No future or past directed causal curves in \(\mathcal{M}\) intersect \(\scri^-\) or \(\scri^+\) respectively.
+        \item \(\scri^\pm\) are ``complete'' (to be defined shortly).
+    \end{enumerate}
+\end{defn}
+
+\begin{eg}
+    Consider the Schwarzschild solution in outgoing Eddington-Finklestein coordinates:
+    \begin{equation}
+        g = -\left(1-\frac{2M}{r}\right)\dd{u}^2 - 2\dd{u}\dd{r}+r^2\dd{\omega}^2
+    \end{equation}
+    Setting \(r=\frac{1}{x}\) and carrying out a conformal transformation with \(\Omega = x\), we obtain
+    \begin{equation}
+        \overline{g} = -x^2(1-2Mx)\dd{u}^2 + 2\dd{u}\dd{x} + \dd{\omega}^2.
+    \end{equation}
+    We can extend \(\overline{g}\) smoothly across \(\scri^+=\{x=0\}\). \(\scri^+\) is parametrised by \((u,\theta,\phi)\), so \(\scri^+ \simeq \RR\times S^2\).
+\end{eg}
+
+It can be shown that under a conformal transformation, the Ricci tensor transforms as 
+\begin{equation}
+    R_{ab}=\overline{R}_{ab} + 2\Omega^{-1}\overline{\nabla}_a\overline{\nabla}_b\Omega + \overline{g}_{ab}\overline{g}^{cd}\left(\Omega^{-1}\overline{\nabla}_c\overline{\nabla}_d\Omega - 3\Omega^{-2}\partial_c\Omega\partial_d\Omega\right).
+\end{equation}
+Multiplying by \(\Omega\) gives
+\begin{equation}
+    \Omega R_{ab} = \underbrace{\Omega\overline{R}_{ab} + 2\overline{\nabla}_a\overline{\nabla}_b\Omega + \overline{g}_{ab}\overline{g}^{cd}\overline{\nabla}_c\overline{\nabla}_d\Omega}_{\text{A}} - \underbrace{3\Omega^{-1}\overline{g}_{ab}\overline{g}^{cd}\partial_c\Omega\partial_d\Omega}_{\text{B}}.
+\end{equation}
+We assume that \(\Omega R_{ab}\) is 0 at \(\scri^+\) (as would be the case for a sufficiently quickly reached vacuum at infinity) and observe that since A is smooth at \(\scri^+\), then so must B be. Since \(\Omega^{-1}\) diverges at \(\scri^+\), we must thus have \(\left.\overline{g}^{cd}\partial_c\Omega\partial_d\Omega\right|_{\scri^+}=0\). Hence \(\left.\dd{\Omega}\right|_{\scri^+}\) is null. Since \(\scri^+\) is a surface of constant \(\Omega\), we then have that \(\scri^+\) is a null hypersurface in \((\overline{\mathcal{M}},\overline{g})\).
+
+Note that we have some gauge freedom in our choice of conformal factor. We could just as well have chosen \(\Omega'=\omega\Omega\), where \(\omega:\overline{\mathcal{M}}\to\RR\) is some positive function on \(\mathcal{M}\cup\partial\mathcal{M}\). It is possible to choose a gauge such that \(\left.\overline{\nabla}_a\overline{\nabla}_b\Omega\right|_{\scri^+} = 0\) (\(\dagger\)). Assume that we take this gauge and define \(n^a = g^{ab}(\dd{\Omega})_b\). We have \(\left.\overline{\nabla}_an^b\right|_{\scri^+}=0\), so \(B\indices{^b_a}\) -- the expansion and shear of the generators of \(\scri^+\) are zero.
+
+We can define a natural set of coordinates in the neighbourhood of \(\scri^+\) in the following way. Firstly we have spherical coordinates \((\theta,\phi)\) on the spheres at each point of \(\scri^+\), with metric \(\left.\overline{g}_{ab}\right|_{S^2} = \dd{\theta}^2+\sin^2\theta\dd{\phi}^2\). \(n^a\) is tangent to \(\scri^+\), so we can use the distance \(u\) along its integral curves as a third coordinate on \(\scri^+\). Now there is a unique null direction perpendicular to \(\pdv{\theta}\) and \(\pdv{\phi}\) and not tangent to \(\scri^+\), and we can use \(\Omega\) as a coordinate for this direction (since \(\dd{\Omega}\ne0\) at \(\scri^+\)). Thus we have coordinates \((\Omega,u,\theta,\phi)\).
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \draw[thick,<-] (0.5,0.5) -- (3,3) node[at start,below] {\((\Omega,u,\theta,\phi)\)}; 
+        \draw (2,4) -- (6,0);
+        \fill (3,3) circle (0.06);
+        \node[above, rotate=-45] at (3,3) {\((u,\theta,\phi)\)};
+        \draw[thick,->] (4.4,1.4) -- (3.4,2.4) node[midway, below left] {\(n^a\)};
+        \fill (5,1) circle (0.06) node[below left] {\(S^2\)};
+        \node[above right] at (5.5,0.5) {\(\scri^+\)};
+    \end{tikzpicture}
+\end{figure}
+
+Note that since \(\dd{\Omega}\) and \(n^a\) are null, we have \(\overline{g}_{uu} = \overline{g}_{\Omega\Omega} = 0\). Also, \(\delta^\mu_u=n^\mu = \overline{g}^{\mu\nu}(\dd{\Omega})_\nu = \overline{g}^{\mu\Omega}\). Examining the gauge condition (\(\dagger\)) we can deduce that the spherical part of the metric does not depend on \(u\). Thus we have
+\begin{equation}
+    \left.\overline{g}\right|_{\Omega=0} = 2\dd{u}\dd{\Omega} + \dd{\theta}^2 + \sin^2\theta\dd{\phi}^2.
+\end{equation}
+If we define \(r=\frac{1}{\Omega}\), then we obtain
+\begin{align}
+    g &= \Omega^{-2}\overline{g} = -2\dd{u}\dd{r}+r^2(\dd{\theta}^2 + \sin^2\theta\dd{\phi}^2) + \underbrace{\dots}_{\mathclap{\text{subleading as \(r \to \infty\)}}} \\
+      &= -\dd{t}^2 + \dd{x}^2 + \dd{y}^2 + \dd{z}^2.
+\end{align}
+
+\begin{defn}
+    \(\scri^+\) is \emph{complete} if in the gauge given by (\(\dagger\)), the generators of \(\scri^+\) are complete.
+\end{defn}
+
+\subsection{Definition of a black hole}
+
+We have \(\scri^+ \subset \overline{\mathcal{M}}\). Consider the causal past of \(\scri^+\): \(J^-(\scri^+) \subset \overline{\mathcal{M}}\). \(\mathcal{M}\cap J^-(\scri^+)\) is the set of all points that can send a signal to \(\scri^+\).
+
+\begin{defn}
+    Let \((\mathcal{M},g)\) be a spacetime that is asymptotically flat at null infinity. We define the following:
+    \begin{itemize}
+        \item The \emph{black hole region} is \(\mathcal{B}=\mathcal{M}\setminus[\mathcal{M}\cap J^-(\scri^+)]\).
+        \item The \emph{future event horizon} is \(\mathcal{H}^+ = \dot{\mathcal{B}} = \mathcal{M}\cap\dot{J}^-(\scri^+)\).
+        \item The \emph{white hole region} is \(\mathcal{W}=\mathcal{M}\setminus[\mathcal{M}\cap J^+(\scri^-)]\).
+        \item The \emph{past event horizon} is \(\mathcal{H}^- = \dot{\mathcal{W}} = \mathcal{M}\cap\dot{J}^+(\scri^-)\).
+    \end{itemize}
+\end{defn}
+\begin{eg}
+    In the Kruskal spacetime, we have:
+    \begin{align}
+        \mathcal{B} &= \{u\ge0\} & \mathcal{W} &= \{v\le0\} \\
+        \mathcal{H}^+ &= \{u=0\} & \mathcal{H}^- &= \{v=0\}
+    \end{align}
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[scale=0.6]
+            \fill[rounded corners,blue!30] (3,3) -- (-3,3) -- (-6,0) -- (-3,-3) -- cycle;
+            \fill[rounded corners,red!30] (3,-3) -- (-3,3) -- (-6,0) -- (-3,-3) -- cycle;
+            \fill[rounded corners,purple!30] (0,0) -- (-3,3) -- (-6,0) -- (-3,-3) -- (0,0);
+
+            \draw (3,3) -- (6,0) -- (3,-3) -- (-3,3) -- (-6,0) -- (-3,-3) -- cycle;
+            \draw[decorate,decoration=snake] (3,3) -- (-3,3);
+            \draw[decorate,decoration=snake] (3,-3) -- (-3,-3);
+
+            \draw (0.1,0) node[right] {I};
+            \draw (0,0.1) node[above] {II};
+            \draw (0,-0.1) node[below] {III};
+            \draw (-0.1,0) node[left] {IV};
+
+            \node[above right] at (4.5,1.5) {\(\scri^+\)};
+            \node[below right] at (4.5,-1.5) {\(\scri^-\)};
+
+            \node[blue!50!black,rotate=15] at (-0.8,1.3) {black hole};
+            \node[red!50!black,rotate=-15] at (-0.8,-1.3) {white hole};
+        \end{tikzpicture}
+    \end{figure}
+    Note that \(\mathcal{H}^\pm\) are null hypersurfaces and their generators have no future endpoints.
+\end{eg}
+
+\begin{defn}
+    An asymptotically flat spacetime \((\mathcal{M},g)\) is \emph{strongly asymptotically predictable} if there exists some open set \(\overline{V}\in\overline{\mathcal{M}}\) such that \(\overline{\mathcal{M}\cap J^-(\scri^+)} \subset \overline{V}\), and \((\overline{V},\overline{g})\) is globally hyperbolic.
+\end{defn}
+
+\begin{theorem}
+    Suppose we have a strongly asymptotically predictable spacetime \((\mathcal{M},g)\) with Cauchy surfaces \(\Sigma_1\), \(\Sigma_2\) for \(\overline{V}\) such that \(\Sigma_2\subset I^+(\Sigma_1)\), and \(B\) a conncected component of \(\mathcal{B}\cap\Sigma_1\). Then \(J^+(B)\cap\Sigma_2\) is contained within a connected component of \(\mathcal{B}\cap\Sigma_2\).
+\end{theorem}
+\begin{proof}
+    Suppose the black hole does split (bifurcate). Then there exist open sets \(O,O'\subset \Sigma_2\) such that \(O\cap O' = \varnothing\), \(J^+(B)\cap\Sigma_2\in O\cup O'\), \(J^+(B)\cap O \ne \varnothing \ne J^+(B)\cap O'\).
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+            \draw[rounded corners] (0,0) -- (1,2) -- (6,2) -- (5.5,0) -- cycle;
+            \draw[rounded corners] (0,5) -- (1,7) -- (6,7) -- (5.5,5) -- cycle;
+
+            \node at (0,1) {\(\Sigma_1\)};
+            \node at (0,6) {\(\Sigma_2\)};
+
+            \draw (3.1,1) node {\(B\)} ellipse (1.2 and 0.6);
+
+            \draw (1.9,6) ellipse (1.2 and 0.6);
+            \draw (4.4,6) ellipse (1.2 and 0.6);
+
+            \draw (1.9,6) ellipse (0.6 and 0.3);
+            \draw (4.4,6) ellipse (0.6 and 0.3);
+
+            \node at (0.75,5.4) {\(O\)};
+            \node at (5.35,5.4) {\(O'\)};
+
+            \draw[thick,->] (2.9,1) -- (2.4,3.5);
+            \draw[thick] (2.4,3.5) -- (1.9,6);
+            \draw[thick,->] (3.4,1) -- (3.9,3.5);
+            \draw[thick] (3.9,3.5) -- (4.4,6);
+        \end{tikzpicture}
+    \end{figure}
+    Note that \(B\cap I^-(O) \ne \varnothing \ne B\cap I^-(O')\), and \(B\subset I^-(O)\cup I^-(O)\). If \(p\) is a point in \(B\) such that \(p\in I^-(O)\) and \(p\in I^-(O')\), then we can divide the future-directed timelike geodesics from \(p\) into 2 sets depending on which of \(O\), \(O'\) they reach. Thus we can divide the timelike vectors at \(p\) into 2 disjoint sets, but this is a contradiction since the future light cone is connected. So there does not exist such a \(p\), so \(B\cap I^-(O)\cap I^-(O')=\varnothing\), and \(B=[B\cap I^-(O)]\cup[B\cap I^-(O')]\) is a disjoint union, contradicting the connectedness of \(B\).
+\end{proof}
+
+\subsection{Weak cosmic censorship conjecture}
+In the Kruskal spacetime, the white hole singularity is ``naked'', i.e.\ it is visbile to \(\scri^+\). For \(M<0\) Schwarzschild we have the Penrose diagram
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \draw (0,0) -- (2,2) -- (0,4);
+        \draw[decorate,decoration=snake] (0,0) -- (0,4);
+    \end{tikzpicture}
+\end{figure}
+and we see that the \(r=0\) singularity is also naked here.
+
+It is reasonable to ask whether gravitational collapse could lead to a naked singularity. In fact we have the following conjecture (\emph{weak cosmic censorship}):
+\begin{quote}
+    Suppose \((\Sigma,h_{ab},K^{ab})\) is a geodesically complete, asymptotically flat initial data set, and that matter fields obey hyperbolic equations and the dominant energy condition. Then, generically, the maximal development is asymptotically flat (so \(\scri^+\) is complete) and strongly asymptotically predictable.
+\end{quote}
+
+Note that the strong and weak censorship conjectures are logically distinct.
+
+\subsection{Apparent horizon}
+\begin{theorem}
+    If \((\mathcal{M},g)\) is a strongly asymptotically predictable spacetime satisfying the null energy condition and Einstein's equations that contains a trapped surface \(T\), then \(T\subset\mathcal{B}\).
+\end{theorem}
+Consider a 1-parameter family of Cauchy surfaces \(\Sigma_t\). When we say the \emph{black hole region at time \(t\)} or the \emph{event horizon at time \(t\)}, we are referring to the sets \(B_t = \mathcal{B}\cap \Sigma_t\) and \(H_t = \mathcal{H}\cap\Sigma_t\) respectively.
+\begin{defn}
+    The \emph{trapped region} at time \(t\) is \(\tau_t = \{p\in\Sigma_t \st \Exists \text{trapped \(S\) with \(p \in S\subset\Sigma_t\)}\}\). The \emph{apparent horizon} is \(\mathcal{A}_t = \dot{\tau}_t\).
+\end{defn}
+Note that we have \(\tau_t\in B_t\), and \(\mathcal{A}_t \in B_t\). Also \(\mathcal{A}_t\) is on or inside \(H_t\), and \(\mathcal{A}_t\) is marginally trapped.
+
+\section{Charged Black Holes}
+\lecture{15/02/16}
+\subsection{The Reissner-Nordstrom solution}
+Recall the Einstein-Maxwell action
+\begin{equation}
+    S = \frac{1}{16\pi}\int\dd[4]{x}\sqrt{-g}(R-F^{ab}F_{ab}) \qq{where} F=\dd{A}.
+\end{equation}
+This action gives the following equations of motion:
+\begin{equation}
+    R_{ab}-\frac{1}{2}Rg_{ab} = 2\left(F_{ac}F\indices{_b^c} - \frac{1}{4}F^{cd}F_{cd}g_{ab}\right), \quad \nabla^b F_{ab} = 0
+\end{equation}
+
+\begin{theorem}
+    The unique spherically symmetric solution with non-constant area-radius function \(r\) is the Reissner-Nordstrom solution, given by
+    \begin{equation}
+        \dd{s}^2 = -\left(1-\frac{2M}{r} + \frac{e^2}{r^2}\right)\dd{t}^2 + \left(1-\frac{2M}{r}+\frac{e^2}{r^2}\right)^{-1}\dd{r}^2 + r^2\dd{\Omega}^2
+    \end{equation}
+    and
+    \begin{equation}
+        A = -\frac{Q}{r}\dd{t}-P\cos\theta\dd{\phi}
+    \end{equation}
+    where \(e=\sqrt{Q^2+P^2}\).
+\end{theorem}
+The Reissner-Nordstrom solution has three parameters. We identify them as the mass \(M\), electric charge \(Q\), and magnetic charge \(P\) of the black hole. It is static with a timelike KVF \(k=\pdv{t}\), and it is asymptotically flat at null infinity.
+
+To make the metric easier to write down, we define \(\Delta = r^2-2Mr + e^2 = (r-r_+)(r-r_-)\) where \(r_\pm=M\pm\sqrt{M^2-e^2}\). Then
+\begin{equation}
+    \dd{s}^2 = - \frac{\Delta}{r^2}\dd{t}^2 + \frac{r^2}{\Delta}\dd{r}^2 + r^2\dd{\Omega}^2.
+\end{equation}
+Consider \(M^2<e^2\). Then \(\Delta > 0\) for all \(r>0\), and we have a naked curvature singularity at \(r=0\). Thus we will ignore this case and assume from now on that \(M>e\) (confer \(M<0\) Schwarzschild).
+
+\subsection{Eddington-Finklestein coordinates}
+We define \(r_*\) by \(\dd{r_*} = \frac{r^2}{\Delta}\dd{r}\). If we want we can solve this to obtain
+\begin{equation}
+    r_* = r + \frac{1}{2\kappa_+}\log\left|\frac{r-r_+}{r_+}\right| + \frac{1}{2\kappa_-}\log\left|\frac{r-r_-}{r_-}\right| + \text{constant}
+\end{equation}
+where \(\kappa_\pm = \frac{r_\pm-r_\mp}{2r_\pm^2}\). Let \(u = t-r_*\) and \(v = t+r_*\). Then we can write the metric in ingoing E-F coordinates \((v,r,\theta,\phi)\) as
+\begin{equation}
+    \dd{s}^2 = -\frac{\Delta}{r^2}\dd{v}^2 + 2\dd{v}\dd{r} + r^2\dd{\Omega}^2.
+\end{equation}
+This is smooth for all \(r>0\), and \(\det g \ne 0\), so we can extend spacetime to the region \(0<r<r_+\). There is a curvature singularity at \(r=0\). Since \(\dd{r}\) is null when \(g^{rr} = \frac{\Delta}{r^2} = 0\), we have that \(r=r_\pm\) are null hypersurfaces. It can be shown that \(r\) decreases along any future-directed causal curve in \(r_-<r<r_+\). ?Hence we have a black hole region \(r\le r_+\) with event horizon \(\mathcal{H}^+\) given by \(r=r_+\).
+
+We can carry out a similar argument in \((u,r,\theta,\phi)\) to show that there is a white hole region with \(r<r_+\).
+
+\subsection{Kruskal-like coordinates}
+Now let \(U^\pm=-e^{-\kappa_\pm u}\) and \(V^\pm = \pm e^{\kappa_\pm v}\). In \(r<r_+\) we have coordinates \((U^+,V^+,\theta,\phi)\) and the metric takes the form
+\begin{equation}
+    \dd{s}^2 = -\frac{r_+r_-}{\kappa_+^2r^2}e^{-2\kappa_+r}\left(\frac{r-r_-}{r_-}\right)^{1+\frac{\kappa_+}{|\kappa_-|}}\dd{U^+}\dd{V^+} + r^2\dd{\Omega}^2
+\end{equation}
+where \(r(U^+,V^+)\) is defined by 
+\begin{equation}
+    -U^+V^+ = e^{2\kappa_+ r}\left(\frac{r-r_+}{r_+}\right)\left(\frac{r_-}{r-r_-}\right)^{\frac{\kappa_+}{|\kappa_-|}}.
+\end{equation}
+Initially \(U^+<0\) and \(V^+>0\), but we can analytically continue to \(U^+\ge 0\) or \(V^+\le 0\).
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=1.3]
+        \begin{scope}[gray]
+            \draw[domain=-1.9:1.9,smooth,variable=\x,dashed] plot({-sqrt(1+\x*\x))},{\x});
+            \node[left] at (-1,0) {\(r\) constant \(\rightarrow\)};
+
+            \draw[dotted, semithick] (-2.2,-1) -- (2.2,1) node[left, at start] {\(t\) constant \(\rightarrow\)};
+        \end{scope}
+
+        \draw (0.1,0) node[right] {I};
+        \draw (0,0.1) node[above] {II};
+        \draw (0,-0.1) node[below] {III};
+        \draw (-0.1,0) node[left] {IV};
+
+        \draw[very thick,->] (-2,-2) -- (2,2) node[above right] {\(V^+\)} node[near end, above, sloped] {\(r=r_+\)};
+        \draw[very thick,->] (2,-2) -- (-2,2) node[above left] {\(U^+\)} node[near start, above, sloped] {\(r=r_+\)};
+    \end{tikzpicture}
+\end{figure}
+Note \(k^a=0\) at \(U^+=V^+=0\). Ingoing radial null geodesics have \(r\to r_-\) (\(U^+V^+\to-\infty\)) in finite affine parameter.
+
+Unlike the Schwarzschild solution, we can continue to extend the spacetime. In region II, let \(t = v-r_*\) and \(u=t-r_* = v-2r_*\). We use coordinates \((U^-,V^-,\theta,\phi)\) where \(U^-,V^-<0\). The metric is
+\begin{equation}
+    \dd{s}^2 = -\frac{r_+r_-}{\kappa_-^2r^2}e^{-2|\kappa_-|r}\left(\frac{r_+-r}{r_+}\right)^{1+\frac{|\kappa_-|}{\kappa_+}}\dd{U^-}\dd{V^-} + r^2\dd{\Omega}^2
+\end{equation}where \(r(U^-,V^-)\) is defined by 
+\begin{equation}
+    -U^+V^+ = e^{2|\kappa_-| r}\left(\frac{r-r_-}{r_-}\right)\left(\frac{r_+}{r_+-r}\right)^{\frac{|\kappa_-|}{\kappa_+}}.
+\end{equation}
+We analytically continue to \(U^-,V^-\ge0\) to find new regions V, VI and III\({}'\).
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=1.3]
+        \draw (0.1,0) node[right] {VI};
+        \draw (0,0.1) node[above] {III\({}'\)};
+        \draw (0,-0.1) node[below] {II};
+        \draw (-0.1,0) node[left] {V};
+
+        \draw[very thick,->] (-2,-2) -- (2,2) node[above right] {\(V^-\)} node[near end, above, sloped] {\(r=r_-\)};
+        \draw[very thick,->] (2,-2) -- (-2,2) node[above left] {\(U^-\)} node[near start, above, sloped] {\(r=r_-\)};
+
+        \begin{scope}[rotate=90]
+            \draw[domain=-1.7:1.7,smooth,variable=\x,very thick] plot({\x},{sqrt(3+\x*\x))});
+            \node[left] at (0,{sqrt(3)+0.1}) {\(r=0\)};
+            \draw[domain=-1.7:1.7,smooth,variable=\x,very thick] plot({\x},{-sqrt(3+\x*\x))});
+            \node[right] at (0,{-sqrt(3)-0.1}) {\(r=0\)};
+        \end{scope}
+    \end{tikzpicture}
+\end{figure}
+Note that III\({}'\) is isometric to III, so we can use coordinates \(({U^+}',{V^+}')\) an extend out to new regions I\({}'\), II\({}'\) and IV\({}'\).
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=1.3]
+        \draw (0.1,0) node[right] {I\({}'\)};
+        \draw (0,0.1) node[above] {II\({}'\)};
+        \draw (0,-0.1) node[below] {III\({}'\)};
+        \draw (-0.1,0) node[left] {IV\({}'\)};
+
+        \draw[very thick,->] (-2,-2) -- (2,2) node[above right] {\(V^+\)} node[near end, above, sloped] {\(r=r_+\)};
+        \draw[very thick,->] (2,-2) -- (-2,2) node[above left] {\(U^+\)} node[near start, above, sloped] {\(r=r_+\)};
+    \end{tikzpicture}
+\end{figure}
+We can repeat this process indefinitely. We can also draw a Penrose diagram of the extended spacetime:
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=0.94]
+        \draw (2,8) -- (-3,3) -- (3,-3) -- (-2,-8);
+        \draw (-2,8) -- (3,3) -- (-3,-3) -- (2,-8);
+        \draw (1.5,1.5) -- (-1.5,4.5);
+        \draw (-1.5,1.5) -- (1.5,4.5);
+        \draw (1.5,-1.5) -- (-1.5,-4.5);
+        \draw (-1.5,-1.5) -- (1.5,-4.5);
+        \draw (1.5,7.5) -- (1,8);
+        \draw (-1.5,7.5) -- (-1,8);
+        \draw (1.5,-7.5) -- (1,-8);
+        \draw (-1.5,-7.5) -- (-1,-8);
+        \draw[decorate,decoration=snake] (1.5,7.5) -- (1.5,4.5);
+        \draw[decorate,decoration=snake] (-1.5,7.5) -- (-1.5,4.5);
+        \draw[decorate,decoration=snake] (1.5,1.5) -- (1.5,-1.5);
+        \draw[decorate,decoration=snake] (-1.5,1.5) -- (-1.5,-1.5);
+        \draw[decorate,decoration=snake] (1.5,-4.5) -- (1.5,-7.5);
+        \draw[decorate,decoration=snake] (-1.5,-4.5) -- (-1.5,-7.5);
+    \end{tikzpicture}
+\end{figure}
+
+\subsection{Extreme Reissner-Nordstrom}
+\begin{wrapfigure}{l}{0.5\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=0.85]
+        \draw (4,7) -- (0,3) -- (6,-3) -- (2,-7);
+        \draw (2,7) -- (6,3) -- (0,-3) -- (4,-7);
+        \draw[decorate,decoration=snake] (0,7) -- (0,-7);
+        \fill (0,3) circle (0.1);
+        \fill (0,-3) circle (0.1);
+
+        \node at (1.3,6) {\(0 < r < M\)};
+        \node at (1.3,0) {\(0 < r < M\)};
+        \node at (1.3,-6) {\(0 < r < M\)};
+
+        \node[right] at (6,3) {\(i^0\)};
+        \node[right] at (6,-3) {\(i^0\)};
+
+        \node[above right] at (4.5,4.5) {\(\scri^+\)};
+        \node[above right] at (4.5,-1.5) {\(\scri^+\)};
+
+        \node[below right] at (4.5,1.5) {\(\scri^-\)};
+        \node[below right] at (4.5,-4.5) {\(\scri^-\)};
+        
+        \node[rotate=-45, above] at (1.5,1.5) {\(\mathcal{H}^-, r=M\)};
+        \node[rotate=45, above] at (1.5,4.5) {\(\mathcal{H}^+, r=M\)};
+
+        \draw[dashed] (0,3) .. controls (2,3.5) and (4,3.5) .. (6,3) node[midway, below] {\(\Sigma\) (\(t\) constant)};
+
+        \node at (3,4.2) {\(r>M\)};
+        \node at (3,-3) {\(r>M\)};
+    \end{tikzpicture}
+\end{wrapfigure}
+The Reissner-Nordstrom solution with \(M=e\) is known as \emph{extreme} RN. In this case \(r_+=r_-=M\) and the metric takes the simple form
+\begin{equation}
+    \dd{s}^2 = -\left(1-\frac{M}{r}\right)^2\dd{t}^2 + \left(1-\frac{M}{r}\right)^{-2}\dd{r}^2 + r^2\dd{\Omega}^2.
+\end{equation}
+We can introduce Eddington-Finklestein coordinates in \(r>M\) with \(\dd{r_*} = \frac{\dd{r}}{(1-M/r)^2}\) and \(v=t+r_*\) to obtain
+\begin{equation}
+    \dd{s}^2 = -\left(1-\frac{M}{r}\right)^2\dd{v}^2 + 2\dd{v}\dd{r} + r^2\dd{\Omega}^2.
+\end{equation}
+
+Extreme RN has the following Penrose diagram as shown to the left.
+
+We have \(\mathcal{H}^\pm = H^\pm(\Sigma)\). The proper length of a line from \(r=r_0>M\) to \(r=M\) with \(t,\theta,\phi\) constant diverges:
+\begin{equation}
+    \int^{r_0}_M \frac{\dd{r}}{1-M/r}
+\end{equation}
+If we set \(r=M(1+\lambda)\) where \(\lambda\) is small, we obtain
+\begin{equation}
+    \dd{s}^2 \approx \underbrace{- \lambda^2\dd{t}^2 + M^2 \frac{\dd{\lambda^2}}{\lambda^2}}_{\text{AdS}_2} + \underbrace{M^2 \dd{\Omega}^2}_{S^2}.
+\end{equation}
+The spacetime looks like an infinite throat as we approach \(r=M\):
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \draw[rounded corners, shift={(0,0.08)}] (0,3) -- (5,3) -- (4,4) -- (1,4) -- cycle;
+
+        \draw (2.5,3.5) ellipse (0.8 and 0.2);
+        \begin{scope}[shift={(0,2.125)},yscale=0.26]
+            \draw (3,0) arc (0:-180:0.5);
+            \draw[dashed] (3,0) arc (0:180:0.5);
+        \end{scope}
+        
+        \begin{scope}
+            \clip[shift={(0,0.08)}] (0,3) rectangle (5,0);
+            \draw (3.3,3.5) .. controls (3.28,3.44) and (3,3) .. (3,2.125) -- (3,1);
+            \draw (1.7,3.5) .. controls (1.72,3.44) and (2,3) .. (2,2.125) -- (2,1);
+        \end{scope}
+        \begin{scope}[dashed]
+            \clip[shift={(0,0.08)}] (0,3) rectangle (5,4);
+            \draw (3.3,3.5) .. controls (3.28,3.44) and (3,3) .. (3,2.125)
+                            .. controls (3,1.25) and (3.28,0.71) .. (3.3,0.65);
+            \draw (1.7,3.5) .. controls (1.72,3.44) and (2,3) .. (2,2.125)
+                            .. controls (2,1.25) and (1.72,0.71) .. (1.7,0.65);
+        \end{scope}
+
+        \draw (3.3,3.5) .. controls (3.32,3.56) and (3.4,3.6) .. (3.55,3.61);
+        \draw (1.7,3.5) .. controls (1.68,3.56) and (1.6,3.6) .. (1.45,3.61);
+
+        \draw[->, thick] (0.7,2) node[left] {\(S^2\)} .. controls (1,2) and (1.4,3.3) .. (1.7,3.4);
+        \draw[->, thick] (0.7,2) .. controls (1,2) .. (1.92,2.125);
+    \end{tikzpicture}
+\end{figure}
+
+\subsection{Majumdar-Papapetrou solutions}
+We introduce a new radial coordinate \(\rho = r-M\), and assume that the magnetic charge vanishes, \(P=0\). Then the metric takes the form
+\begin{equation}
+    \dd{s}^2 = -H^{-2}\dd{t}^2 + H^2(\dd{\rho}^2 + \rho^2\dd{\Omega}^2)
+\end{equation}
+where \(H=1+\frac{M}{\rho}\). This is a special case of the Majumdar-Papapetrou solution
+\begin{equation}
+    \dd{s}^2 = -H(\vb{x})^{-2}\dd{t}^2 + H(\vb{x})^2 (\dd{x}^2 + \dd{y}^2 + \dd{z}^2), \quad A = H^{-1}\dd{t},
+\end{equation}
+where \(\vb{x} = (x,y,z)\) and \(H\) is harmonic, \(\nabla^2H=0\). The fact that the equation for \(H\) is linear allows a large family of exact solutions to exist.
+
+An interesting case arises when we set \(H = 1 + \sum^N_{i=1}\frac{M_i}{\vb{x}-\vb{x_i}}\). This leads to a static solution with \(N\) extreme RN black holes. The physical interpretation of this is that since \(M_i=Q_i\) there is an exact balance of electrostatic repulsion and gravitational attraction.
+
+\section{Rotating Black Holes}
+\lecture{17/02/16}
+We need to slightly modify our definitions of stationary and static.
+\begin{defn}
+    An asymptotically flat spacetime is \emph{stationary} if there exists a KVF \(k^a\) that is timelike in a neighbourhood of \(\scri^\pm\), and \emph{static} if \(k^a\) is also hypersurface orthogonal.
+\end{defn}
+It is conventional to normalise such that \(k^2\to-1\) at \(\scri^\pm\).
+\begin{defn}
+    An asymptotically flat spacetime is \emph{stationary and axisymmetric} if:
+    \begin{itemize}
+        \item It is stationary.
+        \item There exists a KVF \(m^a\) that is spacelike near \(\scri^\pm\).
+        \item \(m^a\) generates a 1-parameter group of isometries isomorphic to U(1).
+        \item \([k,m]=0\).
+    \end{itemize}
+\end{defn}
+We can choose coordinates such that \(k=\pdv{t}\), \(m=\pdv{\phi}\), \(\phi \sim \phi+2\pi\).
+\begin{theorem}
+    If \((\mathcal{M},g)\) is a static, asymptotically flat, vacuum spacetime that contains a black hole and is regular on and outside \(\mathcal{H}^+\), then \((\mathcal{M},g)\) is isometric to Schwarzschild spacetime.
+\end{theorem}
+\begin{theorem}
+    If \((\mathcal{M},g)\) is a stationary, non-static, asymptotically flat spacetime that is an analytic solution of the Einstein-Maxwell equations and is regular on and outside \(\mathcal{H}^+\), then \((\mathcal{M},g)\) is stationary and axisymmetric.
+\end{theorem}
+\begin{theorem}
+    If \((\mathcal{M},g)\) is a stationary, axisymmetric, asymptotically flat, vacuum spacetime that is regular on and outside connected \(\mathcal{H}^+\), then \((\mathcal{M},g)\) belongs to the Kerr gamily of solutions.
+\end{theorem}
+
 \end{document}
