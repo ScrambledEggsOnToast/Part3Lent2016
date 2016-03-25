@@ -681,7 +681,7 @@ We use \eqref{uv} to define \(r(U,V)\) for \(U\ge0\) or \(V\le0\). We can analyt
 \begin{figure}[H]
     \centering
     \begin{tikzpicture}[scale=1.3]
-        \begin{scope}[gray]
+        \begin{scope}[black!70]
             \draw[domain=-1.9:1.9,smooth,variable=\x,dashed] plot({-sqrt(1+\x*\x))},{\x});
             \node[left] at (-1,0) {\(r\) constant \(\rightarrow\)};
 
@@ -1963,7 +1963,7 @@ Initially \(U^+<0\) and \(V^+>0\), but we can analytically continue to \(U^+\ge 
 \begin{figure}[H]
     \centering
     \begin{tikzpicture}[scale=1.3]
-        \begin{scope}[gray]
+        \begin{scope}[black!70]
             \draw[domain=-1.9:1.9,smooth,variable=\x,dashed] plot({-sqrt(1+\x*\x))},{\x});
             \node[left] at (-1,0) {\(r\) constant \(\rightarrow\)};
 
@@ -2041,6 +2041,35 @@ We can repeat this process indefinitely. We can also draw a Penrose diagram of t
         \draw[decorate,decoration=snake] (-1.5,1.5) -- (-1.5,-1.5);
         \draw[decorate,decoration=snake] (1.5,-4.5) -- (1.5,-7.5);
         \draw[decorate,decoration=snake] (-1.5,-4.5) -- (-1.5,-7.5);
+
+        \begin{scope}[shift={(0,6)}]
+            \draw (0.1,0) node[right] {VI\({}'\)};
+            \draw (-0.1,0) node[left] {V\({}'\)};
+        \end{scope}
+        \begin{scope}[shift={(0,3)}]
+            \draw (0.1,0) node[right] {I\({}'\)};
+            \draw (0,0.1) node[above] {II\({}'\)};
+            \draw (-0.1,0) node[left] {IV\({}'\)};
+        \end{scope}
+        \begin{scope}
+            \draw (0.1,0) node[right] {VI};
+            \draw (0,0.1) node[above] {III\({}'\)};
+            \draw (-0.1,0) node[left] {V};
+        \end{scope}
+        \begin{scope}[shift={(0,-3)}]
+            \draw (0.1,0) node[right] {I};
+            \draw (0,0.1) node[above] {II};
+            \draw (0,-0.1) node[below] {III};
+            \draw (-0.1,0) node[left] {IV};
+        \end{scope}
+
+        \node[above,rotate=-45] at (0.82,-3.82) {\(r=r_+\)};
+        \node[below,rotate=-45] at (0.82,-0.82) {\(r=r_-\)};
+        \node[above,rotate=90] at (-1.5,0) {\(r=0\)};
+        \node[above right] at (2.25,-2.25) {\(\scri^+\)};
+        \node[below right] at (2.25,-3.75) {\(\scri^-\)};
+        \node[above right] at (1.5,-1.5) {\(i^+\)};
+        \node[below right] at (1.5,-4.5) {\(i^-\)};
     \end{tikzpicture}
 \end{figure}
 
@@ -2165,7 +2194,400 @@ We can choose coordinates such that \(k=\pdv{t}\), \(m=\pdv{\phi}\), \(\phi \sim
     If \((\mathcal{M},g)\) is a stationary, non-static, asymptotically flat spacetime that is an analytic solution of the Einstein-Maxwell equations and is regular on and outside \(\mathcal{H}^+\), then \((\mathcal{M},g)\) is stationary and axisymmetric.
 \end{theorem}
 \begin{theorem}
-    If \((\mathcal{M},g)\) is a stationary, axisymmetric, asymptotically flat, vacuum spacetime that is regular on and outside connected \(\mathcal{H}^+\), then \((\mathcal{M},g)\) belongs to the Kerr gamily of solutions.
+    If \((\mathcal{M},g)\) is a stationary, axisymmetric, asymptotically flat, vacuum spacetime that is regular on and outside connected \(\mathcal{H}^+\), then \((\mathcal{M},g)\) belongs to the Kerr family of solutions.
 \end{theorem}
+
+\subsection{The Kerr-Newman solution}
+
+In Boyer-Lindquist coordinates, the Kerr-Newman solution is as follows:
+\begin{align}
+    \dd{s}^2 &= - \frac{\Delta-a^2\sin^2\theta}{\Sigma}\dd{t}^2 - 2a\sin^2\theta\frac{r^2+a^2-\Delta}{\Sigma}\dd{t}\dd{\phi} \\
+             &\qquad + \frac{(r^2+a^2)^2 - \Delta a^2\sin^2\theta}{\Sigma}\sin^2\theta\dd{\phi}^2 + \frac{\Sigma}{\Delta}\dd{r}^2 + \Sigma\dd{\theta}^2 \\
+    A &= - \frac{1}{\Sigma}\left[Qr(\dd{t}-a\sin^2\theta\dd{\phi}) + P\cos\theta(a\dd{t}-(r^2+a^2)\dd{\phi})\right] \\
+    \text{where } \Sigma &= r^2 + a^2\cos^2\theta,\quad \Delta = r^2-2Mr + a^2 + e^2,\quad e=\sqrt{Q^2+P^2}
+\end{align}
+This solution is stationary and axisymmetric with KVFs \(k=\pdv{t}\) and \(m=\pdv{\phi}\). It also permits a discrete isometry \(t\to-t,\phi\to-\phi\). It has four parameters: the mass \(M\), electric charge \(Q\), magnetic charge \(P\), and angular momentum \(J=aM\) (these names will be justified in the next section). Under \(\phi\to-\phi\), we have \(a\to-a\), so w.l.o.g.\ we can assume that \(a\ge0\).
+
+\subsection{The Kerr solution}
+The Kerr solution is the Kerr-Newman solution with \(Q=P=e=0\). In this case we have \(\Delta = (r-r_+)(r-r_-)\), where \(r_\pm = M\pm\sqrt{M^2-a^2}\). If \(M^2<a^2\) we get a naked singularity, so we will assume \(M>|a|\). The metric is singular at \(\theta=0,\pi\) in the ordinary spherical way. We also have singularities at \(\Delta=0\) and at \(\Sigma=0\). These are just coordinate singularities. To show this, define new coordinates \(v\) and \(\chi\) by
+\begin{equation}
+    \dd{v} = \dd{t}+\frac{r^2+a^2}{\Delta}\dd{r} \qq{and} \dd{\chi}=\dd{\phi} + \frac{a}{\Delta}\dd{r} (\chi\sim\chi+2\pi).
+\end{equation}
+In these coordinates we have \(k=\pdv{v}\) and \(m=\pdv{\chi}\). \emph{Kerr coordinates} are \((v,r,\theta,\chi)\), and the metric becomes
+\begin{align}
+    \dd{s}^2 &= - \frac{\Delta-a^2\sin^2\theta}{\Sigma}\dd{v}^2 + 2\dd{v}\dd{r}-2a^2\sin^2\theta\frac{r^2+a^2-\Delta}{\Sigma}\dd{v}\dd{\chi} \\
+             &\qquad -2a\sin^2\theta\dd{\chi}\dd{r} + \frac{(r^2+a^2)^2-\Delta a^2\sin^2\theta}{\Sigma}\sin^2\theta\dd{\chi}^2+\Sigma\dd{\theta}^2.
+\end{align}
+This metric can be analytically extended into \(0<r<r_+\).
+\begin{lemma}
+    \(r=r_+\) is a null hypersurface with normal \(xi^a=k^a + \Omega_H m^a\) where \(\Omega_H = \frac{a}{r^2+a^2}\).
+\end{lemma}
+(This can be proven by showing that \(\left.\xi_\mu\dd{x}^\mu\right|_{r=r_+} \propto \dd{r}\), so \(\xi_a \perp \{r=r_+\}\) and \(\left.\xi_\mu\xi^\mu\right|_{r=r_+} = 0\).)
+
+\(r\le r_+\) is the spacetime's black hole region \(\mathcal{B}\), and \(r=r_+\) is its event horizon \(\mathcal{H}^+\).
+
+\lecture{19/02/16}
+In Boyer-Lindquist coordinates, \(\xi=\pdv{t}+\Omega_H\pdv{\phi}\), and we have \(\xi^\mu\partial_\mu(\phi-\Omega_H t)=0\), so \(\phi= \Omega_H t + \text{constant}\) on orbits of \(\xi^a\). Thus the generators of \(\mathcal{H}^+\) rotate with angular velocity \(\Omega_H\) with respect to a stationary observer at \(\infty\). We say that \(\Omega_H\) is the angular velocity of the black hole.
+
+\subsection{Maximal analytic extension}
+Kerr coordinates are analagous to the ingoing E-F coordinates used for the RN black hole. We can similarly find outgoing coordinates to find a white hole region, and then construct a Kruskal like extension containg the regions I, II, III, IV. Similar to RN, we can extend II to new regions V, VI, III\({}'\), etc. One key difference is that \(r=0\) becomes a ``ring'' singularity, leading to a new flat region of space.
+
+The Kerr solution has no spherical symmetry, so we cannot draw a Penrose diagram. Instead we will just refer to submanifolds. One submanifold is the ``axis'' given by \(\theta=0 \text{ or } \pi\). This is two dimensional, since we fix \(\theta\), and \(\phi\) is meaningless on the axis. We can construct a Penrose-like diagram for the axis:
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=0.94]
+        \draw (2,8) -- (-3,3) -- (3,-3) -- (-2,-8);
+        \draw (-2,8) -- (3,3) -- (-3,-3) -- (2,-8);
+        \draw (1,8) -- (3,6) -- (-3,0) -- (3,-6) -- (1,-8);
+        \draw (-1,8) -- (-3,6) -- (3,0) -- (-3,-6) -- (-1,-8);
+        \draw[dashed] (1.5,7.5) -- (1.5,4.5);
+        \draw[dashed] (-1.5,7.5) -- (-1.5,4.5);
+        \draw[dashed] (1.5,1.5) -- (1.5,-1.5);
+        \draw[dashed] (-1.5,1.5) -- (-1.5,-1.5);
+        \draw[dashed] (1.5,-4.5) -- (1.5,-7.5);
+        \draw[dashed] (-1.5,-4.5) -- (-1.5,-7.5);
+
+        \begin{scope}[shift={(0,6)}]
+            \draw (0.1,0) node[right] {VI\({}'\)};
+            \draw (-0.1,0) node[left] {V\({}'\)};
+        \end{scope}
+        \begin{scope}[shift={(0,3)}]
+            \draw (0.1,0) node[right] {I\({}'\)};
+            \draw (0,0.1) node[above] {II\({}'\)};
+            \draw (-0.1,0) node[left] {IV\({}'\)};
+        \end{scope}
+        \begin{scope}
+            \draw (0.1,0) node[right] {VI};
+            \draw (0,0.1) node[above] {III\({}'\)};
+            \draw (-0.1,0) node[left] {V};
+        \end{scope}
+        \begin{scope}[shift={(0,-3)}]
+            \draw (0.1,0) node[right] {I};
+            \draw (0,0.1) node[above] {II};
+            \draw (0,-0.1) node[below] {III};
+            \draw (-0.1,0) node[left] {IV};
+        \end{scope}
+
+        \node[above,rotate=-45] at (0.82,-3.82) {\(r=r_+\)};
+        \node[below,rotate=-45] at (0.82,-0.82) {\(r=r_-\)};
+        \node[above,rotate=90] at (-1.5,0) {\(r=0\)};
+        \node[above right] at (2.25,-2.25) {\(\scri^+\)};
+        \node[below right] at (2.25,-3.75) {\(\scri^-\)};
+        \node[right] at (1.5,-1.45) {\(i^+\)};
+        \node[right] at (1.5,-4.45) {\(i^-\)};
+        
+        \draw[<-,thick] (2.3,0) -- (3.4,0.5) node[right]{\(r<0\)};
+    \end{tikzpicture}
+\end{figure}
+
+Note that the Kerr solution just describes the final state of a rotating black hole; it has nothing to do with collapse.
+
+If \(M=a\), we obtain \emph{extreme} Kerr, similar to extreme RN.
+
+\subsection{Ergosphere/Penrose process}
+We have
+\begin{equation}
+    k^2 = g_{tt} = - \left(1-\frac{2Mr}{r^2+a^2\cos^2\theta}\right).
+\end{equation}
+Therefore \(k\) is timelike in region I when \(r^2-2Mr+a^2\cos^2\theta>0\), i.e.\ when \(r > M + \sqrt{M^2-a^2\cos^2\theta}\) (this is the root in region I).
+
+There is a region outside the event horizon in which \(k\) is spacelike, and this is known as the \emph{ergosphere}:
+\begin{equation}
+    M+\sqrt{M^2-a^2} = r_+ < r < M + \sqrt{M^2-a^2\cos^2\theta}
+\end{equation}
+The boundary of the ergosphere is called the \emph{ergosurface}.
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=1.9]
+        \begin{scope}[rotate=90]
+            \draw[domain=0:360,smooth,variable=\x,fill=black!20] plot({(1 + sqrt(1-0.7*cos(\x)*cos(\x)))*cos(\x)},{(1 + sqrt(1-0.7*cos(\x)*cos(\x)))*sin(\x)});
+            \draw[domain=0:360,smooth,variable=\x,fill=white] plot({(1 + sqrt(1-0.7))*cos(\x)},{(1 + sqrt(1-0.7))*sin(\x)});
+            \draw[domain=90:270,smooth,variable=\x] plot({0.1*(1 + sqrt(1-0.7))*cos(\x)},{(1 + sqrt(1-0.7))*sin(\x)});
+            \draw[domain=90:-90,smooth,variable=\x,dashed] plot({0.1*(1 + sqrt(1-0.7))*cos(\x)},{(1 + sqrt(1-0.7))*sin(\x)});
+            \draw[domain=90:270,smooth,variable=\x] plot({0.1*2*cos(\x)},{2*sin(\x)});
+            \draw[domain=90:-90,smooth,variable=\x,dashed] plot({0.1*2*cos(\x)},{2*sin(\x)});
+        \end{scope}
+        \fill (0,0) circle (0.05);
+        \draw (0,2) -- (0,-2);
+        \node[above right] at (0,{1+sqrt(0.3)}) {\(\theta=0\)};
+        \node[below right] at (0,{-1-sqrt(0.3)}) {\(\theta=\pi\)};
+        \draw[->,thick,yscale=0.4] (-0.1,2) arc (180:500:0.1);
+
+        \draw[<-,thick] (-1.98,0.3) .. controls (-2.2,0.5) and (-2.1,0.8) .. (-2.3,0.8) node[left] {ergosurface};
+        \draw[<-,thick] (1.7,0.3) .. controls (2,0.5) and (2.1,1) .. (2.3,1) node[right] {ergosphere};
+    \end{tikzpicture}
+\end{figure}
+Note that stationary observers follow timelike geodesics parallel to \(k\), and these can't exist in the ergosphere.
+
+Consider now a particle with 4-momentum \(P^a = \mu u^a\), where \(\mu\) is the particle's rest mass. Then the energy of the particle with respect to an observer at infinity is given by \(E=-k\vdot P\). Suppose the particle decays inside the ergoregion into two particles with momenta \(P_1\), \(P_2\) respectively.
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \draw[decorate,decoration=snake] (0,0) -- (2,1) node[midway,above] {\(P\)};
+        \draw[decorate,decoration=snake] (2,1) -- (3,3) node[midway,right] {\(P_1\)};
+        \draw[decorate,decoration=snake] (2,1) -- (4,0.3) node[midway,below] {\(P_2\)};
+    \end{tikzpicture}
+\end{figure}
+We have \(E = E_1 + E_2\) where \(E_i=-k\vdot P_i\). Since \(k\) is spacelike, we can have \(E_1<0\). Then \(E_2=E+|E_1|>E\). Particle 1 must fall into the black hole, but particle 2 can escape to infinity. Hence a particle leaves the ergoregion with more energy than when it entered -- this is the \emph{Penrose process}. Since \(E_1<0\), the mass of the black hole decreases.
+
+There is a bound on the amount of energy that can be extracted. Since \(P\) and \(\xi\) are both causal, we have \(-P\vdot\xi\ge0\), so \(-P\vdot(k+\Omega_H m)\ge 0\). Thus \(E-\Omega_HL\ge0\), where \(L=m\vdot P\) is the conserved angular momentum, so \(L\le E/\Omega_H\). After the black hole settles, we have \(\delta M=E\) and \(\delta J = L\), so
+\begin{equation}
+    \delta J \le \frac{\delta M}{\Omega_H} = \frac{2M(M^2+\sqrt{M^4-J^2})}{J}\delta M.
+\end{equation}
+It can be shown that this is equivalent to \(\delta M_{\text{irr}} = 0\), where \(M_{\text{irr}} = \left[\frac{1}{2}\left(M^2+\sqrt{M^4+J^2}\right)\right]^{\frac{1}{2}}\) is the ``irreducible mass''. We have
+\begin{equation}
+    M^2 = M_{\text{irr}}^2 + \frac{J^2}{4M_{\text{irr}}^2} \ge M_{\text{irr}}^2 \ge \text{initial } M_{\text{irr}}^2,
+\end{equation}
+so the mass can not decrease below the RHS.
+
+It can be shown that \(A=16\pi M_{\text{irr}}^2\) is the area of the event horizon (i.e.\ the area of the intersection of \(\mathcal{H}^+\) with a partial Cauchy surface), so \(\delta A \ge0\) (this is a special case of the second law of black hole mechanics).
+
+\section{Mass, Charge, and Angular Momentum}
+\subsection{Charges in curved spacetime}
+Consdier a general orientable manifold \((\mathcal{M},g)\) of \(n\) dimensions. We have the volume form \(\epsilon\), satisfying
+\begin{equation}
+    \epsilon^{a_1\dots a_p c_{p+1} \dots c_n}\epsilon_{b_1\dots b_p c_{p+1} \dots c_n}
+    = \pm p!(n-p)! \delta^{a_1}_{[b_1} \dots \delta^{a_p}_{b_p]},
+\end{equation}
+where \(+\) corresponds to a Riemannian signature, and \(-\) corresponds to a Lorentzian signature.
+\begin{defn}
+    The \emph{Hodge dual} of a \(p\)-form \(X\) is an \((n-p)\)-form \(\star X\) defined by
+    \begin{equation}
+        (\star X)_{a_1\dots a_{n-p}} = \frac{1}{p!}\epsilon_{a_1\dots a_{n-p} b_1\dots b_p} X^{b_1\dots b_p}.
+    \end{equation}
+\end{defn}
+It is simple to see that \(\star(\star X) = \pm (-)^{p(n-p)}X\). We also have 
+\begin{equation}
+    (\star \dd{\star X})_{a_1\dots a_{p-1}} = \pm (-)^{p(n-p)} \nabla^b X_{a_1\dots a_{p-1} b}.
+\end{equation}
+In Euclidean 3D space, we have:
+\begin{align}
+    \Delta f &= \dd{f} \\
+    \div X &= \star\dd{\star X} \\
+    \curl X &= \star\dd{X}
+\end{align}
+
+\lecture{22/02/16}
+Recall the Maxwell equations
+\begin{equation}
+    \nabla^aF_{ab} = -4\pi j_b \qq{and} \nabla_{[a}F_{bc]} = 0,
+\end{equation}
+where \(j\) is the current density 4-vector. In terms of forms we have
+\begin{equation}
+    \dd{\star F} = -4\pi \star j \qq{and} \dd{F} = 0.
+\end{equation}
+
+\begin{defn}
+    Let \(\Sigma\) be a spacelike hypersurface. The electric charge \(Q\) on \(\Sigma\) is given by
+    \begin{equation}
+        Q = -\int_\Sigma \star j = \frac{1}{4\pi}\int_\sigma \dd{\star F} = \frac{1}{4\pi} \int_{\partial\Sigma}\star F.
+    \end{equation}
+\end{defn}
+
+\begin{eg}
+    Consider Minkowski space with spherical coordinates \((t,r,\theta,\phi)\), with orientation given by the volume form \(\epsilon = r^2\sin\theta \dd{t}\wedge\dd{r}\wedge\dd{\theta}\wedge\dd{\phi}\). Let \(\Sigma=\{t=0\}\), with orientation \(\dd{r}\wedge\dd{\theta}\wedge\dd{\phi}\), and \(\Sigma_R = \{t=0,r\le R\}\) with the same orientation. We have \(\partial \sigma_R = \{t=0,r=R\}\) with orientation \(\dd{\theta}\wedge\dd{\phi}\). Consider \(A=-\frac{q}{r}\dd{t}\). We have \(F=\dd{A} = -\frac{q}{r^2}\dd{t}\wedge\dd{r}\). Thus \((\star F)_{\theta\phi} = r^2\sin^2\theta F^{tr} = q\sin\theta\), so
+    \begin{equation}
+        Q(\Sigma_R) = \frac{1}{4\pi}\int_{S^2_R}\star F = \frac{1}{4\pi}\dd{\theta}\dd{\phi} q\sin\theta = q.
+    \end{equation}
+\end{eg}
+
+\begin{defn}
+    Let \((\Sigma, h_{ab}, K_{ab})\) be an asymptotically flat end, \(S_r^2 = \{x^ix^i=r^2\}\). Then the \emph{electric charge} Q and \emph{magnetic charge} P of the spacetime are given by
+    \begin{align}
+        Q &= \frac{1}{4\pi} \lim_{r\to\infty} \int_{S_r^2} \star F \\
+        P &= \frac{1}{4\pi} \lim_{r\to\infty} \int_{S_r^2} F
+    \end{align}
+\end{defn}
+Exercise: show this agrees with \(Q\) and \(P\) in the Kerr-Newman solution.
+
+\subsection{Komar integrals}
+Let \((\mathcal{M},g)\) be a stationary spacetime. There exists a conserved energy-momentum current \(J_a = -T_{ab}k^b\), \(\dd{\star j} = 0\). Hence we can define the total energy of matter on a spacelike hypersurface \(\Sigma\) as
+\begin{equation}
+    E[\Sigma] = -\int_\Sigma \star J.
+\end{equation}
+This quantity is conserved. Suppose \(\Sigma\) and \(\Sigma'\) bound a region \(R\) of spacetime.
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \fill[black!10] (2,0) .. controls (1,1) and (-1,1) .. (-2,0)
+                              .. controls (-1,-1) and (1,-1) .. (2,0);
+
+        \draw (2,0) .. controls (1,1) and (-1,1) .. (-2,0) node[midway,above] {\(\Sigma'\)};
+        \draw (2,0) .. controls (1,-1) and (-1,-1) .. (-2,0) node[midway,below] {\(\Sigma\)};
+        \node at (0,0) {\(R\)};
+    \end{tikzpicture}
+\end{figure}
+Then we have
+\begin{equation}
+    E[\Sigma']-E[\Sigma] = - \int_{\partial R} \star J = -\int_R \dd{\star J} = 0.
+\end{equation}
+
+\begin{lemma}
+    A KVF \(k^a\) obeys \(\nabla_a\nabla_bk^c = R\indices{^c_{bad}}k^d\).
+\end{lemma}
+
+Hence we have
+\begin{align}
+    (\star\dd{\star\dd{k}})_c &= -\nabla^b(\dd{k})_{cb} \\
+                              &= -\nabla^b(\nabla_ck_b-\nabla_bk_c) \\
+                              &= 2\nabla^b\nabla_bk_c \\
+                              &= -2R_{cd} k^d \\
+                              &= 8\pi J'_c,
+\end{align}
+where \(J'_a = -2\left(T_{ab} - \frac{1}{2} T g_{ab}\right) k^b\). Thus \(\dd{\star\dd{k}} = 8\pi \star J\), and
+\begin{equation}
+    -\int_\Sigma\star J' = -\frac{1}{8\pi}\int_\Sigma \dd{\star\dd{k}} = -\frac{1}{8\pi}\int_{\partial\Sigma} \star \dd{k}.
+    \label{emperhaps}
+    \tag{\(*\)}
+\end{equation}
+Exercise: consider a static, spherically symmetric perfect fluid star, and let \(\Sigma = \{t=\text{constant},r\le r_0\}\) where \(r_0 > R = \text{star radius}\). Show that the RHS of \eqref{emperhaps} is the parameter \(M\) in the Schwarzschild solution. Show that the LHS of \eqref{emperhaps} is the total energy of matter in the star in the Newtonian limit (\(p \ll \rho, |\Phi| \ll 1, |\Psi| \ll 1\)).
+
+\begin{defn}
+    Let \((\Sigma, h_{ab}, K_{ab})\) be an asymptotically flat end in a stationary spacetime. The \emph{Komar mass} is
+    \begin{equation}
+        M_{\text{Komar}} = -\frac{1}{8\pi}\lim_{r\to\infty}\int_{S_r^2}\star\dd{k}.
+    \end{equation}
+    If we have axisymmetry, then the \emph{Komar angular momentum} is
+    \begin{equation}
+        J_{\text{Komar}} = \frac{1}{16\pi}\lim_{r\to\infty}\int_{S_r^2}\star\dd{m}.
+    \end{equation}
+\end{defn}
+It can be shown that for the Kerr-Newman solution, we have \(M_{\text{Komar}} = M\) and \(J_{\text{Komar}} = J\).
+
+\subsection{Hamiltonian formulation of GR}
+Set \(16\pi G=1\), and assume global hyperbolicity, so that we can write
+\begin{equation}
+    \dd{s}^2 = -N^2\dd{t} + h_{ij}(\dd{x}^i + N^i\dd{t})(\dd{x}^j + N^j\dd{t}).
+\end{equation}
+We have the following action in the 3+1 formulation:
+\begin{equation}
+    S = \int\dd{t}\dd[3]{x} \mathcal{L} = \int \dd{t}\dd[3]{x}N\sqrt{H}\left({}^{(3)}R - K_{ij}K^{ij} + K^2\right)
+\end{equation}
+\({}^{(3)}R\) is the Ricci scalar of \(h_{ij}\), and \(K\) is the trace of \(K_{ij}\) the extrinsic curvature associated with \(t=0\), given by
+\begin{equation}
+    K_{ij} = \frac{1}{2N}(\dot{h}_{ij} - D_iN_j-D_jN_i),
+\end{equation}
+where \(D\) is the covariant derivative with respect to \(h_{ij}\). \(ijk\) indices are raised and lowered with \(h\).
+
+Note that \(S\) is a function of \(N\), \(N^i\) and \(h_{ij}\) only -- it is independent of \(\partial_t N\) and \(\partial_t N^i\). If we vary \(N\) we obtain the Hamiltonian constraint, and if we vary \(N^i\) we obtain the momentum constraint.
+
+The momentum conjugate to \(h\) is given by
+\begin{equation}
+    \pi^{ij} = \fdv{S}{\dot{h}_{ij}} = \sqrt{h}(K^{ij}-Kh^{ij}).
+\end{equation}
+The Hamiltonian is thus
+\begin{equation}
+    H = \int \dd[3]{x}(\pi^{ij}\dot{h}_{ij} - \mathcal{L}) = \int \dd[3]{x} \sqrt{h}[N\mathcal{H} + N^i\mathcal{H}_i],
+\end{equation}
+where
+\begin{equation}
+    \mathcal{H} = -{}^{(3)}R + h^{-1}\pi^{ij}\pi_{ij} - \frac{1}{2}h^{-1}\pi^2, \qquad \pi=h^{ij}\pi_{ij}
+\end{equation}
+and
+\begin{equation}
+    \mathcal{H}_i = -2h_{ik}D_j\left(h^{-\frac{1}{2}}\pi^{jk}\right).
+\end{equation}
+\(N\) and \(N_i\) play the role of Lagrange multipliers, so on a solution \(\mathcal{H}=\mathcal{H}_i=0\). The equations of motion are 
+\begin{equation}
+    \dot{h}_{ij} = \fdv{H}{\pi^{ij}},\quad \dot{\pi}_{ij} = - \fdv{H}{h^{ij}}.
+\end{equation}
+Using this Hamiltonian we'd like to be able to define an energy, but there is a problem: on any solution, \(H=0\).
+
+\lecture{24/02/16}
+To fix this, we will need to introduce a boundary term into the Hamiltonian. We assume that the \(t = \text{constant}\) is an asymptotically flat end, so we can write:
+\begin{align}
+    h_{ij} &= \delta_{ij} + O\left(\frac{1}{r}\right) & \pi_{ij} = O\left(\frac{1}{r^2}\right) \\
+    \delta h_{ij} &= O\left(\frac{1}{r}\right) & \delta\pi_{ij} = O\left(\frac{1}{r^2}\right)
+\end{align}
+Comparing with the expression for the metric in terms of \(N\) and \(N^i\), we see that we must have \(N=1+O\left(\frac{1}{r}\right)\) and \(N^i\to0\) as \(r\to \infty\). Under these assumptions, we find that the variation of the Hamiltonian takes the form
+\begin{equation}
+    \delta H = \int\dd[3]{x}(\dots)\delta h_{ij} - \underbrace{\delta E_{\text{ADM}}}_{\mathclap{\text{surface term}}}
+\end{equation}
+where
+\begin{equation}
+    E_{\text{ADM}} = \lim_{r\to\infty} \int_{S^2_r} \dd{A} n_i (\partial_j h_{ij} - \partial_i h_{jj}).
+\end{equation}
+\(\dd{A}\) is the area element on \(S^2_r\) and \(n_i\) is the outward unit normal to \(S^2_r\). We can thus replace the Hamiltonian \(H\) by \(H' = H + E_{\text{ADM}}\). Since they differ by a surface term, the equations of motion give the same result, but now we have no runaway boundary terms when varying \(h_{ij}\). Thus \(H'\) is the true Hamiltonian of GR.
+
+\subsection{ADM energy}
+Since \(H = 0\) on a solution, the energy of the spacetime must be given by \(E_{\text{ADM}}\). Return to \(G=1\) units and we have:
+\begin{defn}
+    The \emph{Arnowitt-Deser-Misner energy} of an asymptoticall flat end is
+    \begin{equation}
+        E_{\text{ADM}} = \frac{1}{16\pi}\lim_{r\to\infty}\int_{S^2_r}\dd{A}n_i(\partial_j h_{ij} - \partial_i h_{jj}).
+    \end{equation}
+\end{defn}
+
+In a stationary spacetime, if the constant \(t\) surface is orthogonal to \(k^a\) as \(r\to\infty\), then it can be shown that \(E_{\text{ADM}} = M_{\text{Komar}}\).
+
+Similarly, we have:
+\begin{defn}
+    The \emph{ADM 3-momentum} of an asymptotically flat end is
+    \begin{equation}
+        P_i = \frac{1}{8\pi}\lim_{r\to\infty}\int_{S^2_r} \dd{A}(K_{ij}n_j-Kn_i).
+    \end{equation}
+\end{defn}
+
+\begin{theorem}
+    Let \((\Sigma, h_{ab}, K_{ab})\) be a geodesically complete asymptotically flat end obeying the DEC. Then \(E_{\text{ADM}} \ge \sqrt{P_iP_i}\), with equality iff \((\Sigma,h_{ab},K_{ab})\) is a surface in Minkowski spacetime.
+\end{theorem}
+
+\begin{defn}
+    The \emph{ADM mass} of an asymptotically flat end is
+    \begin{equation}
+        M_{\text{ADM}} = \sqrt{E_{\text{ADM}} - P_iP_i}.
+    \end{equation}
+\end{defn}
+
+\section{Black Hole Mechanics}
+\subsection{Killing horizons and surface gravity}
+\begin{defn}
+    A null hypersurface \(\mathcal{N}\) is a \emph{Killing horizon} if there exists a KVF \(\xi^a\) defined in a neighbourhood of \(\mathcal{N}\) such that \(\xi^a\) is normal to \(\mathcal{N}\).
+\end{defn}
+\begin{theorem}
+    In a stationary, analytic, asymptotically flat, vacuum black hole solution, \(\mathcal{H}^+\) is a Killing horizon.
+\end{theorem}
+For example, in Kerr \(\{r=r_+\}\) is a Killing horizon with normal KVF \(\xi^a = k^a+\Omega_H m^a\).
+
+It can be shown that if \(\xi^a\) is not parallel to \(k^a\), then \((\mathcal{M},g)\) is stationary and axisymmetric. We normalise so that \(k^2\to-1\) at \(\infty\), and write \(\xi^a = k^a + \Omega_H m^a\), where \(m^a\) is the generator of axisymmetry. Since \(\left.\xi\vdot\xi\right|_{\mathcal{N}} = 0\), we have that \(\dd{\xi^a\xi_a}\) is orthogonal to \(\mathcal{N}\). Therefore there exists a \(\kappa\) such that
+\begin{equation}
+    \left.\nabla_a(\xi_b\xi^b)\right|_{\mathcal{N}} = -2\kappa\xi_a.
+\end{equation}
+\(\kappa\) is called the \emph{surface gravity} of \(\mathcal{N}\). Since \(\xi_a\) is a KVF, we have \(\nabla_a(\xi_b\xi^b) = 2\xi_b\nabla_a\xi^b = -2\xi^b\nabla_b\xi_a\), so we can write the above as
+\begin{equation}
+    \left.\xi^b\nabla_b\xi^a\right|_{\mathcal{N}} = \kappa\xi_a.
+\end{equation}
+Let \(n^a\) be tangent to the affinely parametrised generators of \(\mathcal{N}\). Then \(\xi^a = fn^a\) on \(\mathcal{N}\) and we have
+\begin{equation}
+    \xi^b\nabla_b\xi^a = fn^b\nabla_b(fn^a) = f^2\underbrace{n^b\nabla n^a}_{=0} + f n^a n^b\nabla_b f = \xi^a\xi^b\partial_b\log|f|,
+\end{equation}
+so \(\kappa = \xi^a\partial_a\log|f|\).
+\begin{eg}
+    Consider a Reissner-Nordstrom black hole.
+    \begin{equation}
+        \dd{s}^2 = -\frac{\Delta}{r^2} \dd{v}^2 + 2\dd{v}\dd{r} + r^2\dd{\Omega}^2
+    \end{equation}
+    where \(\Delta = (r-r_+)(r-r_-)\), \(r_\pm = M \pm \sqrt{M^2-e^2}\). We have \(k=\pdv{v}\) and \(\left.k_a\right|_{r=r_\pm}=(\dd{r})_a\). Thus \(k_a\) is orthogonal to the null hypersurfaces \(r=r_\pm\), so these are Killing horizons. We have
+    \begin{align}
+        \dd{(k^bk_b)} &= \dd{\left(-\frac{\nabla}{r^2}\right)} \\
+                      &= \left(-\frac{\nabla'}{r^2} + \frac{2\nabla}{r^3}\right)\dd{r} \\
+        \implies \left.\dd{(k^bk_b)}\right|_{r=r_\pm} &= - \left(\frac{r_\pm-r_\mp}{r_\pm^2}\right)k_a
+    \end{align}
+    and therefore the surface gravities at \(r_\pm\) are \(\kappa = \frac{r_\pm-r_\mp}{2r_\pm^2}\).
+    
+    If we set \(e=0\) we obtain Schwarzschild with \(r_+ = 2M\), \(r_- = 0\) and \(\kappa = \frac{1}{4M}\).
+
+    If we set \(e=M\), we obtain extreme RN with \(r_+ = r_- = M\) and \(\kappa = 0\).
+\end{eg}
+
+Exercise: in the Kruskal spacetime, show that \(\mathcal{H}^\pm\) are Killing horizons \(\mathcal{N}^\pm\) of \(k^a\) with surface gravities \(\pm\frac{1}{4M}\). This is an example of a \emph{bifurcate} Killing horizon. \(\mathcal{N}^\pm\) are both Killing with respect to \(\xi^a\), and they are orthogonal, so on \(B = \mathcal{N}^+\cap\mathcal{N}^-\), \(\xi\) must vanish. Any \(X^a\) tangent to \(B\) must also be tangent to both of \(\mathcal{N}^\pm\), so \(X^a\) is spacelike, and \(B\) is a spacelike 2-surface.
+
+\subsection{Interpretation of the surface gravity}
+The main reason that \(\kappa\) is important is because the Hawking temperature (see later) is \(\frac{\hbar\kappa}{2\pi}\). However there is another interpretation. In a static, asymptotically flat spacetime, \(\kappa\) is the force per unit rest mass at infinity needed to hold a particle at rest on the horizon.
+
+\subsection{Zeroth law of BH mechanics}
+\lecture{26/02/16}
 
 \end{document}
