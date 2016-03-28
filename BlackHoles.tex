@@ -766,7 +766,7 @@ Note that \(\rho\to\frac{M^2}{4\rho}\) interchanges I and IV.
 
 \begin{wrapfigure}{r}{0.4\linewidth}
     \centering
-    \begin{tikzpicture}
+    \begin{tikzpicture}[scale=0.85]
         \draw[rounded corners, shift={(0,0.08)}] (0,3) -- (5,3) -- (4,4) -- (1,4) -- cycle;
         \draw[rounded corners, shift={(0,-0.11)}] (0,0) -- (5,0) -- (4,1.3) -- (1,1.3) -- cycle;
 
@@ -1988,6 +1988,7 @@ Unlike the Schwarzschild solution, we can continue to extend the spacetime. In r
 \begin{equation}
     -U^+V^+ = e^{2|\kappa_-| r}\left(\frac{r-r_-}{r_-}\right)\left(\frac{r_+}{r_+-r}\right)^{\frac{|\kappa_-|}{\kappa_+}}.
 \end{equation}
+\lecture{17/02/16}
 We analytically continue to \(U^-,V^-\ge0\) to find new regions V, VI and III\({}'\).
 \begin{figure}[H]
     \centering
@@ -2171,7 +2172,7 @@ where \(\vb{x} = (x,y,z)\) and \(H\) is harmonic, \(\nabla^2H=0\). The fact that
 An interesting case arises when we set \(H = 1 + \sum^N_{i=1}\frac{M_i}{\vb{x}-\vb{x_i}}\). This leads to a static solution with \(N\) extreme RN black holes. The physical interpretation of this is that since \(M_i=Q_i\) there is an exact balance of electrostatic repulsion and gravitational attraction.
 
 \section{Rotating Black Holes}
-\lecture{17/02/16}
+\lecture{19/02/16}
 We need to slightly modify our definitions of stationary and static.
 \begin{defn}
     An asymptotically flat spacetime is \emph{stationary} if there exists a KVF \(k^a\) that is timelike in a neighbourhood of \(\scri^\pm\), and \emph{static} if \(k^a\) is also hypersurface orthogonal.
@@ -2226,7 +2227,7 @@ This metric can be analytically extended into \(0<r<r_+\).
 
 \(r\le r_+\) is the spacetime's black hole region \(\mathcal{B}\), and \(r=r_+\) is its event horizon \(\mathcal{H}^+\).
 
-\lecture{19/02/16}
+\lecture{22/02/16}
 In Boyer-Lindquist coordinates, \(\xi=\pdv{t}+\Omega_H\pdv{\phi}\), and we have \(\xi^\mu\partial_\mu(\phi-\Omega_H t)=0\), so \(\phi= \Omega_H t + \text{constant}\) on orbits of \(\xi^a\). Thus the generators of \(\mathcal{H}^+\) rotate with angular velocity \(\Omega_H\) with respect to a stationary observer at \(\infty\). We say that \(\Omega_H\) is the angular velocity of the black hole.
 
 \subsection{Maximal analytic extension}
@@ -2369,7 +2370,7 @@ In Euclidean 3D space, we have:
     \curl X &= \star\dd{X}
 \end{align}
 
-\lecture{22/02/16}
+\lecture{24/02/16}
 Recall the Maxwell equations
 \begin{equation}
     \nabla^aF_{ab} = -4\pi j_b \qq{and} \nabla_{[a}F_{bc]} = 0,
@@ -2495,7 +2496,7 @@ and
 \end{equation}
 Using this Hamiltonian we'd like to be able to define an energy, but there is a problem: on any solution, \(H=0\).
 
-\lecture{24/02/16}
+\lecture{26/02/16}
 To fix this, we will need to introduce a boundary term into the Hamiltonian. We assume that the \(t = \text{constant}\) is an asymptotically flat end, so we can write:
 \begin{align}
     h_{ij} &= \delta_{ij} + O\left(\frac{1}{r}\right) & \pi_{ij} = O\left(\frac{1}{r^2}\right) \\
@@ -2588,6 +2589,796 @@ Exercise: in the Kruskal spacetime, show that \(\mathcal{H}^\pm\) are Killing ho
 The main reason that \(\kappa\) is important is because the Hawking temperature (see later) is \(\frac{\hbar\kappa}{2\pi}\). However there is another interpretation. In a static, asymptotically flat spacetime, \(\kappa\) is the force per unit rest mass at infinity needed to hold a particle at rest on the horizon.
 
 \subsection{Zeroth law of BH mechanics}
-\lecture{26/02/16}
+\lecture{29/02/16}
+
+\begin{lemma}
+    Consider a null geodesic congruence containing the generators of a Killing horizon \(\mathcal{N}\). Then \(\theta = \hat{\sigma} = \hat{\omega} = 0\) on \(\mathcal{N}\).
+\end{lemma}
+\begin{proof}
+    We already have \(\hat{\omega}=0\) since the generators are hypersurface orthogonal.
+
+    Let \(\xi^a\) be a KVF normal to \(\mathcal{N}\), and \(U^a\) be tangent to the affinely parameterised generators of \(\mathcal{N}\). We can write \(\xi^a = hU^a\) on \(\mathcal{N}\). Thus \(U^a = h^{-1}\xi^a + fV^a\) for some \(V^a\) and \(f\) that vanishes on \(\mathcal{M}\). Then we have
+    \begin{equation}
+        B_{ab} = \nabla_bU_a = (\partial_bh^{-1})\xi_a + h^{-1}\nabla_b\xi_a + (\partial_bf)V_a + f\nabla_bV_a.
+    \end{equation}
+    Evaluating on \(\mathcal{N}\), using Killing's equation, and symmetrising, we obtain
+    \begin{equation}
+        \left.B_{(ab)}\right|_\mathcal{N} = \left(\xi_{(a}\partial_{b)}h^{-1} + V_{(a)}\partial_{b)}f\right)_\mathcal{N}.
+    \end{equation}
+    \(\xi_a,\partial_af\) are parallel to \(U_a\) on \(\mathcal{N}\), so after projecting onto \(T_\perp\), we get
+    \begin{equation}
+        \left.\hat{B}_{(ab)}\right|_\mathcal{N} = 0,
+    \end{equation}
+    so \(\theta\) and \(\hat{\sigma}\) vanish.
+\end{proof}
+
+\begin{theorem}[zeroth law]
+    \(\kappa\) is constant on the future event horizon of a stationary black hole spacetime obeying the dominant energy condition.
+\end{theorem}
+\begin{proof}
+    We have that \(\mathcal{H}^+\) is a Killing horizon with respect to some KVF \(\xi^a\). From the above lemma, \(\theta=\hat{\omega}=\hat{\sigma}=0\) along generators of \(\mathcal{H}^+\), so by Raychaudhuri's equation we have
+    \begin{equation}
+        0 = \left.R_{ab}\xi^a\xi^b\right|_{\mathcal{H}^+} = \left.8\pi T_{ab}\xi^a\xi^b\right|_{\mathcal{H}^+},
+    \end{equation}
+    using the fact that \(\xi\) is null in the second equality. Thus \(\left.J\vdot\xi\right|_{\mathcal{H}^+}=0\) where \(J_a=-T_{ab}\xi^b\). Since \(\xi^a\) is future-directed and causal, the DEC implies that so is \(J^a\) (unless \(J^a=0\)). Hence we must have \(J^a\) parallel to \(\xi^a\) on \(\mathcal{H}^+\). Thus
+    \begin{equation}
+        0 = \left.\xi_{[a}J_{b]}\right|_{\mathcal{H}^+} = -\left.\xi_{[a}T_{b]c}\xi^c\right|_{\mathcal{H}^+} = -\frac{1}{8\pi}\left.\xi_{[a}R_{b]c}\xi^c\right|_{\mathcal{H}^+}.
+    \end{equation}
+    It can be shown that this implies
+    \begin{equation}
+        0 = \frac{1}{8\pi}\xi_{[a}\partial_{b]}\kappa,
+    \end{equation}
+    so \(\partial_a{\kappa}\) is proportional to \(\xi_a\), so \(t\vdot\partial\kappa=0\) for any vector field \(t^a\) tangent to \(\mathcal{H}^+\), and therefore \(\kappa\) is constant on \(\mathcal{H}^+\) (assuming \(\mathcal{H}^+\) is connected).
+\end{proof}
+
+\subsection{First law of BH mechanics}
+For a Kerr black hole, if we make small perturbations to \(M\) and \(a\), then it is possible to show that
+\begin{equation}
+    \frac{\kappa}{8\pi}\delta A = \delta M - \Omega_H \delta J.
+    \tag{\(*\)}
+    \label{firstlaw}
+\end{equation}
+In fact this holds under more more general perturbations. Take a spatial hypersurface \(\Sigma\) with \(\Sigma \perp k^a\) near to \(i^0\). Make a small perturbation to the initial data on \(\Sigma\), satisfying the constraint equations to \(1^{\text{st}}\) order. Then \eqref{firstlaw} is satisfied, where \(\delta A\) is the change in area of the bifurcation surface \(A\), \(\delta M\) is the change in ADM mass, \(\partial J\) is the change in ADM angular momentum (defined analogously to ADM mass). (For Einstein-Maxwell theory, we get an extra term \(\Phi_H \delta Q\) on the RHS, where \(\Phi_H\) is the potential difference between the eveny horizon and infinity.)
+
+There is another version of this law. Suppose we start with a Kerr spacetime and add an energy-momentum tensor \(T_{ab}=O(\epsilon)\). Then we can define \(J^c = -T\indices{^a_b}k^b\) and \(L^a = T\indices{^a_b}m^b\). We find that \(\nabla_a J^a\) and \(\nabla_a L^a\) are \(O(\epsilon^2)\), so these are conserved to first order.
+
+Let \(\mathcal{N}\) be the portion of \(\mathcal{H}^+\) to the future of \(B\), and consider the case where some matter crosses \(\mathcal{N}\). The energy crossing \(\mathcal{N}\) is
+\begin{equation}
+    \delta M = -\int_{\mathcal{N}} *J
+\end{equation}
+and the angular momentum is
+\begin{equation}
+    \delta J = -\int_{\mathcal{N}} *J.
+\end{equation}
+Pick coordinates \((y_1,y_2)\) on \(B\), and let \(\lambda\) be the affine parameter distance along generators of \(\mathcal{N}\) from \(B\) and \(r\) the affine parameter along null geodesics orthogonal to \(\mathcal{N}\). The metric takes the form \(\left.\dd{s}^2\right|_{\mathcal{N}} = 2\dd{r}\dd{\lambda}+h_{ij}\dd{y^i}\dd{y^j}\) and hence the volume form is \(\left.\eta\right|_{\mathcal{N}} = \sqrt{h}\dd{\lambda}\wedge\dd{r}\wedge\dd{y^1}\wedge\dd{y^2}\). The orientation of \(\mathcal{N}\) to use in evaluating the integrals is the one used in Stokes' theorem, viewing \(\mathcal{N}\) as the boundary of the region \(r>0\). This is \(\dd{\lambda}\wedge\dd{y^1}\wedge\dd{y^2}\). On \(\mathcal{N}\) we then have
+\begin{equation}
+    (*J)_{\lambda 12} = \sqrt{h}J^r = \sqrt{h}J_\lambda = \sqrt{h}U\vdot J
+\end{equation}
+where \(U = \pdv{\lambda}\). Hence
+\begin{equation}
+    \delta M = -\int_{\mathcal{N}}\dd{\lambda}\dd[2]{y} \sqrt{h}U\vdot J
+\end{equation}
+and
+\begin{equation}
+    \delta J = -\int_{\mathcal{N}}\dd{\lambda}\dd[2]{y} \sqrt{h}U\vdot L.
+\end{equation}
+To order \(\epsilon\), we can replace \(h\) by \(g\) in these expressions. Thus we can use the fact that \(N\) is a Killing horizon with KVF \(\xi^a=k^a+\Omega_H m^a\). Hence \(\left.\xi\right|_{\mathcal{N}}=fU^a\), and
+\begin{equation}
+    \xi\vdot\dd{\log|f|}=\kappa \implies U\vdot\dd{f}=\kappa \implies \pdv{f}{\lambda}=\kappa. 
+\end{equation}
+Thus \(f=\kappa\lambda + f_0(y)\). Since \(\left.\xi^a\right|_B=0\), we have \(f_0=0\), so \(\left.xi^a\right|_{\mathcal{N}}=\kappa\lambda U^a\). Hence
+\begin{align}
+    \partial M &= \int_{\mathcal{N}} \dd{\lambda}\dd[2]{y}\sqrt{h}T_{ab}U^ak^b \\
+               &= \int_{\mathcal{N}} \dd{\lambda}\dd[2]{y}\sqrt{h}T_{ab}U^a(\xi^b-\Omega_H m^b) \\
+               &= 
+    \kappa\int_{\mathcal{N}} \dd{\lambda}\dd[2]{y}\lambda\sqrt{h}\underbrace{T_{ab}U^aU^b}_{\mathclap{=\frac{1}{8\pi}R_{ab}U^aU^b}}
+    - \Omega_H\underbrace{\int_{\mathcal{N}} \dd{\lambda}\dd[2]{y}\sqrt{h}T_{ab}U^a m^b}_{=-\delta J}
+\end{align}
+\begin{equation}
+    \implies \delta M - \Omega_H \delta J = \frac{\kappa}{8\pi} \int_{\mathcal{N}}\dd{\lambda}\dd[2]{y}\sqrt{h}\lambda R_{ab}U^aU^b.
+\end{equation}
+Using Raychaudhuri's equation
+\begin{equation}
+    \dv{\theta}{\lambda} = \underbrace{\dots}_{O(\epsilon^2)} - R_{ab}U^aU^b
+\end{equation}
+we have
+\begin{align}
+    \delta M-\Omega_H\delta J &= - \frac{\kappa}{8\pi} \int\dd[2]{y}\int_0^\infty\dd{\lambda}\sqrt{h}\lambda\dv{\theta}{\lambda}\\
+                              &= - \frac{\kappa}{8\pi} \int\dd[2]{y}\left\{ [\sqrt{h}\lambda\theta]^\infty_0 - \int^\infty_0\dd{\lambda}\left(\sqrt{h}+\lambda\dv{\sqrt{h}}{\lambda}\right)\theta\right\}
+\end{align}
+Recall that \(\dv{\sqrt{h}}{\lambda} = \theta\sqrt{h} = O(\epsilon)\), so the \(\lambda \dv{\sqrt{h}}{\lambda}\theta\) term is \(O(\epsilon^2)\) and can be ignored. We assume that the spacetime settles down to some stationary final state, so that \(\sqrt{h}\to\) some finite limit as \(\lambda \to \infty\). Then 
+\begin{equation}
+    \int^\infty_0\sqrt{h}\theta\dd{\lambda} = \int_0^\infty \dv{\sqrt{h}}{\lambda} \dd{\lambda} = [\sqrt{h}]_0^\infty = \delta\sqrt{h}
+\end{equation}
+is finite. Thus \(\theta\) must be \(o(1/\lambda)\), so the boundary term \([\sqrt{h}\lambda\theta]^\infty_0=0\) also. Finally we have
+\begin{equation}
+    \delta M - \Omega_H \delta J = \frac{\kappa}{8\pi}\int_B\delta\sqrt{H}\dd[2]{y} = \frac{\kappa}{8\pi} \delta A,
+\end{equation}
+where \(\delta A\) is the change in the area of the horizon between early and late times.
+
+\subsection{Second law of BH mechanics}
+\lecture{02/03/16}
+\begin{theorem}[second law]
+    Let \((\mathcal{M},g)\) be a strongly asymptotically predictable spacetime that obeys Einstein's equations and the NEC. Let \(U\in\mathcal{M}\) be a globally hyperbolic region with \(\overline{J^-(\scri^+)}\subset U\), \(\Sigma_1,\Sigma_2\) be spacelike Cauchy surfaces for \(U\) such that \(\Sigma_2 \subset J^+(\Sigma_1)\), and \(H_i = \Sigma_i \cap \mathcal{H}^+\). Then \(\operatorname{area}(H_2)\ge\operatorname{area}(H_1)\).
+\end{theorem}
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+            \draw[rounded corners] (0,0) -- (1,2) -- (6,2) -- (5.5,0) -- cycle;
+            \draw[rounded corners] (0,2.5) -- (1,4.5) -- (6,4.5) -- (5.5,2.5) -- cycle;
+
+            \node at (0,1) {\(\Sigma_1\)};
+            \node at (0,3.5) {\(\Sigma_2\)};
+
+            \draw (3.1,1) ellipse (0.6 and 0.3);
+
+            \draw (3.1,3.5) ellipse (1.4 and 0.7);
+
+            \draw[thick,->] (3.7,1) -- (4.1,2.25);
+            \draw[thick] (4.1,2.25) -- (4.5,3.5);
+        
+            \node[left] at (2.5,1) {\(H_1\)};
+            \node[left] at (1.7,3.5) {\(H_2\)};
+    \end{tikzpicture}
+\end{figure}
+\begin{proof}
+    Assume that the inextendible generators of \(\mathcal{H}^+\) are future-complete (we say \(\mathcal{H}\) is \emph{non-singular}. Suppose \(\theta < 0\) at some \(p \in \mathcal{H}^+\). By continuity, \(\theta < 0\) at some \(q \in \mathcal{H}^+\) in the near future of \(p\) along a geodesic \(\gamma\), and therefore there is a point \(r\) conjugate to \(p\) along \(\gamma\). Therefore we can deform \(\gamma\) into a timelike curve from \(p\) to \(r\), but \(\mathcal{H}^+\) is achronal, so this is a contradiction, and thus \(\theta \ge 0\) on \(\mathcal{H}^+\).
+
+    Let \(p\in H_1\). The generator of \(\mathcal{H}^+\) through \(p\) cannot leave \(\mathcal{H}^+\), since generators don't have future endpoints, so it must intersect \(H_2\) (as \(\Sigma_2\) is a Cauchy surface). This defines a map \(\phi:H_1\to H_2\). We have \(\operatorname{area}(H_2)>\operatorname{area}(\phi(H_1))\) since \(\phi(H_1)\subset H_2\). Since \(\theta \ge 0\), we have \(\operatorname{area}(\phi(H_1))\ge\operatorname{area}(H_1)\).
+\end{proof}
+
+\begin{eg}
+    In the spherical collapse of a star into a black hole, the radius of \(\mathcal{H}^+\) can only increase.
+\end{eg}
+\begin{eg}
+    Consider the merger of 2 black holes of areas \(A_1\) and \(A_2\) that are initially Schwarzschild and well-seperated, and settle down to a Schwarzschild final state with area \(A_3\)
+
+    The second law tells us that \(A_3 \ge A_1 + A_2\). In particular this means
+    \begin{equation}
+        16\pi M_3^2 \ge 16\pi(M_1^2 + M_2^2)
+    \end{equation}
+    and so we have a lower bound on the mass of the final black hole \(M_3 \ge \sqrt{M_1^2 + M_2^2}\). The energy radiated in the merger is \(M_1 + M_2 - M_3\), so we have an upper bound on the efficiency of the merger
+    \begin{equation}
+        \frac{M_1+M_2-M_3}{M_1+M_2} \le 1 - \frac{\sqrt{M_1^2+M_2^2}}{M_1+M_2} \le 1 - \frac{1}{\sqrt{2}}.
+    \end{equation}
+\end{eg}
+
+Consider initial data \((\Sigma,h_{ab},K_{ab})\) that is asymptotically flat with a trapped surface behind an apparent horizon of area \(A_{\text{app}}\), and let \(E_i\) be the ADM energy of this data. Weak cosmic censorship says this should settle down to a stationary black hole at late time, and the uniqueness theorems say it should be a Kerr black hole; let the mass of this black hole be \(M_f\) and its angular momentum be \(J_f\). By the second law, \(A_{\text{app}} \le A_i\), and we have 
+\begin{equation}
+    A_i\le A_{\text{Kerr}} = 8\pi \left(M_f^2 + \sqrt{M_f^4-J_f^2}\right) \le 16\pi M_f^2 \le 16\pi E_i^2,
+\end{equation}
+where the last inequality holds because energy can only be carried away (by gravitational waves) in this process. Hence we have the \emph{Penrose inequality}:
+\begin{equation}
+    E_i \ge \sqrt{\frac{A_{\text{app}}}{16\pi}}
+\end{equation}
+
+\section{QFT in Curved Spacetime}
+Consider a black hole in its rest frame i.e.\ with ADM energy \(E=M\). The first law of black hole mechanics
+\begin{equation}
+    \dd{E} = \frac{\kappa}{8\pi} \dd{A} + \Omega_H\dd{J}
+\end{equation}
+looks a lot like the first law of thermodynamics
+\begin{equation}
+    \dd{E} = T\dd{S} + \mu\dd{J}.
+\end{equation}
+This suggests a correspondence
+\begin{equation}
+    \begin{array}{rcl}
+        \text{thermodynamics} & \leftrightarrow & \text{BH mechanics} \\
+        T &\leftrightarrow& \lambda\kappa\\
+        S &\leftrightarrow& \frac{A}{8\pi\lambda}\\
+        \mu &\leftrightarrow& \Omega_H
+    \end{array}
+\end{equation}
+for some constant \(\lambda\). The zeroth laws say that \(T\) and \(\kappa\) are constant in equilibrium. The second laws say that \(S\) and \(A\) cannot decrease.
+
+This seems to suggest that black holes are thermal objects, but classical general relativity forbids the radiation that we would exect such objects to have. If however we take quantum mechanics into account, we will see that black holes \emph{do} radiate, with temperature \(T_H=\frac{\hbar\kappa}{2\pi}\) (so \(\lambda = \frac{\hbar}{2\pi}\)).
+
+\subsection{Free scalar field}
+We assume that the spacetime \((\mathcal{M},g)\) is globally hyperbolic, with metric given by
+\begin{equation}
+    \dd{s}^2 = -N\dd{t}^2 + h_{ij}(\dd{X}^i+N^i\dd{t})(\dd{X}^j+N^j\dd{t}).
+\end{equation}
+Let \(\Sigma_t\) denote the Cauchy surfaces given by \(t\) constant, and \(n_a\) be their normal. We have \(n_a = -N(\dd{t})_a\) and \(\sqrt{-g} = N\sqrt{h}\). The action for the free scalar field is
+\begin{equation}
+    S = \int_\mathcal{M} \dd{T}\dd[3]{x}\sqrt{-g}\left(-\frac{1}{2}g^{ab}\partial_a\phi\partial_b\phi-\frac{1}{2}m^2\phi^2\right).
+\end{equation}
+Varying \(\phi\) gives the Klein-Gordon equation
+\begin{equation}
+    g^{ab}\nabla_a\nabla_b\phi - m^2\phi = 0,
+\end{equation}
+and its conjugate momentum is given by
+\begin{align}
+    \pi(x) = \fdv{S}{(\partial_t\phi(x))}
+    &= -\sqrt{-g}g^{t\mu}\partial_\mu\phi \\
+    &= -N\sqrt{h}(\dd{t})_\nu g^{\nu\mu}\partial_\mu\phi \\
+    &= \sqrt{h}n^\mu\partial_\mu\phi.
+\end{align}
+To quantise, we promote \(\phi(x)\) and \(\pi(x)\) to operators and impose the canonical commutation relations
+\begin{equation}
+    [\phi(t,\vb{x}),\pi(t,\vb{x}')] = i\delta^3(\vb{x}-\vb{x}'),
+\end{equation}
+\begin{equation}
+    [\phi(t,\vb{x}),\phi(t,\vb{x}')] = [\pi(t,\vb{x}),\pi(t,\vb{x}')] = 0.
+\end{equation}
+
+In the classical picture we define \(S\) to be the set of complex solutions of the Klein-Gordon equation. Note that these solutions are specified uniquely by \(\phi,\partial\phi\) on \(\Sigma_0\). Let \(\alpha,\beta\in S\). We define a bilinear form on \(S\) by
+\begin{equation}
+    (\alpha,\beta) = -\int_{\Sigma_0}\dd[3]{x}\sqrt{h}n_aj^a(\alpha,\beta) \qq{where} j(\alpha,\beta) = -i (\overline{\alpha}\dd{\beta}-\beta\dd{\overline{\alpha}}).
+\end{equation}
+Note that \(\nabla^aj_a=-i(\overline{\alpha}\nabla^2\beta-\beta\nabla^2\overline{\alpha}) = -im^2(\overline{\alpha}\beta-\beta\overline{\alpha}) = 0\), so the integral is independent of the choice of Cauchy surface.
+
+This bilinear form has the following properties:
+\begin{itemize}
+    \item It is \emph{Hermitian}: \((\alpha,\beta)=\overline{(\beta,\alpha)}\).
+    \item It is non-degenerate: \((\alpha,\beta) = 0 \Forall \beta \implies \alpha=0\).
+    \item \((\alpha,\beta) = - (\overline{\beta},\overline{\alpha})\).
+\end{itemize}
+Note that it is not positive definite (as for example the last property above implies \((\alpha,\alpha) = - (\overline{\alpha},\overline{\alpha})\)).
+
+In Minkowski space, \((\cdot,\cdot)\) is positive definite for \(S_p=\{\text{positive frequency solutions}\}\). A basis for \(S_p\), labelled by momentum \(\vb{p}\), is given by
+\begin{equation}
+    \psi_{\vb{p}} = \frac{1}{(2\pi)^{\frac{3}{2}}(2p^0)^{\frac{1}{2}}}e^{ip\vdot x},
+\end{equation}
+where \(p^0 = \sqrt{\vb{p}^2+m^2}\). If \(k=\pdv{t}\), then \(\mathcal{L}_k\psi_{\vb{p}}=-ip^0\psi_{\vb{p}}\), so its eigenvalue is negative imaginary, which is what we mean by positive frequency. Similarly, \(\overline{\psi_{\vb{p}}}\) has negative frequency, and we denote the space of these solutions by \(\overline{S_p}\). Note that \(S_p\) and \(\overline{S_p}\) are orthogonal, and we have \(S=S_p\oplus\overline{S_p}\).
+
+In a curved spacetime, there is no a priori concept of positive frequency. We will make a choice of decomposition such that the following holds:
+\begin{equation}
+    S = \underbrace{S_p}_{\mathclap{\substack{\text{positive frequency}\\(\cdot,\cdot)>0}}}
+    \oplus
+    \overbrace{\overline{S_p}}^{\mathclap{\substack{\text{negative frequency}\\(\cdot,\cdot)<0}}}
+\end{equation}
+In a general spacetime there are many ways to do this.
+
+\lecture{04/03/16}
+We define positive frequency creation and annihilation operators for a mode \(f\in S_p\) by \(a(f) = (f,\phi)\) and \(\herm{a}(f) = -(\overline{f},\phi)\) (this is consistent because \(\phi=\herm{\phi}\)). For example, in Minkowski space \(f=\psi_{\vb{p}}\) for some \(\vb{p}\), and \(a(f) = a_{\vb{p}}\). When we promote these to operators, the canonical commutation relations imply
+\begin{equation}
+    [a(f),\herm{a(g)}] = (f,g) \qq{and} [a(f),a(g)]=[\herm{a(f)},\herm{a(g)}] = 0.
+\end{equation}
+
+We define a vacuum state \(\ket{0}\) by \(a(f)\ket{0}=0\) for all \(f\in S_p\), normalised so that \(\braket{0}{0}=1\). Given a basis \(\{\psi_i\}\) for \(S_p\), we write \(a_i=a(\psi_i)\). An \(N\)-particle state is then given by
+\begin{equation}
+    a_{i_1}^\dagger a_{i_2}^\dagger \dots a_{i_N}^\dagger \ket{0}.
+\end{equation}
+The Hilbert space of the theory is spanned by \(\ket{0}\), 1-particle states, 2-particle states, and so on. This space has positive definite inner product, for example
+\begin{align}
+    \norm{a^\dagger(f)\ket{0}}^2 &= \mel{0}{a(f)a^\dagger(f)}{0} \\
+                                 &= \mel{0}{[a(f),a^\dagger(f)]}{0} \\
+                                 &= (f,f)\braket{0}{0} \\
+                                 &= (f,f) > 0.
+\end{align}
+
+Now suppose we choose a different decomposition \(S = S_p' \oplus \overline{S_p'}\). Let \(f'\in S_p'\) and write \(f' = f + \overline{g}\), where \(f,g\in S_p\). Then \(a(f') = (f,\phi) + (\overline{g},\phi) = a(f)-a(g)^\dagger\), and we have \(a(f')\ket{0}\ne0\), i.e.\ \(\ket{0}\) is not the vacuum with respect to \(S_p'\). Thus we can see that the concept of a particle is ambiguous in general when considering QFT in a curved spacetime.
+
+Consider a stationary spacetime with future-directed timelike KVF \(k^a\). This gives a map \(\mathcal{L}_k:S\to S\) that is antiHermitian with respect to \((\cdot,\cdot)\), so its eigenvalues are imaginary. We write \(\mathcal{L}_ku=-i\omega u\) and define positive frequency by \(\omega>0\), which implies \((u,u)>0\). In this case there \emph{is} a preferred definition of particles, as we can just write \(S_p = \{\text{positive frequency modes}\}\).
+
+\subsection{Bogoliubov transformations}
+Let \(\{\psi_i\}\) be an orthonormal basis for \(S_p\), so that
+\begin{equation}
+    (\psi_i,\psi_j) = \delta_{ij} \qq{and} (\psi_i,\overline{\psi_j})=0,
+\end{equation}
+and define \(a_i=a(\psi_i)\). We cam decompose any state \(\phi\) in terms of this basis
+\begin{equation}
+    \phi = \sum_i \left(a_i\psi_i + a_i^\dagger\overline{\psi_i}\right),
+\end{equation}
+and the commutation relations become
+\begin{equation}
+    [a_i,a_j]=\delta_{ij},\quad[a_i,a_j]=[a_i^\dagger,a_j^\dagger]=0.
+\end{equation}
+Now let \(S_p'\) be another choice, with orthonormal basis \(\{\psi_i'\}\). The \emph{Bogoliubov transformation} defines this change of basis by two matrices \(A\) and \(B\):
+\begin{align}
+    \psi_i' &= \sum_j \left(A_{ij}\psi_j + B_{ij}\overline{\psi_j}\right) \\
+    \overline{\psi_j'} &= \sum_j \left(\overline{B_{ij}}\psi_j + \overline{A_{ij}}\overline{\psi_j}\right)
+\end{align}
+
+Let \(a_i' = a(\psi_i')\). Exercise: show that 
+\begin{equation}
+    a_i'=\sum_j\left(\overline{A_{ij}}a_j-\overline{B_{ij}}a_j^\dagger\right).
+\end{equation}
+Using the commutation relations above, we can then deduce
+\begin{equation}
+    \sum_k \left(\overline{A_{ik}}A_{jk} - \overline{B_{ik}}B_{jk}\right) = \delta_{ij} \qq{i.e.} AA^\dagger - BB^\dagger = \identity
+\end{equation}
+and
+\begin{equation}
+    \sum_k \left(A_{ik}B_{jk} - B_{ik}A_{jk}\right) = 0 \qq{i.e.} AB^\intercal - BA^\intercal = 0.
+\end{equation}
+
+\subsection{Particle production in a non-stationary spacetime}
+Consider a globally hyperbolic spacetime \((\mathcal{M},g)\) that is stationary only at late and early times, and write \(\mathcal{M}=\mathcal{M}_+\cup\mathcal{M}_0\cup\mathcal{M}_-\), where \(\mathcal{M}_+\) is late times and stationary, and \(\mathcal{M}_-\) is early times and stationary.
+
+\begin{wrapfigure}{l}{0.4\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=0.7]
+        \draw[thick,->] (0,0) -- (0,6) node[above] {time};
+        \draw (1,2) -- (7,2);
+        \draw (1,4) -- (7,4);
+        \node at (2.5,1) {\(\mathcal{M}_-\)};
+        \node at (2.5,3) {\(\mathcal{M}_0\)};
+        \node at (2.5,5) {\(\mathcal{M}_+\)};
+        \node at (4.5,1) {stationary};
+        \node at (4.5,5) {stationary};
+    \end{tikzpicture}
+\end{wrapfigure}
+Since \((\mathcal{M}_\pm,g)\) are stationary, there exist for each of them preferred choices of \(S_p^\pm\). Since the spacetime is globally hyperbolic, we can extend these to two choices for the entire spacetime. 
+
+Let \(u_i^\pm\) be orthonormal bases for \(S_p^\pm\), and write \(a_i^\pm=a(u_i^\pm)\). As before, we can write
+\begin{equation}
+    u_i^\dagger = \sum_j \left(A_{ij}u_j^- + B_{ij}\overline{u_j^-}\right)
+\end{equation}
+and 
+\begin{equation}
+    a_i^\dagger = \sum_j \left(\overline{A_{ij}}a_j^- - \overline{B_{ij}}{a_j^-}^\dagger\right).
+\end{equation}
+
+Assume there are no particles in \(\mathcal{M}_-\). More concretely, we define the vacua with respect to \(S_p^\pm\) by \(a_i^\pm\ket{0\pm}=0 \Forall i\). Also assume that no particles are present at early times, so that the state is \(\ket{0-}\). The number operator for the \(i^\text{th}\) late time mode is \(N_i^+ = {a_i^+}^\dagger a_i^+\), and its expectation value is
+\begin{align}
+    \mel{0-}{N_i^+}{0-} &= \mel{0-}{{a_i^+}^\dagger a_i^+}{0-} \\
+                        &= \sum_{jk} \mel{0-}{a_k^-(-B_{jk})(-\overline{B_{ij}}){a_j^-}^\dagger}{0-} \\
+                        &= \sum_{jk}B_{ij}\overline{B_{ij}} \underbrace{\mel{0-}{a_k^-{a_j^-}^\dagger}{0-}}_{=\delta_{jk}} \\
+                        &= \sum_j B_{ij}\overline{B_{ij}} = (BB^\dagger)_{ii}.
+\end{align}
+Therefore the total expected number of particles is \(\tr(BB^\dagger) = \tr(B^\dagger B)\) (and this is zero iff \(B=0\) i.e.\ iff \(S^+_p=S^-_p\)).
+
+\subsection{Rindler spacetime}
+Consider spacetime geometry near the horizon fo a Schwarzschild black hole. We define a new coordinate \(x\) by
+\begin{equation}
+    r = 2M + \frac{x^2}{8M}
+\end{equation}
+and expand near \(x=0\). The metric becomes
+\begin{equation}
+    \dd{s}^2 = -\kappa^2x^2\dd{t}^2 + \dd{x}^2 + (2M)^2 \dd{\Omega}^2 + \dots
+\end{equation}
+where \(\kappa=\frac{1}{4M}\) is the surface gravity. Ignoring the subleading terms and fixing the spherical coordinates, we obtain \emph{Rindler spacetime} (\(x>0\)):
+\begin{equation}
+    \dd{s}^2 = -\kappa^2x^2\dd{t}^2 + \dd{x}^2
+\end{equation}
+
+Let \(U=-xe^{-\kappa t}>0\) and \(V=xe^{\kappa t}>0\). Then we can write the metric as
+\begin{equation}
+    \dd{s}^2 = -\dd{U}\dd{V} = -\dd{T}^2 + \dd{X}^2
+\end{equation}
+where \(U = T-X\) and \(V = T+X\). With these coordinates we can draw a Kruskal diagram:
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=1.3]
+        \fill[gray!30, rounded corners] (0,0) -- (2.1,2.1) .. controls (3,1) and (3,-1) .. (2.1,-2.1) -- (0,0);
+        \node at (2,0) {Rindler};
+
+        \foreach \k in {0,1,2,3}
+        {
+            \begin{scope}[rotate={90*\k}]
+                \draw[domain={pow(-1,\k)*-1.9}:0,smooth,variable=\x,thick] plot({-sqrt(1+\x*\x))},{\x});
+                \draw[domain=0:{pow(-1,\k)*1.9},smooth,variable=\x,<-,thick] plot({-sqrt(1+\x*\x))},{\x});
+            \end{scope}
+        }
+        \node[left] at (-1,0) {\(k\)};
+        \node[above] at (0,1) {\(k\)};
+        \node[right] at (1,0) {\(k\)};
+        \node[below] at (0,-1) {\(k\)};
+
+        \draw (0.1,0) node[right] {I};
+        \draw (0,0.1) node[above] {II};
+        \draw (0,-0.1) node[below] {III};
+        \draw (-0.1,0) node[left] {IV};
+
+        \draw[very thick,->] (-2,-2) -- (2,2) node[above right] {\(V\)};
+        \draw[very thick,->] (2,-2) -- (-2,2) node[above left] {\(U\)};
+    \end{tikzpicture}
+\end{figure}
+\(\{U=0\}\cup\{V=0\}\) is a bifurcate Killing horizon of \(k=\pdv{t}\), with surface gravity \(\pm\kappa\). 
+
+We have \(k=\kappa\left(V\pdv{V}-U\pdv{U}\right)\). Consider a ``Rindler observer'' on an orbit of \(k\) (lines of constant \(x\)). The proper acceleration of the observer is given by
+\begin{equation}
+    A_a = \frac{1}{x}(\dd{x})_a \implies |A| = \frac{1}{x}.
+\end{equation}
+We use \(k\) to define positive frequency (this differs from the usual Minkowskian definition that uses \(\pdv{T}\)).
+
+\lecture{07/03/16}
+Consider a massless scalar field. The Klein-Gordon equation reads
+\begin{equation}
+    \left(-\pdv[2]{T} + \pdv[2]{X}\right)\phi = \left(-\kappa^2x^2\pdv[2]{t} + \pdv[2]{x}\right)\phi = 0.
+\end{equation}
+A basis of positive frequency Minkowski modes is given by
+\begin{equation}
+    u_p(T,X) = c_pe^{-i(\omega T - px)} \qq{where} \sigma = |p|.
+\end{equation}
+Alternatively, a positive frequency Rindler eigenmode satisfies
+\begin{equation}
+    \mathcal{L}_k\phi = -i\sigma\phi
+\end{equation}
+for some \(\sigma>0\). From this, we deduce \(\phi \propto e^{-i\sigma t}\), and solving the K-G equation gives \(\phi \propto e^{-i\sigma t} x^{iP}\), where \(P = \pm \frac{\sigma}{\kappa}\). Hence a basis of positive frequency Rindler modes is given by
+\begin{equation}
+    u_p^R(T,X) = c_pe^{-i(\sigma t - p \log x)} \qq{where} \sigma = \kappa |p|.
+\end{equation}
+
+Let \(N_p\) be the number operator for a Rindler observer, and \(\ket{0}\) the Minkowski vacuum. It can be shown that
+\begin{equation}
+    \mel{0}{N_p}{0} = \frac{1}{e^{\frac{2\pi\sigma}{\kappa}}-1}.
+\end{equation}
+A Rindler observer has 4-velocity \(\frac{1}{\kappa x}\pdv{t}=\frac{A}{\kappa}\pdv{t}\), so it measures frequency \(\hat{\sigma} = \frac{A}{\kappa}\sigma\), and we notice that the number of particles follows a Planck spectrum at the Unruh temperature
+\begin{equation}
+    T_U = \frac{A}{2\pi}.
+\end{equation}
+
+\subsection{Wave equation in Schwarzschild solution}
+Decompose the field in terms of spherical harmonics:
+\begin{equation}
+    \phi  = \sum^\infty_{l=0}\sum^{l}_{m=-l}\frac{1}{r}\varphi_{lm}(t,r)Y_{lm}(\theta,\phi)
+\end{equation}
+The (massless) K-G equation \(\nabla^a\nabla_a\phi=0\) implies
+\begin{equation}
+    \left[\pdv[2]{t}-\pdv[2]{r_*}+V_l(r_*)\right]\varphi_{lm}=0
+\end{equation}
+where
+\begin{equation}
+    V_l(r_*) = \left(1-\frac{2M}{r}\right)\left(\frac{l(l+1)}{r^2} + \frac{2M}{r^3}\right).
+\end{equation}
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \draw[domain=-3:3,smooth,variable=\x] plot({\x},{2*exp(-(\x-0.4)*(\x-0.4))+0.1});
+        \draw[thick,->] (0,-0.5) -- (0,2.5) node[right] {\(V_l\)};
+        \draw[thick,->] (-3,0) -- (3,0) node[right] {\(r_*\)};
+
+        \draw[thick,->] (2.6,1.3) -- (3.1,1.3) node[right] {\(\scri^+\)};
+        \draw[thick,->] (-2.6,1.3) -- (-3.1,1.3) node[left] {\(\mathcal{H}^+\)};
+    \end{tikzpicture}
+\end{figure}
+
+Consider a field with arbitrary initial data at \(t=t_0\). For late and early times (large \(|t|\)), the potential vanishes, so the field will decompose into outgoing and ingoing parts:
+\begin{equation}
+    \varphi_{lm} \approx f_\pm(u) + g_\pm(v) \qq{for} t\to \pm\infty
+\end{equation}
+\(f_\pm\) and \(g_\pm\) are localised wavepackets, i.e. they vanish for \(|u|\to\infty\) and \(|v|\to\infty\) respectively. Thus we have \(\left.\varphi_{lm}\right|_{\scri^+} = f_+(u)\) and \(\left.\varphi_{lm}\right|_{\mathcal{H}^+}=g_+(v)\), and \(\varphi_{lm}\) is uniquely determined by its behaviour on \(\scri^+\cup\mathcal{H}^+\). 
+
+We define \emph{out} and \emph{down} modes as solutions vanishing on \(\mathcal{H}^+\) and \(\scri^+\) respectively. We can write any solution \(\varphi_{lm}\) as an out modes \(+\) down modes, and the inner product between the two vanishes.
+
+Similarly, define \emph{in} and \emph{up} modes as solutions vanishing on \(\mathcal{H}^-\) and \(\scri^-\) respectively. Any solution can be written as in modes \(+\) down modes, and again their inner products vanish.
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=1.7]
+        \begin{scope}[shift={(0,0)}]
+            \draw (0,0) -- (1,-1) -- (2,0) -- (1,1) -- cycle;
+            \node[above left] at (0.5,0.5) {\(\mathcal{H}^+\)};
+            \node[below left] at (0.5,-0.5) {\(\mathcal{H}^-\)};
+            \node[below right] at (1.5,-0.5) {\(\scri^-\)};
+            \node[above right] at (1.5,0.5) {\(\scri^+\)};
+            \node at (1,-1.25) {out};
+
+            \begin{scope}[shift={(0.5,-0.5)},scale=0.13,rotate=-45]
+                \draw[domain=-2:2,smooth,variable=\x] plot({\x},{1.3*exp(-\x*\x)});
+                \draw[thick,->] (0,2) -- (0,3.6);
+            \end{scope}
+            \begin{scope}[shift={(1.5,-0.5)},scale=0.13,rotate=45]
+                \draw[domain=-2:2,smooth,variable=\x] plot({\x},{1.3*exp(-\x*\x)});
+                \draw[thick,->] (0,2) -- (0,3.6);
+            \end{scope}
+            \begin{scope}[shift={(1.26,0.74)},scale=0.13,rotate=-45]
+                \draw[domain=-2:2,smooth,variable=\x] plot({\x},{1.3*exp(-\x*\x)});
+            \end{scope}
+        \end{scope}
+
+        \begin{scope}[shift={(4,0)}]
+            \draw (0,0) -- (1,-1) -- (2,0) -- (1,1) -- cycle;
+            \node[above left] at (0.5,0.5) {\(\mathcal{H}^+\)};
+            \node[below left] at (0.5,-0.5) {\(\mathcal{H}^-\)};
+            \node[below right] at (1.5,-0.5) {\(\scri^-\)};
+            \node[above right] at (1.5,0.5) {\(\scri^+\)};
+            \node at (1,-1.25) {up};
+
+            \begin{scope}[shift={(0.5,-0.5)},scale=0.13,rotate=-45]
+                \draw[domain=-2:2,smooth,variable=\x] plot({\x},{1.3*exp(-\x*\x)});
+                \draw[thick,->] (0,2) -- (0,3.6);
+            \end{scope}
+            \begin{scope}[shift={(1.26,0.74)},scale=0.13,rotate=-45]
+                \draw[domain=-2:2,smooth,variable=\x] plot({\x},{1.3*exp(-\x*\x)});
+            \end{scope}
+            \begin{scope}[shift={(0.74,0.74)},scale=0.13,rotate=45]
+                \draw[domain=-2:2,smooth,variable=\x] plot({\x},{1.3*exp(-\x*\x)});
+            \end{scope}
+        \end{scope}
+    \end{tikzpicture}
+\end{figure}
+Consider \(\phi\propto e^{-i\omega t}\), \(\phi_{\omega l m} = \frac{1}{r} e^{-i\omega t}R_{\omega l m}(r)Y_{lm}(\theta,\phi)\), \(\omega>0\). We say that \(\phi\) is ``positive frequency'' if we can write it as a superposition of \(\phi_{\omega l m}\). If we substitute \(\varphi_{lm} = e^{-i\omega t}R_{\omega l m}\) into the wave equation, we obtain
+\begin{equation}
+    \left[-\pdv[2]{r_*} + V_l(r_*)\right] R_{\omega l m} = \omega^2 R_{\omega l m}.
+\end{equation}
+Since the potential vanishes for \(|r_*| \to \infty\), we have asymptotically \(R_{\omega l m} \sim e^{\pm i \omega r_*}\). Therefore
+\begin{equation}
+    \phi_{\omega l m} \propto e^{-i\omega(t\mp r_*)} = 
+    \begin{cases}
+        e^{-i\omega u} & \text{outgoing}\\
+        e^{-i\omega v} & \text{ingoing}
+    \end{cases}.
+\end{equation}
+
+\subsection{Hawking radiation}
+Consider a collapsing star. This is time dependent, so we expect some particle production. Surprisingly, this particle production persists to late times.
+
+Since \(\mathcal{H}^- = \varnothing\), there are no up modes. Let \(\{f_i\}\) be a basis for in modes with positive frequency near \(\scri^-\), \(\{p_i\}\) be a basis for out modes with positive frequency near \(\scri^+\), and \(\{q_i,\overline{q_i}\}\) be a basis of down modes. Thus we have two different bases for \(S\): \(\{f_i,\overline{f_i}\}\) and \(\{p_i,\overline{p_i},q_i,\overline{q_i}\}\). We assume that both bases are orthonormal.
+
+\begin{wrapfigure}{l}{0.5\linewidth}
+    \centering
+    \begin{tikzpicture}[]
+        \fill[gray!20] (0,6) -- (0,0) .. controls (1,2) and (1,4) .. (1,6) -- cycle;
+        \draw (0,6) -- (0,0) -- (4,4) -- (2,6) -- (0,4);
+        \draw[decorate,decoration=snake] (2,6) -- (0,6);
+        
+        \node[above right] at (3,5) {\(\scri^+\)};
+        \node[below right] at (2,2) {\(\scri^-\)};
+        \node[below right] at (1.5,5.5) {\(\mathcal{H}^+\)};
+    \end{tikzpicture}
+\end{wrapfigure}
+Let \(a_i = (f_i,\phi)\) and \(b_i = (p_i,\phi)\) be annihilators for the in and out modes respectively. We can expand
+\begin{equation}
+    p_i = \sum_j\left(A_{ij}f_j + B_{ij}\overline{f_j}\right),
+\end{equation}
+and as before we obtain
+\begin{equation}
+    b_i = \sum_j\left(\overline{A_{ij}}a_j - B{ij}a_j^\dagger\right).
+\end{equation}
+Assume that the state is the ``in'' vacuum \(\ket{0}\), i.e.\ \(a_i \ket{0}=0\) for all \(i\). The expected number of particles in the \(i^\text{th}\) out mode is
+\begin{equation}
+    \mel{0}{b_i^\dagger b_i}{0} = (BB^\dagger)_{ii}.
+\end{equation}
+
+\lecture{09/03/16}
+In order to calculate this, we will need to determine the Bologiubov coefficients \(B_{ij}\).
+
+\begin{wrapfigure}{r}{0.4\linewidth}
+    \centering
+    \begin{tikzpicture}
+        \draw[domain=-2.1:2.1,smooth,step=0.05cm,variable=\x] plot({\x},{1.3*cos(2800*\x)*exp(-\x*\x)});
+        \draw[thick,->] (-2.2,0) -- (2.5,0) node[right] {\(u\)};
+        \draw[thick,->] (-2.2,-1) -- (-2.2,1.5) node[right] {\(p_i\)};
+        \draw[thick,<->] (0,-1) -- (1.5,-1) node[midway,below] {\(2\pi/\omega_i\)};
+    \end{tikzpicture}
+\end{wrapfigure}
+We choose the \(p_i\) such that \(\left.p_i\right|_{\scri^+}\) are wavepackets with frequencies near \(\omega_i > 0\), and \(f_i\) such that \(\left.f_i\right|_{\scri^-}\) are wavepackets with the save \(v\)-dependence as the \(u\)-dependence of \(\left.p_i\right|_{\scri^+}\).
+
+For the moment, just consider Kruskal spacetime, and imagine propagating the wavepacket \(p_i\) backwards in time. Part of the wavepacket would be reflected to \(\scri^-\), and part would be transmitted to \(\mathcal{H}^-\). Thus we can write \(p_i = p_i^{(1)} + p_i^{(2)}\), where \(p_i^{(1)}\) is an in mode and \(p_i^{(2)}\) is an up mode.
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=2]
+        \draw (0,0) -- (1,-1) -- (2,0) -- (1,1) -- cycle;
+        \node[above left] at (0.5,0.5) {\(\mathcal{H}^+\)};
+        \node[below left] at (0.5,-0.5) {\(\mathcal{H}^-\)};
+        \node[below right] at (1.5,-0.5) {\(\scri^-\)};
+        \node[above right] at (1.5,0.5) {\(\scri^+\)};
+
+        \begin{scope}[shift={(0.26,-0.26)},scale=0.13,rotate=-45]
+            \draw[domain=-2:2,smooth,variable=\x] plot({\x},{1.3*exp(-\x*\x)});
+            \draw[thick,->] (0,10) -- (0,3.6);
+        \end{scope}
+        \begin{scope}[shift={(1.74,-0.26)},scale=0.13,rotate=45]
+            \draw[domain=-2:2,smooth,variable=\x] plot({\x},{1.3*exp(-\x*\x)});
+            \draw[thick,->] (0,7) -- (0,3.6);
+        \end{scope}
+        \begin{scope}[shift={(1.26,0.74)},scale=0.13,rotate=-45]
+            \draw[domain=-2:2,smooth,variable=\x] plot({\x},{1.3*exp(-\x*\x)});
+        \end{scope}
+
+        \node at (1.25,1.05) {\(p_i\)};
+        \node at (0,-0.32) {\(p_i^{(2)}\)};
+        \node at (2,-0.32) {\(p_i^{(1)}\)};
+    \end{tikzpicture}
+\end{figure}
+
+The \emph{reflection coefficient} is \(R_i=\sqrt{(p_i^{(1)},p_i^{(1)})}\), and the \emph{transmission coefficient} is \(T_i=\sqrt{(p_i^{(2)},p_i^{(2)})}\). Since \((p_i,p_i)=1\), we have \(R_i^2+T_i^2=1\) (since the in and up modes are orthogonal). Time reversal symmetry implies that \(R_i\) is the fraction of \(f_i\) reflected to \(\scri^+\), and \(T_i\) is the fraction of \(f^i\) crossing \(\mathcal{H}^+\).
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[]
+        \fill[gray!20] (0,6) -- (0,0) .. controls (1,2) and (1,4) .. (1,6) -- cycle;
+        \draw (0,6) -- (0,0) -- (4,4) -- (2,6) -- (0,4);
+        \draw[decorate,decoration=snake] (2,6) -- (0,6);
+        
+        \begin{scope}[shift={(2.5,5.5)},scale=0.25,rotate=-45]
+            \draw[domain=-2:2,smooth,variable=\x] plot({\x},{1.3*exp(-\x*\x)});
+        \end{scope}
+        \begin{scope}[shift={(3.5,3.5)},scale=0.25,rotate=45]
+            \draw[domain=-2:2,smooth,variable=\x] plot({\x},{1.3*exp(-\x*\x)});
+        \end{scope}
+        \begin{scope}[shift={(1.5,1.5)},scale=0.25,rotate=45]
+            \draw[domain=-2:2,smooth,variable=\x] plot({\x},{1.3*exp(-\x*\x)});
+        \end{scope}
+        \draw[dashed] (2.5,5.5) -- (0,3) -- (1.5,1.5);
+        \draw[dashed] (3.5,3.5) -- (2,5);
+        \node[below right] at (3.5,3.5) {\(p_i^{(1)}\)};
+        \node[below right] at (1.5,1.5) {\(p_i^{(2)}\)};
+        \node[above right] at (2.8,5.8) {\(p_i\)};
+    \end{tikzpicture}
+\end{figure}
+Now return to the collapsing matter spacetime.
+We are interested in \(p_i\) localised at late retarded time. Because of this \(p_i^{(1)}\) is localised at late advanced time \disapprove, so scattering happens outside ths collapsing matter, and \(p_i^{(1)}\) is the same as for the Kruskal spacetime. \(p_i^{(1)}\) does not experience the non-stationary geometry and so is positive frequency on \(\scri^-\). As above, \((p_i^{(1)},p_i^{(2)}) = R_i^2\). Thus in the Bogoliubov transformation
+\begin{equation}
+    p_i^{(1,2)} = \sum_j\left(A_{ij}^{(1,2)}f_j + B_{ij}^{(1,2)}\overline{f_j}\right),
+\end{equation}
+we have \(B_{ij}^(1)=0\). Let \(A_{ij} = A_{ij}^{(1)} + A_{ij}^{(2)}\) and \(B_{ij} = B_{ij}^{(2)}\). Since \((p_i^{(1)},p_i^{(2)}) = 0\) and \((p_i,p_i)=1\), we have \((p_i^{(2)},p_i{(2)})=1-R_i^2=T_i^2\).
+
+Note that \(\mathcal{H}^+\) is at \(u=\infty\), so for a wavepacket on \(\scri^+\) at late retarded times there are infinitely many oscillations close to \(\mathcal{H}^+\), and hence an observer crossing the horizon measures a very large frequency.
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=1.5]
+        \fill[gray!20] (0,6) -- (0,0) .. controls (1,2) and (1,4) .. (1,6) -- cycle;
+        \draw (0,6) -- (0,0) -- (4,4) -- (2,6) -- (0,4);
+        \draw[decorate,decoration=snake] (2,6) -- (0,6);
+        
+        \begin{scope}[shift={(2.5,5.5)},scale=0.25,rotate=-45]
+            \draw[domain=-2:2,smooth,variable=\x] plot({\x},{1.3*exp(-\x*\x)});
+        \end{scope}
+        \begin{scope}[shift={(1.5,1.5)},scale=0.25,rotate=45]
+            \draw[domain=-2:2,smooth,variable=\x] plot({\x},{1.3*exp(-\x*\x)});
+        \end{scope}
+        \foreach \i in {1,2,3,4,5,6,7,8,9}
+        {
+            \draw ({1.75+0.75/sqrt(\i)},{6.25-0.75/sqrt(\i)}) -- (0,{4.5-1.5/sqrt(\i)}) -- ({2.25-0.75/sqrt(\i)},{2.25-0.75/sqrt(\i});
+        }
+        \draw (0,4) -- (2,2);
+        \fill (2,2) circle (0.06) node[below right] {\(v=0\)};
+        \fill (1.5,1.5) circle (0.06) node[below right] {\(v_0<0\)}; 
+    \end{tikzpicture} 
+\end{figure}
+
+As there is a large frequency, we can use the approximation of geometric optics, and set 
+\begin{equation}
+    \phi(x)=A(x) = e^{i\lambda S(x)},
+\end{equation}
+where \(\lambda\gg1\) and \(S(x)\) is the phase. \(\nabla^2\phi=0\) implies \((\nabla S)^2=0\), so \(S=\text{constant}\) are null hypersurfaces.
+
+Consider then the null geodesic congruence containing the generators of \(\mathcal{H}^+\) and surfaces of constant \(S\). As previously, let \(U\) be the tangent vector field to the geodesics in the congruence, and let \(N\) be a null vector field such that \(N\vdot U=-1\) and \(U\vdot\nabla N^a=0\). Write \(S^a = \alpha U^a + \hat{S}^a + \beta N^a\) where \(\alpha U^a + \hat{S}^a\) is the part orthogonal to \(U^a\) and tangent to \(\mathcal{H}^+\), and \(beta N^a\) points off of \(\mathcal{H}^+\) towards generators of surfaces \(S=\text{constant}\).
+
+\begin{wrapfigure}{l}{0.5\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=1.3]
+        \draw (0,0) -- (3,3) node[above] {\(\mathcal{H}^+\)};
+        \draw[->,thick] (0.68,0.68) -- (0.7,0.7) node[left] {\(\gamma\)};
+        \draw (0.7,-0.7) -- (3.7,2.3);
+        \draw[->,thick] (1.38,-0.02) -- (1.4,0) node[below] {\(\gamma'\)};
+
+        \draw[->,very thick] (1.5,1.5) -- (0.5,2.5) node[above left] {\(N^a\)};
+        \draw[->,very thick] (1.5,1.5) -- (2.5,2.5) node[above left] {\(U^a\)};
+        \draw[->,very thick] (1.5,1.5) -- (2.2,0.8) node[above right, midway] {\(-\epsilon N^a\)};
+    \end{tikzpicture}
+\end{wrapfigure}
+Let \(\gamma\) be a generator of \(\mathcal{H}^+\), and \(\gamma'\) a generator of a constant \(S\) surface close to \(\mathcal{H}^+\). By spherical symmetry, we can choose \(N^\theta = N^\phi=0\). Outside the matter, \(\pdv{V}\) is tangent to the affinely parametrised generators of \(\mathcal{H}^+\), so we can choose \(U^a=\left(\pdv{V}\right)^a\). \(N^2=0,U\vdot N=-1\) then give \(N=C\pdv{U}\), where \(C>0\) is a constant given by \(g_{UV}\).
+
+\(\gamma\) has \(U=0\), so \(\gamma'\) has \(U=-\epsilon C\) for some small \(\epsilon\) (since we are considering late time modes and are outside matter). We have \(u = - \frac{1}{\kappa}\log(-U)\), and therefore \(\gamma'\) is a null geodesic with
+\begin{equation}
+    u = - \frac{1}{\kappa}\log(\epsilon C).
+\end{equation}
+
+Let \(F(u)\) denote the phase of the wavepacket \(p_i\) on \(\scri^+\). Then the phase \emph{everywhere} on \(\gamma'\) is 
+\begin{equation}
+    S=F\left(-\frac{1}{\kappa}\log(\epsilon C)\right).
+\end{equation}
+
+Near \(\scri^-\), \(\gamma\) and \(\gamma'\) are ingoing radial null geodesics, so \(U^a\propto\left(\pdv{u}\right)^a\) in \((u,v)\) coordinates. Near \(\scri^-\), the metric is
+\begin{equation}
+    \dd{s}^2\approx -\dd{u}\dd{v} + \frac{1}{4} (u-v)\dd{\Omega}^2.
+\end{equation}
+Spherical symmetry, \(N^2=0\), \(U\vdot N=-1\) together imply that \(\left.N\right|_{\scri^-}=D^{-1}\pdv{v}\), where \(D>0\) is a constant. From this we have that \(\gamma'\) intersects \(\scri^-\) at \(v=\epsilon D^{-1}\), and thus on \(\scri^-\) at small \(v\) the phase is
+\begin{equation}
+    S = F\left(-\frac{1}{\kappa}\log(CDv)\right).
+\end{equation}
+Hence we have
+\begin{equation}
+    \left.p_i^{(2)}\right|_{\scri^-} \approx
+    \begin{cases}
+        0 & v > 0 \\
+        A(v)\exp\left[iF\left(-\frac{1}{\kappa}\log(CDv)\right)\right] & \text{small \(v<0\)},
+    \end{cases}
+\end{equation}
+where the amplitude \(A(v)\) is some smooth function of \(v\).
+
+\lecture{11/03/16}
+At the expense of some rigour, we will now drop the wavepacket treatment and assume that we are dealing with plane waves, so that \(F(u)=-i\omega_i u\). We will write \(p_\omega\) instead of \(p_i\), so that
+\begin{equation}
+    \left.p_\omega^{(2)}\right|_{\scri^-} \approx
+    \begin{cases}
+        0 & v > 0 \\
+        A_\omega(v)\exp\left[\frac{i\omega}{\kappa}\log(CDv)\right] & \text{small \(v<0\)}.
+    \end{cases}
+\end{equation}
+Similarly, use a basis of in modes labelled by their frequencies
+\begin{equation}
+    \left.f_\sigma\right|_{\scri^-} = (2\pi N_\sigma)^{-1} e^{-i\sigma v},\quad \sigma > 0.
+\end{equation}
+Writing \(p_\omega^{(2)}\) in terms of the \(f_\sigma\) is just the same as finding its Fourier transform. We have
+\begin{equation}
+    \tilde{p}_\omega^{(2)}(\sigma) = A_\omega\int_{-\infty}^0 \dd{v} e^{i\sigma v} \exp\left[\frac{i\omega}{\kappa}\log(-CDv)\right].
+\end{equation}
+where we have approximated \(A_\omega\) is constant since \(p_\omega^{(2)}\) is non-zero for a small portion of \(v\). The inverse is
+\begin{align}
+    p_\omega^{(2)}(v) &= \int^\infty_{-\infty} \frac{\dd{\sigma}}{2\pi} e^{-i\sigma v} \tilde{p}_\omega^{(2)}(\sigma) \\
+                      &= 
+    \underbrace{\int_0^\infty \dd{\sigma} N_\sigma \tilde{p}_\omega^{(2)}(\sigma)f_\sigma(v)}_{\text{positive frequency}}
+    +
+    \underbrace{\int_0^\infty \dd{\sigma} \overline{N_\sigma} \tilde{p}_\omega^{(2)}(-\sigma)\overline{f_\sigma(v)}}_{\text{negative frequency}}.
+\end{align}
+Hence we can write down some Bogoliubov coefficients:
+\begin{equation}
+    A^{(2)}_{\omega\sigma} = N_\sigma\tilde{p}_\omega^{(2)}(\sigma),\quad
+    B_{\omega\sigma} = \overline{N_\sigma}\tilde{p}_\omega^{(2)}(-\sigma)\quad
+    (\omega,\sigma > 0)
+\end{equation}
+In order to evaluate the Fourier transform we will complete the contour of integration in the complex plane. We choose the branch of \(\log\) to be the one given by \(\log|z| + i\arg z\), where \(\arg z \in \left(-\frac{\pi}{2},\frac{3\pi}{2}\right)\).
+
+Consider \(\tilde{p}_\omega^{(2)}(-\sigma)\) for \(\sigma > 0\). We close the contour in the \(v\)-plane in the following way:
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \fill (0,0) circle (0.06);
+        \draw[decorate,decoration=snake] (0,0) -- (0,2.5);
+        \draw (0.15,0) -- (2.5,0) arc (0:-180:2.5) -- (-0.15,0) arc (-180:0:0.15);
+
+        \draw[thick,->] (1.24,0) -- (1.25,0);
+        \draw[thick,->] (-1.26,0) -- (-1.25,0);
+        \draw[thick,->] (0.01,-2.5) -- (-0.01,-2.5);
+
+        \draw[thick,<->,rotate=-20] (0,-0.2) -- (0,-2.45) node[midway,right] {\(R\to\infty\)}; 
+    \end{tikzpicture}
+\end{figure}
+By Jordan's lemma, the contribution of the large semi-circular part of the contour vanishes. Hence
+\begin{align}
+    \tilde{p}_\omega^{(2)}(-\sigma) &= -A_\omega\int_0^\infty \dd{v} e^{-i\sigma v}\exp\left[\frac{i\omega}{\kappa}\log(-CDv)\right] \\
+                                    &= -A_\omega\int_0^\infty \dd{v} e^{-i\sigma v}\exp\left[\frac{i\omega}{\kappa}\left(\log(CDv)+i\pi\right)\right] \\
+                                    &= -A_\omega e^{-\frac{\pi\omega}{\kappa}} \int^0_{-\infty} \dd{v} e^{i\sigma v} \exp\left[\frac{i\omega}{\kappa}\log(-CDv)\right] \quad (v\to-v) \\
+                                    &= -e^{-\frac{\pi\omega}{\kappa}} \tilde{p}_\omega^{(2)}(\sigma).
+\end{align}
+Therefore \(|B_{\omega\sigma}| = e^{-\frac{\pi\omega}{\kappa}} |A^{(2)}_{\omega\sigma}|\). Returning to wavepackets, the corresponding result is
+\begin{equation}
+    |B_{ij}| = e^{-\frac{\pi\omega_i}{\kappa}} |A^{(2)}_{ij}|.
+\end{equation}
+Note that 
+\begin{equation}
+    T_i^2 = (p_i^{(2)},p_i^{(2)}) = \sum_j\left(|A^{(2)}_{ij}|^2 - |B_{ij}|^2\right) = \left(e^{\frac{2\pi\omega_i}{\kappa}}-1\right)\sum_j|B_{ij}|^2,
+\end{equation}
+and \(\sum_j|B_{ij}|^2=(BB^\dagger)_{ii}=\mel{0}{b_i^\dagger b_i}{0}\), so we have
+\begin{equation}
+    \mel{0}{b_i^\dagger b_i}{0} = \frac{\Gamma_i}{e^{\frac{2\pi\omega_i}{\kappa}}-1},
+\end{equation}
+where \(\Gamma_i=T_i^2\) is the \emph{absorption cross-section} for the mode \(f_i\). This is exactly a blackbody spectrum at the black hole's \emph{Hawking temperature}
+\begin{equation}
+    T_H = \frac{\kappa}{2\pi}.
+\end{equation}
+Note that \(T_H\approx 6\times10^{-8}\times\frac{M_{\astrosun}}{M}\,\text{K}\), and the CMB is at a temperature of \(2.7\,\text{K}\), so the effect of this \emph{Hawking radiation} is cosmologically negligible.
+
+\subsection{Black hole thermodynamics}
+Hawking radiation implies that a black hole is a thermodynamic object at temperature \(T_H\). The zeroth law of BH mechanics is just the application of the zeroth law of thermodynamics to the black hole. Writing the first law as
+\begin{equation}
+    \dd{E} = T_H \dd{S_{BH}} + \omega_H\dd{J},
+\end{equation}
+we see that the entropy associated with the black hole is
+\begin{equation}
+    S_{BH} = \frac{A}{4} = \frac{c^3A}{4G\hbar}.
+\end{equation}
+Note that \(S_{BH}\) can decrease quantum mechanically. We therefore make a generalisation of the second law to saying that \(S_{BH}+S_{\text{matter}}\) is non-decreasing (this holds in Hawking radiation). 
+
+Note that if most of the energy in the universe was in the form of black holes, the total entropy in the universe would be far higher than it currently is -- the universe seems to be in a special low entropy state.
+
+Statistical mechanics gives that the number of quantum microstates of the black hole as \(N\sim \exp^{S_{BH}}\). A replication of this result is a major goal of quantum gravity research.
+
+\subsection{Black hole evaporation}
+The energy of Hawking radiation must come from the black hole itself. Stefan's law for energy loss from a blackbody gives
+\begin{equation}
+    \dv{E}{t} \approx - \alpha A T^4
+\end{equation}
+where \(\alpha\) is a dimensionless constant, and we approximate \(\gamma_i\) by treating the black hole as a perfectly absorbing sphere of area \(A\). Plugging in \(E=M\), \(A\propto M^2\) and \(T=T_H\propto\frac{1}{M}\) gives
+\begin{equation}
+    \dv{M}{t}\propto -\frac{1}{M^2}.
+\end{equation}
+Hence we have \(M\to0\) in a finite time \(\tau \sim M^3 \sim 10^{71}(\frac{M}{M_{\astrosun}})^3\,\text{seconds}\).
+
+Black hole evaporation gives rise to the so-called \emph{information paradox}. Consider the following sequence of events. A star is initially in a pure quantum state. It collapses to a black hole, and then evaporates. The final state is completely composed of thermal radiation which must be a mixed state. So we have gone from a pure state to a mixed state, but this is impossible in quantum mechanics!
+
+Information about the initial state is lost, and the only information that remains is the energy, angular momentum and charge of the black hole.
 
 \end{document}
+
